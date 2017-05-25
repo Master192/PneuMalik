@@ -8,6 +8,7 @@ namespace PneuMalik.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("/home")]
         public ActionResult Index()
         {
             return View();

@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta content="Pneuservis a internetový obchod (e-shop). Prodáváme a opravujeme pneumatiky, geometrii, vyvážení kol, kovové a hliníkové (alu) disky. Prodáváme také akumulátory a sněhové řetězy. Vyměňujeme brzdové destičky, kotouče, tlumiče, výfuky a olej." name="description" />
+    <meta content="pneumatiky, pneumatika, pneu, disky, disk, zimní pneumatiky, letní pneumatiky" name="keywords" />
+    <meta name="author" content="PneuMalík" />
+    <meta name="robots" content="index, follow" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div id="vse">
+
+        <div id="top">
+
+            <p id="logo"><a href="/" title="Pneuservis Petr Malík"><img src="/img/logo.png" alt="Pneuservis Petr Malík" /></a></p>
+
+            <div id="u_Hlavicka11_u_KosikInfo1_UDP1">
+
+
+                <div class="topkosik">
+                    <p>
+                        <strong><a id="u_Hlavicka11_u_KosikInfo1_lbPrihlasit" href="javascript:__doPostBack(&#39;ctl00$u_Hlavicka11$u_KosikInfo1$lbPrihlasit&#39;,&#39;&#39;)">Přihlášení</a></strong> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+                        <strong><a id="u_Hlavicka11_u_KosikInfo1_hlRegistrovat" href="/nakup/registrace.aspx">Registrace</a></strong>
+                    </p>
+
+                    <p>
+                        <span id="u_Hlavicka11_u_KosikInfo1_lbUser">Uživatel</span>: <span id="u_Hlavicka11_u_KosikInfo1_User" class="wh">Nepřihlášený</span><br />
+                        <span id="u_Hlavicka11_u_KosikInfo1_lblKosik">Košík</span>:
+                        <strong><a id="u_Hlavicka11_u_KosikInfo1_hlKosik" class="wh" href="/nakup/kosik.aspx">bez položek</a></strong><br />
+                        <span id="u_Hlavicka11_u_KosikInfo1_lblCena">Cena</span>:
+                        <strong><a id="u_Hlavicka11_u_KosikInfo1_CenaNakupu" class="wh" href="/nakup/kosik.aspx">0,00 Kč</a></strong>
+                    </p>
+
+                    <div id="tkover">
+                        <p><img class="fr" onclick="document.getElementById('tkover').style.display='none';" src="/img/close.gif" alt="" /></p>
+                        <p>Váš e-mail: <br /><input name="ctl00$u_Hlavicka11$u_KosikInfo1$tbEmail" type="text" id="u_Hlavicka11_u_KosikInfo1_tbEmail" tabindex="1" class="boks" style="width:120px;" /></p>
+                        <p>
+                            Vaše heslo: <br /><input type="submit" name="ctl00$u_Hlavicka11$u_KosikInfo1$Button1" value="Přihlásit" id="u_Hlavicka11_u_KosikInfo1_Button1" tabindex="3" class="fr enter" />
+                            <input name="ctl00$u_Hlavicka11$u_KosikInfo1$tbHeslo" type="password" id="u_Hlavicka11_u_KosikInfo1_tbHeslo" tabindex="2" class="boks" style="width:120px;" /><br />
+                            <a id="u_Hlavicka11_u_KosikInfo1_lbZapomenuteHeslo" tabindex="4" href="javascript:__doPostBack(&#39;ctl00$u_Hlavicka11$u_KosikInfo1$lbZapomenuteHeslo&#39;,&#39;&#39;)"><em>Zapomenuté heslo</em></a>
+                        </p>
+                        <p><em>Nemáte ještě vytvořen účet?</em> <strong><a id="u_Hlavicka11_u_KosikInfo1_hlRegistrovat2" tabindex="5" href="/nakup/registrace.aspx">Zaregistrovat</a></strong></p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <p id="home"><a href="/" title="Pneuservis Petr Malík"><img src="/img/home.png" alt="Pneuservis Petr Malík" /></a></p>
+
+            <ul id="menutop"><li><a href="/pneumatiky/nakup-u-nas.aspx" title="Nákup u nás">Nákup u nás</a></li><li><a href="/pneumatiky/nase-firma.aspx" title="Naše firma">Naše firma</a><ul><li><a href="/pneumatiky/cenik-praci.aspx" title="Ceník prací">Ceník prací</a></li><li><a href="/pneumatiky/odkazy.aspx" title="Odkazy">Odkazy</a></li></ul></li><li><a href="/pneumatiky/pruvodce.aspx" title="Průvodce">Průvodce</a></li><li><a href="/pneumatiky/obchodni-podminky.aspx" title="Obchodní podmínky">Obchodní podmínky</a></li><li><a href="/pneumatiky/zpusob-dopravy.aspx" title="Způsob dopravy">Způsob dopravy</a></li></ul>
+
+        </div>
+
+        <div id="obsah">
+
+            <div id="left">
+
+                <ul class="menuvlevo"><li class="none"><a href="/pneumatiky/akcni-nabidka.aspx" title="Akční nabídka">Akční nabídka</a></li><li><a href="/pneumatiky/pneumatiky.aspx" title="Pneumatiky">Pneumatiky</a><ul><li><a href="/pneumatiky/osobni-offroad-4x4-suv.aspx" title="Osobní, offroad, 4x4, SUV">Osobní, offroad, 4x4, SUV</a></li><li><a href="/pneumatiky/uzitkove-zatezove-c.aspx" title="Užitkové zátěžové " C"">Užitkové zátěžové "C"</a></li><li><a href="/pneumatiky/nakladni.aspx" title="Nákladní">Nákladní</a></li><li><a href="/pneumatiky/industrialni-a-prumyslove.aspx" title="Industriální a Průmyslové">Industriální a Průmyslové</a></li><li><a href="/pneumatiky/motopneu.aspx" title="Motopneu">Motopneu</a></li><li><a href="/pneumatiky/zemedelske.aspx" title="Zemědělské">Zemědělské</a></li><li><a href="/pneumatiky/atv.aspx" title="ATV">ATV</a></li><li><a href="/pneumatiky/duse-a-motovlozky.aspx" title="Duše a motovložky">Duše a motovložky</a></li></ul></li><li><a href="/pneumatiky/lita-kola--konfigurator.aspx" title="Litá kola - KONFIGURÁTOR">Litá kola - KONFIGURÁTOR</a></li><li><a href="/pneumatiky/hlinikove-disky.aspx" title="Hliníkové disky">Hliníkové disky</a></li><li><a href="/pneumatiky/ocelove-disky.aspx" title="Ocelové disky">Ocelové disky</a></li><li><a href="/pneumatiky/prislusenstvi.aspx" title="Příslušenství">Příslušenství</a><ul><li><a href="/pneumatiky/startovaci-baterie-brit.aspx" title="Startovací baterie BRIT">Startovací baterie BRIT</a></li><li><a href="/pneumatiky/startovaci-baterie-exide.aspx" title="Startovací baterie EXIDE">Startovací baterie EXIDE</a></li></ul></li></ul>
+
+                <div class="lboxgr">
+                    <div class="lbgr">
+                        <div class="lbg">
+
+                            <p><strong>Pneuservis Petr Malík</strong></p>
+                            <p>Litovická 779<br />25301 Hostivice<br />okr. Praha-Západ</p>
+                            <p>Tel: 220 981 172<br />602 355 775<br />e-mail: guma@c-box.cz</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <p align="center"><img src="http://www.pneumalik.cz/images/image/banner-firststop/firststop-banner.jpg" alt="Akce Firststop" /></p>
+
+            </div>
+
+            <div id="stred">
+
+                @RenderBody()
+
+            </div>
+
+            <div id="right">
+
+                <div id="right2">
+                    <h2><u>Svátky 1,Máje</u></h2>
+                    <p><span style="color: rgb(0, 0, 0);"><strong>Pondělí 01.05.</strong>. &#160;&#160;<span style="color: rgb(255, 0, 0);"><span style="font-size: medium;">&#160;</span><u><strong><span style="font-size: medium;">Zavřeno</span></strong></u></span></span></p>
+                    <p><span style="color: rgb(0, 0, 0);"><strong>Pondělí 08.05.</strong></span><strong>&#160;</strong>&#160; &#160;.<u><strong><span style="color: rgb(255, 0, 0);"><span style="font-size: larger;">Zavřeno</span></span></strong></u></p>
+                    <p><font color="#000000"><b>&#160;</b></font></p>
+                    <h2>&#160;</h2>
+                    <h2><strong style="color: rgb(0, 0, 0); font-size: 16px;"><u>PROVOZNÍ DOBA</u></strong></h2>
+                    <p class="MsoNormal" style="text-align: left;">
+                        <br />
+                        <strong>
+                            Pondělí - Čtvrtek<br />
+                            8.00 - 18,00 hod
+                        </strong>
+                    </p>
+                    <p class="MsoNormal" style="text-align: left;">
+                        <b>Pátek:8,00-17hod</b><br />
+                        <strong>
+                            Sobota:<br />
+                            8.00 - 12,00hod
+                        </strong><br />
+                        <br />
+                        <strong>
+                            <span style="color: rgb(255, 0, 0);">Polední přestávka:</span><span style="color: rgb(255, 0, 0);">
+                                <br />
+                                12.00 - 13.00 hod
+                            </span>
+                        </strong>
+                    </p>
+                    <p>&#160;<img src="/images/image/lada%20jaro/Lada%20jaro.jpg" width="170" height="233" alt="" /></p>
+                    <p>&#160;</p>
+                </div>
+
+                <div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9652-rhawk.aspx" title="Firestone RHAWK"><strong>Firestone RHAWK</strong></a></p><p>195/65 R15 </p><p><a href="/pneumatika/150-9652-rhawk.aspx" title="Firestone RHAWK"><img src="/images/nahled/RHawk.jpeg" alt="Firestone RHAWK 195/65 R15 " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1100,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><strong>BRIDGESTONE T001 EVO</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><img src="/images/nahled/BRIDGESTONE T001EVO.jpg" alt="BRIDGESTONE T001 EVO 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1670,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9649-roadhawk.aspx" title="FIRESTONE ROADHAWK"><strong>FIRESTONE ROADHAWK</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9649-roadhawk.aspx" title="FIRESTONE ROADHAWK"><img src="/images/nahled/FIRESTONE ROADHAWK.jpg" alt="FIRESTONE ROADHAWK 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1350,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-t429712-nokian-line.aspx" title="Nokian Nokian Line"><strong>Nokian Nokian Line</strong></a></p><p>195/65 R15  </p><p><a href="/pneumatika/150-t429712-nokian-line.aspx" title="Nokian Nokian Line"><img src="/images/nahled/nokian-h.jpg" alt="Nokian Nokian Line 195/65 R15  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1228,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><strong>BRIDGESTONE T001 EVO</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><img src="/images/nahled/BRIDGESTONE T001EVO.jpg" alt="BRIDGESTONE T001 EVO 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1670,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="DAYTON TOURING 2"><strong>DAYTON TOURING 2</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9480-touring-2.aspx" title="DAYTON TOURING 2"><img src="/images/nahled/DAYTON TOURING2.jpg" alt="DAYTON TOURING 2 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1299,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div>
+
+                <div id="right2"><br>ceny jsou platné při objednávání přes internet</div>
+
+            </div><div class="cleaner"><hr /></div>
+
+        </div>
+
+        @Html.Partial("_Footer")
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
