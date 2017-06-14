@@ -196,11 +196,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dto\Cathegory.cs" />
+    <Compile Include="Models\Dto\Disc.cs" />
+    <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
     <Compile Include="Models\Dto\Pneu.cs" />
     <Compile Include="Models\Dto\PneuCathegory.cs" />
+    <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
+    <Compile Include="Models\Dto\WebCathegory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

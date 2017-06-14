@@ -1,9 +1,8 @@
 ﻿namespace PneuMalik.Models.Dto
 {
-    public class PneuCathegory
+    public class PneuCathegory : Cathegory
     {
 
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ItemsOnPage { get; set; }
     }
 }
