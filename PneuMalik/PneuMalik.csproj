@@ -433,6 +433,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Eshop\_EshopLayout.cshtml" />
     <Content Include="Views\Eshop\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Left.cshtml" />
+    <Content Include="Views\Shared\_Right.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

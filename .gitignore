@@ -1,6 +1,10 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /PneuMalik/App_Data/aspnet-PneuMalik-20170419060210.mdf
 *.ldf
+*.suo
+/PneuMalik/bin/*
+/PneuMalik/obj/*
+/PneuMalik/obj/Debug/*
