@@ -196,6 +196,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dto\Manufacturer.cs" />
+    <Compile Include="Models\Dto\Pneu.cs" />
+    <Compile Include="Models\Dto\PneuCathegory.cs" />
+    <Compile Include="Models\Dto\Season.cs" />
+    <Compile Include="Models\Dto\VehicleType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -433,6 +438,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Eshop\_EshopLayout.cshtml" />
     <Content Include="Views\Eshop\Index.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Left.cshtml" />
+    <Content Include="Views\Shared\_Right.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
