@@ -4,4 +4,18 @@
 
 /PneuMalik/App_Data/aspnet-PneuMalik-20170419060210.mdf
 *.ldf
-.vs/PneuMalik/v15/.suo
+*.suo
+/packages/*
+packages/*
+.vs/*
+/PneuMalik/.vs/config/applicationhost.config
+/PneuMalik/.vs/PneuMalik/v15/.suo
+/PneuMalik/bin/roslyn/*
+/PneuMalik/bin/obj/Debug/*
+PneuMalik/.vs/config/applicationhost.config
+PneuMalik/.vs/PneuMalik/v15/.suo
+PneuMalik/bin/roslyn/*
+PneuMalik/bin/*
+/PneuMalik/bin/*
+PneuMalik/obj/*
+/PneuMalik/obj/*
