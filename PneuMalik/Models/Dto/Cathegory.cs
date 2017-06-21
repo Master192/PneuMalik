@@ -12,6 +12,8 @@
         public string Description { get; set; }
         public string Annotation { get; set; }
         public string Content { get; set; }
-
+        public int ItemsOnPage { get; set; }
+        public Product.ProductType Type { get; set; }
+        public string ExternalUrl { get; set; }
     }
 }

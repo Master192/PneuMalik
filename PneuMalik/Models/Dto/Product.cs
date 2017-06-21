@@ -6,7 +6,7 @@ namespace PneuMalik.Models.Dto
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public IList<ProductCathegory> Cathegory { get; set; }
+        public IList<Cathegory> Cathegories { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
         public string ShortDescription { get; set; }

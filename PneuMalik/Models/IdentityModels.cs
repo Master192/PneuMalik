@@ -29,5 +29,7 @@ namespace PneuMalik.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Cathegory> Cathegories { get; set; }
     }
 }

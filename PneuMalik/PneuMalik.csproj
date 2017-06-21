@@ -189,23 +189,31 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CathegoriesController.cs" />
     <Compile Include="Controllers\EshopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706212053573_InitialCreate.cs" />
+    <Compile Include="Migrations\201706212053573_InitialCreate.Designer.cs">
+      <DependentUpon>201706212053573_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706212123389_Cathegory.cs" />
+    <Compile Include="Migrations\201706212123389_Cathegory.Designer.cs">
+      <DependentUpon>201706212123389_Cathegory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
     <Compile Include="Models\Dto\Disc.cs" />
     <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
     <Compile Include="Models\Dto\Pneu.cs" />
-    <Compile Include="Models\Dto\ProductCathegory.cs" />
     <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
-    <Compile Include="Models\Dto\WebCathegory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -447,6 +455,11 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Left.cshtml" />
     <Content Include="Views\Shared\_Right.cshtml" />
+    <Content Include="Views\Cathegories\Create.cshtml" />
+    <Content Include="Views\Cathegories\Delete.cshtml" />
+    <Content Include="Views\Cathegories\Details.cshtml" />
+    <Content Include="Views\Cathegories\Edit.cshtml" />
+    <Content Include="Views\Cathegories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -465,6 +478,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706212053573_InitialCreate.resx">
+      <DependentUpon>201706212053573_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706212123389_Cathegory.resx">
+      <DependentUpon>201706212123389_Cathegory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
