@@ -6,7 +6,7 @@ namespace PneuMalik.Models.Dto
     {
         public int Id { get; set; }
         public string Code { get; set; }
-        public IList<PneuCathegory> Cathegory { get; set; }
+        public IList<ProductCathegory> Cathegory { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
         public string ShortDescription { get; set; }
@@ -21,5 +21,14 @@ namespace PneuMalik.Models.Dto
         public string Ean { get; set; }
         public double PriceCommon { get; set; }
         public double Price { get; set; }
+        public ProductType Type { get; set; }
+
+        public enum ProductType
+        {
+            Pneu,
+            AluDisk,
+            PbDisk,
+            Accessories
+        }
     }
 }

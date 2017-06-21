@@ -201,7 +201,7 @@
     <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
     <Compile Include="Models\Dto\Pneu.cs" />
-    <Compile Include="Models\Dto\PneuCathegory.cs" />
+    <Compile Include="Models\Dto\ProductCathegory.cs" />
     <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
