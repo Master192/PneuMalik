@@ -1,0 +1,160 @@
+﻿@model IEnumerable<PneuMalik.Models.Dto.Pneu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Design)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndexLi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerieWidth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Construction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndexSi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighPr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ean)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceCommon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pattern)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Design)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndexLi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerieWidth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Construction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndexSi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HighPr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShortDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diameter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ean)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceCommon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,115 +1,116 @@
-﻿using PneuMalik.Helpers;
-using PneuMalik.Models;
-using PneuMalik.Models.Dto;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using PneuMalik.Models.Dto;
 
-namespace PneuMalik.Controllers
+namespace PneuMalik.Models
 {
-    [LayoutInjecter("_Layout")]
-    public class CathegoriesController : Controller
+    public class PneusController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Cathegories
+        // GET: Pneus
         public ActionResult Index()
         {
-            return View(db.Cathegories.ToList());
+            return View(db.Pneus.ToList());
         }
 
-        // GET: Cathegories/Details/5
+        // GET: Pneus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cathegory cathegory = db.Cathegories.Find(id);
-            if (cathegory == null)
+            Pneu pneu = db.Pneus.Find(id);
+            if (pneu == null)
             {
                 return HttpNotFound();
             }
-            return View(cathegory);
+            return View(pneu);
         }
 
-        // GET: Cathegories/Create
+        // GET: Pneus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cathegories/Create
+        // POST: Pneus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Url,Title,Default,Active,Keywords,Description,Annotation,Content")] Cathegory cathegory)
+        public ActionResult Create([Bind(Include = "Id,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type")] Pneu pneu)
         {
             if (ModelState.IsValid)
             {
-                db.Cathegories.Add(cathegory);
+                db.Pneus.Add(pneu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cathegory);
+            return View(pneu);
         }
 
-        // GET: Cathegories/Edit/5
+        // GET: Pneus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cathegory cathegory = db.Cathegories.Find(id);
-            if (cathegory == null)
+            Pneu pneu = db.Pneus.Find(id);
+            if (pneu == null)
             {
                 return HttpNotFound();
             }
-            return View(cathegory);
+            return View(pneu);
         }
 
-        // POST: Cathegories/Edit/5
+        // POST: Pneus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Url,Title,Default,Active,Keywords,Description,Annotation,Content")] Cathegory cathegory)
+        public ActionResult Edit([Bind(Include = "Id,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type")] Pneu pneu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cathegory).State = EntityState.Modified;
+                db.Entry(pneu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cathegory);
+            return View(pneu);
         }
 
-        // GET: Cathegories/Delete/5
+        // GET: Pneus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cathegory cathegory = db.Cathegories.Find(id);
-            if (cathegory == null)
+            Pneu pneu = db.Pneus.Find(id);
+            if (pneu == null)
             {
                 return HttpNotFound();
             }
-            return View(cathegory);
+            return View(pneu);
         }
 
-        // POST: Cathegories/Delete/5
+        // POST: Pneus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cathegory cathegory = db.Cathegories.Find(id);
-            db.Cathegories.Remove(cathegory);
+            Pneu pneu = db.Pneus.Find(id);
+            db.Pneus.Remove(pneu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

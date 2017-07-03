@@ -2,7 +2,6 @@
     font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
     font-size: 13px;
     color: #000;
-    background: #fff url(/img/backhtml.gif) 0 0 repeat-x;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -11,7 +10,11 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(/img/backbody.jpg) 50% 0% no-repeat;
+}
+
+div.body-content {
+    padding-top: 70px;
+    text-align: left;
 }
 
 .stitek_eu_maly {
@@ -892,17 +895,15 @@ ul.menu {
 .nav {
     float: left;
     display: block;
-    width: 24px;
+    width: 224px;
     height: 20px;
     margin: 0 2px 0 0;
     padding: 4px 0 0 0;
-    background: url(/img/backnav.gif) 0 0 no-repeat;
     text-align: center;
     text-decoration: none;
 }
 
     .nav:hover, .nav.this {
-        background: url(/img/backnavh.gif) 0 0 no-repeat;
         color: #fff;
     }
 
