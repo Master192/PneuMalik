@@ -23,6 +23,27 @@ namespace PneuMalik.Models.Dto
         public double Price { get; set; }
         public ProductType Type { get; set; }
 
+        // Pneu
+        public string Pattern { get; set; }         // Dezén
+        public VehicleType Vehicle { get; set; }
+        public Season Season { get; set; }
+        public string Design { get; set; }          // Provedení
+        public int IndexLi { get; set; }
+        public int SerieWidth { get; set; }
+        public string Construction { get; set; }
+        public string IndexSi { get; set; }
+        public int HighPr { get; set; }
+
+        // Disky
+        public DiscType DiscType { get; set; }
+        public string Model { get; set; }
+        public string Size { get; set; }
+        public int Et { get; set; }
+        public int Holes { get; set; }
+        public int Year { get; set; }
+        public int Pitch { get; set; }          // Rozteč
+        public int MiddleHole { get; set; }     // Středový otvor
+
         public enum ProductType
         {
             Pneu,

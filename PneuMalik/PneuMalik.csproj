@@ -193,41 +193,36 @@
     <Compile Include="Controllers\EshopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LayoutInjecterAttribute.cs" />
-    <Compile Include="Migrations\201706212053573_InitialCreate.cs" />
-    <Compile Include="Migrations\201706212053573_InitialCreate.Designer.cs">
-      <DependentUpon>201706212053573_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201707041947433_Cathegory.cs" />
+    <Compile Include="Migrations\201707041947433_Cathegory.Designer.cs">
+      <DependentUpon>201707041947433_Cathegory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706212123389_Cathegory.cs" />
-    <Compile Include="Migrations\201706212123389_Cathegory.Designer.cs">
-      <DependentUpon>201706212123389_Cathegory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707031959541_Pneus.cs" />
-    <Compile Include="Migrations\201707031959541_Pneus.Designer.cs">
-      <DependentUpon>201707031959541_Pneus.cs</DependentUpon>
+    <Compile Include="Migrations\201707041951473_Product.cs" />
+    <Compile Include="Migrations\201707041951473_Product.Designer.cs">
+      <DependentUpon>201707041951473_Product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
-    <Compile Include="Models\Dto\Disc.cs" />
     <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
-    <Compile Include="Models\Dto\Pneu.cs" />
     <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PneusController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Eshop.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -466,11 +461,11 @@
     <Content Include="Views\Cathegories\Details.cshtml" />
     <Content Include="Views\Cathegories\Edit.cshtml" />
     <Content Include="Views\Cathegories\Index.cshtml" />
-    <Content Include="Views\Pneus\Create.cshtml" />
-    <Content Include="Views\Pneus\Delete.cshtml" />
-    <Content Include="Views\Pneus\Details.cshtml" />
-    <Content Include="Views\Pneus\Edit.cshtml" />
-    <Content Include="Views\Pneus\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -491,14 +486,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706212053573_InitialCreate.resx">
-      <DependentUpon>201706212053573_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707041947433_Cathegory.resx">
+      <DependentUpon>201707041947433_Cathegory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706212123389_Cathegory.resx">
-      <DependentUpon>201706212123389_Cathegory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707031959541_Pneus.resx">
-      <DependentUpon>201707031959541_Pneus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707041951473_Product.resx">
+      <DependentUpon>201707041951473_Product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

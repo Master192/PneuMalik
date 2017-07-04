@@ -32,6 +32,6 @@ namespace PneuMalik.Models
 
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Cathegory> Cathegories { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Pneu> Pneus { get; set; }
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Product> Products { get; set; }
     }
 }

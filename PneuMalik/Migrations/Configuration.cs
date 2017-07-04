@@ -10,7 +10,6 @@ namespace PneuMalik.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "PneuMalik.Models.ApplicationDbContext";
         }
 
         protected override void Seed(PneuMalik.Models.ApplicationDbContext context)

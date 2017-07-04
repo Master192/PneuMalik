@@ -6,111 +6,112 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PneuMalik.Models;
 using PneuMalik.Models.Dto;
 
-namespace PneuMalik.Models
+namespace PneuMalik.Controllers
 {
-    public class PneusController : Controller
+    public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Pneus
+        // GET: Products
         public ActionResult Index()
         {
-            return View(db.Pneus.ToList());
+            return View(db.Products.ToList());
         }
 
-        // GET: Pneus/Details/5
+        // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pneu pneu = db.Pneus.Find(id);
-            if (pneu == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(pneu);
+            return View(product);
         }
 
-        // GET: Pneus/Create
+        // GET: Products/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Pneus/Create
+        // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type")] Pneu pneu)
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Model,Size,Et,Holes,Year,Pitch,MiddleHole")] Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Pneus.Add(pneu);
+                db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pneu);
+            return View(product);
         }
 
-        // GET: Pneus/Edit/5
+        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pneu pneu = db.Pneus.Find(id);
-            if (pneu == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(pneu);
+            return View(product);
         }
 
-        // POST: Pneus/Edit/5
+        // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type")] Pneu pneu)
+        public ActionResult Edit([Bind(Include = "Id,Code,Name,Active,ShortDescription,Description,Image,Tip,Action,InStock,Width,Diameter,Ean,PriceCommon,Price,Type,Pattern,Design,IndexLi,SerieWidth,Construction,IndexSi,HighPr,Model,Size,Et,Holes,Year,Pitch,MiddleHole")] Product product)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pneu).State = EntityState.Modified;
+                db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pneu);
+            return View(product);
         }
 
-        // GET: Pneus/Delete/5
+        // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pneu pneu = db.Pneus.Find(id);
-            if (pneu == null)
+            Product product = db.Products.Find(id);
+            if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(pneu);
+            return View(product);
         }
 
-        // POST: Pneus/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pneu pneu = db.Pneus.Find(id);
-            db.Pneus.Remove(pneu);
+            Product product = db.Products.Find(id);
+            db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

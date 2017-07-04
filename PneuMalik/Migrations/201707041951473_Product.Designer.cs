@@ -7,13 +7,13 @@ namespace PneuMalik.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Cathegory : IMigrationMetadata
+    public sealed partial class Product : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Cathegory));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Product));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706212123389_Cathegory"; }
+            get { return "201707041951473_Product"; }
         }
         
         string IMigrationMetadata.Source

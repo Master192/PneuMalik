@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PneuMalik.Models.Dto.Pneu>
+﻿@model IEnumerable<PneuMalik.Models.Dto.Product>
 
 @{
     ViewBag.Title = "Index";
@@ -12,27 +12,6 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pattern)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Design)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IndexLi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SerieWidth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Construction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IndexSi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HighPr)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Code)
         </th>
@@ -78,32 +57,53 @@
         <th>
             @Html.DisplayNameFor(model => model.Type)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pattern)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Design)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndexLi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerieWidth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Construction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndexSi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighPr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Et)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Holes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pitch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleHole)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pattern)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Design)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IndexLi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SerieWidth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Construction)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IndexSi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HighPr)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Code)
         </td>
@@ -148,6 +148,48 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pattern)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Design)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndexLi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerieWidth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Construction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndexSi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HighPr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Et)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Holes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pitch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleHole)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
