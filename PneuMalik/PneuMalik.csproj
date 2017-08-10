@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\TextsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +208,10 @@
     <Compile Include="Migrations\201707041951473_Product.Designer.cs">
       <DependentUpon>201707041951473_Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708101910379_Text.cs" />
+    <Compile Include="Migrations\201708101910379_Text.Designer.cs">
+      <DependentUpon>201708101910379_Text.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
@@ -214,9 +219,11 @@
     <Compile Include="Models\Dto\Manufacturer.cs" />
     <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
+    <Compile Include="Models\Dto\Text.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MultipleChangeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -474,6 +481,11 @@
     <Content Include="Views\Admin\MultiDelete.cshtml" />
     <Content Include="Views\Admin\ImageChange.cshtml" />
     <Content Include="Views\Admin\TextChange.cshtml" />
+    <Content Include="Views\Texts\Create.cshtml" />
+    <Content Include="Views\Texts\Delete.cshtml" />
+    <Content Include="Views\Texts\Details.cshtml" />
+    <Content Include="Views\Texts\Edit.cshtml" />
+    <Content Include="Views\Texts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -499,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707041951473_Product.resx">
       <DependentUpon>201707041951473_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708101910379_Text.resx">
+      <DependentUpon>201708101910379_Text.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

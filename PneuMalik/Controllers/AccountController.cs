@@ -85,7 +85,7 @@ namespace PneuMalik.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Neplatný pokus o přihlášení.");
                     return View(model);
             }
         }
@@ -128,7 +128,7 @@ namespace PneuMalik.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", "Neplatný kód.");
                     return View(model);
             }
         }
