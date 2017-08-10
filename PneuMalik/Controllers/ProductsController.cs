@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using PneuMalik.Helpers;
+using PneuMalik.Models;
+using PneuMalik.Models.Dto;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PneuMalik.Models;
-using PneuMalik.Models.Dto;
 
 namespace PneuMalik.Controllers
 {
+
+    [Authorize]
+    [LayoutInjecter("_Layout")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

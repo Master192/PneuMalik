@@ -189,6 +189,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CathegoriesController.cs" />
     <Compile Include="Controllers\EshopController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -466,6 +467,13 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Admin\ImportXml.cshtml" />
+    <Content Include="Views\Admin\Actualization.cshtml" />
+    <Content Include="Views\Admin\PriceChange.cshtml" />
+    <Content Include="Views\Admin\SaleChange.cshtml" />
+    <Content Include="Views\Admin\MultiDelete.cshtml" />
+    <Content Include="Views\Admin\ImageChange.cshtml" />
+    <Content Include="Views\Admin\TextChange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

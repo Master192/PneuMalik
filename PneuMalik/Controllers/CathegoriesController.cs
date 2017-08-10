@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace PneuMalik.Controllers
 {
+    [Authorize]
     [LayoutInjecter("_Layout")]
     public class CathegoriesController : Controller
     {

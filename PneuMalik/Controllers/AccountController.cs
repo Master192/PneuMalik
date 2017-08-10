@@ -1,18 +1,17 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using PneuMalik.Helpers;
+using PneuMalik.Models;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using PneuMalik.Models;
 
 namespace PneuMalik.Controllers
 {
     [Authorize]
+    [LayoutInjecter("_Layout")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

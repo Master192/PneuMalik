@@ -12,18 +12,26 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("PneuMalik", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="/" title="Petr Malík - Pneuservis"><img src="~/img/mxlogo.gif" alt="Petr Malík - Pneuservis" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Produkty", "Index", "Products")</li>
+                    <li>@Html.ActionLink("Kategorie", "Index", "Cathegories")</li>
+                    <li>@Html.ActionLink("Sys. texty", "Index", "Texts")</li>
+                    <li>@Html.ActionLink("Aktualizace", "Actualization", "Admin")</li>
+                    <li>@Html.ActionLink("Import XML", "ImportXml", "Admin")</li>
+                    <li><span class="rozbalovac">Hromadné úpravy</span>
+                        <ul>
+                            <li>@Html.ActionLink("Změna cen", "PriceChange", "Admin")</li>
+                            <li>@Html.ActionLink("Změna slev", "SaleChange", "Admin")</li>
+                            <li>@Html.ActionLink("Změna obrázků", "ImageChange", "Admin")</li>
+                            <li>@Html.ActionLink("Změna textů", "TextChange", "Admin")</li>
+                            <li>@Html.ActionLink("Hromadné mazání", "MultiDelete", "Admin")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Objednávky", "Index", "Orders")</li>
+                    <li>@Html.ActionLink("Uživatelé", "Index", "Users")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

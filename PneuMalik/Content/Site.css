@@ -13,7 +13,6 @@ body {
 }
 
 div.body-content {
-    padding-top: 70px;
     text-align: left;
 }
 
@@ -895,10 +894,9 @@ ul.menu {
 .nav {
     float: left;
     display: block;
-    width: 224px;
-    height: 20px;
+    height: 40px;
     margin: 0 2px 0 0;
-    padding: 4px 0 0 0;
+    padding: 10px 0 0 0;
     text-align: center;
     text-decoration: none;
 }
@@ -1522,4 +1520,61 @@ a {
 p, table {
     margin: 10px 0;
     padding: 0;
+}
+
+/* ADMIN */
+
+.navbar-inverse {
+    background: url(/img/mxback.gif) 0 0 repeat-x;
+    border-color: #f33b3b;
+    position: relative;
+}
+a.navbar-brand { color: black !important; }
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li {
+    color: black;
+    text-shadow: 1px 1px 2px #c8c8c8;
+}
+
+span.rozbalovac {
+    position: relative;
+    top: 15px;
+}
+
+.navbar-inverse .navbar-nav > li ul {
+    visibility: hidden;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    width: 160px;
+    margin: 0;
+    padding: 10px 20px 15px 20px;
+    border: 2px solid #f33b3b;
+    background: #747674 none;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
+    list-style-type: none;
+    z-index: 90;
+    text-align: left;
+}
+.navbar-inverse .navbar-nav > li ul li {
+    position: static;
+    float: none;
+    height: auto;
+    padding: 3px 0;
+    background: none;
+    font-size: 13px;
+}
+.navbar-inverse .navbar-nav > li ul li > a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > li ul li > a:hover {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li:hover ul {
+    visibility: visible;
 }
