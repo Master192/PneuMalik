@@ -2,6 +2,11 @@
 
 @using (Html.BeginForm("DoImport", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    <p>Strukturovaný XML soubor: <input type="file" id="import-file" name="file" accept=".xml" /></p>
-    <input type="submit" value="Potvrdit" />
+    <div class="form-horizontal">
+        <div class="form-group">
+            <p>Strukturovaný XML soubor:</p>
+            <input style="width: initial; display: initial;" class="form-control" type="file" id="import-file" name="file" accept=".xml" />
+            <input class="btn btn-default" type="submit" value="Potvrdit" />
+        </div>
+    </div>
 }

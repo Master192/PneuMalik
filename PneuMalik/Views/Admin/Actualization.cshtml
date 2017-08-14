@@ -2,6 +2,40 @@
 
 @using (Html.BeginForm("DoActualization", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    <p>Zdrojový soubor: <span class="help">?</span> <input type="file" id="actualization-file" name="file" accept=".csv" /></p>
-    <input type="submit" value="Potvrdit" />
+    <div class="form-horizontal">
+        <div class="form-group">
+            <p>Zdrojový soubor: <span class="help">?</span></p>
+            <input style="width: initial; display: initial;" class="form-control" type="file" id="actualization-file" name="file" accept=".csv" />
+            <input class="btn btn-default" type="submit" value="Potvrdit" />
+        </div>
+    </div>
+    <div class="help-content">
+        Zdrojový soubor MS EXCEL musí mít <strong>15 sloupců</strong> (i kdyby některé z nich byly prázdné).<br /><br />
+        Soubor poté uložte jako Text (oddělený tabulátory). <i>Soubor > Uložit jako... > Typ souboru: Text (oddělený tabulátory)</i><br /><br />
+        Strukturace souboru:
+        <table border="0">
+            <tr><td><strong>Sloupec</strong></td><td><strong>Data</strong></td><td><strong>Vzor</strong></td><td><strong>Povinné</strong></td></tr>
+            <tr><td>A</td><td>Kód</td><td>518796</td><td>*</td></tr>
+            <tr><td>B</td><td>Výrobce</td><td>MICHELIN</td><td></td></tr>
+            <tr><td>C</td><td>Dezén</td><td>Alpin A3 GRNX</td></tr>
+            <tr><td>D</td><td>Typ Vozidla (povolené hodnoty <strong>Osobní, 4x4, VAN, Nákladní, Industriální, Moto, Zemědělské, Traktory</strong>)</td><td>Osobní</td><td></td></tr>
+            <tr><td>E</td><td>Šířka</td><td>185</td><td></td></tr>
+            <tr><td>F</td><td>Série</td><td>80</td><td></td></tr>
+            <tr><td>G</td><td>Konstrukce</td><td>R</td><td></td></tr>
+            <tr><td>H</td><td>Průměr</td><td>16</td><td></td></tr>
+            <tr><td>I</td><td>Provedení</td><td></td><td></td></tr>
+            <tr><td>J</td><td>Index LI</td><td>79</td><td></td></tr>
+            <tr><td>K</td><td>Index SI</td><td>Q</td><td></td></tr>
+            <tr><td>L</td><td>Sleva <i>celočíselná hodnota v procentech bez doprovodných znaků</i></td><td>32</td><td></td></tr>
+            <tr><td>M</td><td>DPH <i>hodnota DPH v procentech bez doprovodných znaků</i></td><td>20</td><td></td></tr>
+            <tr><td>N</td><td>Sezóna (povolené hodnoty: <strong>Léto, Zima, Celoroční</strong>) <i>jiné hodnoty budou brány jako Léto</i></td><td>Léto</td><td></td></tr>
+            <tr><td>O</td><td>Spotřeba paliva</td><td>G</td><td></td></tr>
+            <tr><td>P</td><td>Přilnavost</td><td>C</td><td></td></tr>
+            <tr><td>Q</td><td>Hlučnost db</td><td>71</td><td></td></tr>
+            <tr><td>R</td><td>Hlučnost vlnk</td><td>2</td><td></td></tr>
+            <tr><td>S</td><td>Kategorie</td><td>C1</td><td></td></tr>
+            <tr><td>T</td><td>Norma</td><td>1222/2009</td><td></td></tr>
+            <tr><td>U</td><td>Cena bez DPH <i>číselná hodnota bez doprovodných znaků</i></td><td>1681</td><td>*</td></tr>
+        </table>
+    </div>
 }

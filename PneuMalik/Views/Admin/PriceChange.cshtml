@@ -6,39 +6,44 @@
 @using (Html.BeginForm("DoPriceChange", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <h3>Nastavení pravidel pro změnu ceny</h3>
-    <div>
-        pro výrobce: 
-        @for (var i = 0; i < Model.Manufacturers.Count; i++)
-        {
-            <input id="chblVyrobce@{i.ToString();}" type="checkbox" name="chblVyrobce@{i.ToString();}" value="@Model.Manufacturers[i]">
-            <label for="chblVyrobce@{i.ToString();}}">@Model.Manufacturers[i]</label>
-        }
-    </div>
-    <div>
-        pro druh produktu:
-        @for (var i = 0; i < Model.Types.Count; i++)
-        {
-            <input id="chblDruh@{i.ToString();}" type="checkbox" name="chblDruh@{i.ToString();}" value="@Model.Types[i]">
-            <label for="chblDruh@{i.ToString();}}">@Model.Types[i]</label>
-        }
-    </div>
-    <div>
-        s cenou od <input type="number" value="0" id="priceFrom" name="priceFrom" /> Kč do <input type="number" value="100000" id="priceTo" name="priceTo" /> Kč
-    </div>
-    <div>
-        kde sezóna <select id="sezona" name="sezona"><option value="0">nerozhoduje</option><option value="1">je Celoroční</option><option value="2">je Léto</option><option value="3">je Zima</option></select> 
-        položka <select id="priznaky" name="priznaky"><option value="0">je libovolná</option><option value="1">má příznak Akce</option><option value="2">má příznak Náš tip</option><option value="3">je Skladem</option><option value="4">NEMÁ příznak Akce</option><option value="5">NEMÁ příznak Náš tip</option><option value="6">NENÍ Skladem</option></select> 
-        a index SI <select id="indexSi" name="indexSi"><option value="0">nerozhoduje</option>
-        @{
-            foreach (var si in Model.IndexesSi)
+    <div class="form-horizontal">
+        <div class="form-group">
+            pro výrobce:
+            @for (var i = 0; i < Model.Manufacturers.Count; i++)
             {
-                <option value="@si">@si</option>
+                <input class="check-box" id="chblVyrobce@{i.ToString();}" type="checkbox" name="chblVyrobce@{i.ToString();}" value="@Model.Manufacturers[i]">
+                <label for="chblVyrobce@{i.ToString();}}">@Model.Manufacturers[i]</label>
             }
-        }</select>
+        </div>
+        <div class="form-group">
+            pro druh produktu:
+            @for (var i = 0; i < Model.Types.Count; i++)
+            {
+                <input class="check-box" id="chblDruh@{i.ToString();}" type="checkbox" name="chblDruh@{i.ToString();}" value="@Model.Types[i]">
+                <label for="chblDruh@{i.ToString();}}">@Model.Types[i]</label>
+            }
+        </div>
+        <div class="form-group">
+            s cenou od <input style="width: initial; display: initial;" class="form-control" type="number" value="0" id="priceFrom" name="priceFrom" /> Kč 
+            do <input style="width: initial; display: initial;" class="form-control" type="number" value="100000" id="priceTo" name="priceTo" /> Kč
+        </div>
+        <div class="form-group">
+            kde sezóna <select style="width: initial; display: initial;" class="form-control" id="sezona" name="sezona"><option value="0">nerozhoduje</option><option value="1">je Celoroční</option><option value="2">je Léto</option><option value="3">je Zima</option></select> 
+            položka <select style="width: initial; display: initial;" class="form-control" id="priznaky" name="priznaky"><option value="0">je libovolná</option><option value="1">má příznak Akce</option><option value="2">má příznak Náš tip</option><option value="3">je Skladem</option><option value="4">NEMÁ příznak Akce</option><option value="5">NEMÁ příznak Náš tip</option><option value="6">NENÍ Skladem</option></select> 
+            a index SI <select style="width: initial; display: initial;" class="form-control" id="indexSi" name="indexSi"><option value="0">nerozhoduje</option>
+            @{
+                foreach (var si in Model.IndexesSi)
+                {
+                    <option value="@si">@si</option>
+                }
+            }</select>
+        </div>
+        <div class="form-group">
+            upravit ceny o <input style="width: initial; display: initial;" class="form-control" type="number" value="0" id="priceChange" name="priceChange" /> %
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="UPRAV CENY" id="uprav-ceny" name="uprav-ceny" />
+            <input class="btn btn-default" type="submit" value="Pouze otestovat" id="otestovat" name="otestovat" />
+        </div>
     </div>
-    <div>
-        upravit ceny o <input type="number" value="0" id="priceChange" name="priceChange" /> %
-    </div>
-    <input type="submit" value="UPRAV CENY" id="uprav-ceny" name="uprav-ceny" />
-    <input type="submit" value="Pouze otestovat" id="otestovat" name="otestovaty" />
 }

@@ -2,3 +2,50 @@
 @model MultipleChangeViewModel
 
 <h1>Změna slev</h1>
+
+@using (Html.BeginForm("DoPriceChange", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h3>Nastavení pravidel pro změnu slevy</h3>
+    <div class="form-horizontal">
+        <div class="form-group">
+            pro výrobce:
+            @for (var i = 0; i < Model.Manufacturers.Count; i++)
+            {
+                <input class="check-box" id="chblVyrobce@{i.ToString();}" type="checkbox" name="chblVyrobce@{i.ToString();}" value="@Model.Manufacturers[i]">
+                <label for="chblVyrobce@{i.ToString();}}">@Model.Manufacturers[i]</label>
+            }
+        </div>
+        <div class="form-group">
+                    pro druh produktu:
+            @for (var i = 0; i < Model.Types.Count; i++)
+            {
+                <input class="check-box" id="chblDruh@{i.ToString();}" type="checkbox" name="chblDruh@{i.ToString();}" value="@Model.Types[i]">
+                <label for="chblDruh@{i.ToString();}}">@Model.Types[i]</label>
+            }
+        </div>
+        <div class="form-group">
+            s cenou od <input style="width: initial; display: initial;" class="form-control" type="number" value="0" id="priceFrom" name="priceFrom" /> Kč
+            do <input style="width: initial; display: initial;" class="form-control" type="number" value="100000" id="priceTo" name="priceTo" /> Kč
+        </div>
+        <div class="form-group">
+            kde sezóna <select style="width: initial; display: initial;" class="form-control" id="sezona" name="sezona"><option value="0">nerozhoduje</option><option value="1">je Celoroční</option><option value="2">je Léto</option><option value="3">je Zima</option></select>
+            položka <select style="width: initial; display: initial;" class="form-control" id="priznaky" name="priznaky"><option value="0">je libovolná</option><option value="1">má příznak Akce</option><option value="2">má příznak Náš tip</option><option value="3">je Skladem</option><option value="4">NEMÁ příznak Akce</option><option value="5">NEMÁ příznak Náš tip</option><option value="6">NENÍ Skladem</option></select>
+            a index SI <select style="width: initial; display: initial;" class="form-control" id="indexSi" name="indexSi">
+                <option value="0">nerozhoduje</option>
+                @{
+                    foreach (var si in Model.IndexesSi)
+                    {
+                        <option value="@si">@si</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            nastav slevu <input style="width: initial; display: initial;" class="form-control" type="number" value="0" id="saleChange" name="saleChange" /> %
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="UPRAV CENY" id="uprav-ceny" name="uprav-slevy" />
+            <input class="btn btn-default" type="submit" value="Pouze otestovat" id="otestovat" name="otestovat" />
+        </div>
+    </div>
+}

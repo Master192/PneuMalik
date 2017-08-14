@@ -2,3 +2,30 @@
 @model MultipleChangeViewModel
 
 <h1>Hromadné mazání</h1>
+
+@using (Html.BeginForm("DoPriceChange", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h3>Nastavení pravidel pro hromadné mazání</h3>
+    <div class="form-horizontal">
+        <div class="form-group">
+            pro výrobce:
+            @for (var i = 0; i < Model.Manufacturers.Count; i++)
+            {
+                <input class="check-box" id="chblVyrobce@{i.ToString();}" type="checkbox" name="chblVyrobce@{i.ToString();}" value="@Model.Manufacturers[i]">
+                <label for="chblVyrobce@{i.ToString();}}">@Model.Manufacturers[i]</label>
+            }
+        </div>
+        <div class="form-group">
+            pro druh produktu:
+            @for (var i = 0; i < Model.Types.Count; i++)
+            {
+                <input class="check-box" id="chblDruh@{i.ToString();}" type="checkbox" name="chblDruh@{i.ToString();}" value="@Model.Types[i]">
+                <label for="chblDruh@{i.ToString();}}">@Model.Types[i]</label>
+            }
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="Další parametry" id="dalsi-parametry" name="dalsi-parametry" />
+            <input class="btn btn-default" type="submit" value="VYPIŠ" id="vypsat" name="vypsat" />
+        </div>
+    </div>
+}

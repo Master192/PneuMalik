@@ -54,22 +54,51 @@ namespace PneuMalik.Controllers
 
         public ActionResult ImageChange()
         {
-            return View();
+            var model = new MultipleChangeViewModel()
+            {
+                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
+                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
+                IndexesSi = new List<string>() { "A3", "A8", "B" }
+            };
+
+            return View(model);
         }
 
         public ActionResult MultiDelete()
         {
-            return View();
+            var model = new MultipleChangeViewModel()
+            {
+                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
+                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
+                IndexesSi = new List<string>() { "A3", "A8", "B" }
+            };
+
+            return View(model);
         }
 
         public ActionResult SaleChange()
         {
-            return View();
+
+            var model = new MultipleChangeViewModel()
+            {
+                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
+                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
+                IndexesSi = new List<string>() { "A3", "A8", "B" }
+            };
+
+            return View(model);
         }
 
         public ActionResult TextChange()
         {
-            return View();
+            var model = new MultipleChangeViewModel()
+            {
+                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
+                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
+                IndexesSi = new List<string>() { "A3", "A8", "B" }
+            };
+
+            return View(model);
         }
     }
 }
