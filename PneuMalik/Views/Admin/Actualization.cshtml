@@ -4,13 +4,15 @@
 {
     <div class="form-horizontal">
         <div class="form-group">
-            <p>Zdrojový soubor: <span class="help">?</span></p>
+            <p>Zdrojový soubor:</p>
             <input style="width: initial; display: initial;" class="form-control" type="file" id="actualization-file" name="file" accept=".csv" />
             <input class="btn btn-default" type="submit" value="Potvrdit" />
         </div>
     </div>
-    <div class="help-content">
-        Zdrojový soubor MS EXCEL musí mít <strong>15 sloupců</strong> (i kdyby některé z nich byly prázdné).<br /><br />
+    <p>@ViewData["Message"]</p>
+    <span class="help" title="Zobrazit nápovědu" onclick="document.getElementById('help-content').style.display = 'block';">?</span>
+    <div class="help-content" id="help-content">
+        Zdrojový soubor MS EXCEL musí mít <strong>21 sloupců</strong> (i kdyby některé z nich byly prázdné).<br /><br />
         Soubor poté uložte jako Text (oddělený tabulátory). <i>Soubor > Uložit jako... > Typ souboru: Text (oddělený tabulátory)</i><br /><br />
         Strukturace souboru:
         <table border="0">

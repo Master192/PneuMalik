@@ -21,6 +21,8 @@ namespace PneuMalik.Models.Dto
         public string Ean { get; set; }
         public double PriceCommon { get; set; }
         public double Price { get; set; }
+        public double Sale { get; set; }
+        public double Dph { get; set; }
         public ProductType Type { get; set; }
 
         // Pneu
@@ -33,6 +35,12 @@ namespace PneuMalik.Models.Dto
         public string Construction { get; set; }
         public string IndexSi { get; set; }
         public int HighPr { get; set; }
+        public string FuelConsumption { get; set; }
+        public string Adhesion { get; set; }
+        public int NoiseLevelDb { get; set; }
+        public int NoiseLevel { get; set; }
+        public string EfficiencyCathegory { get; set; }
+        public string Standard { get; set; }
 
         // Disky
         public DiscType DiscType { get; set; }

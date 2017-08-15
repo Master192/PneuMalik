@@ -35,5 +35,9 @@ namespace PneuMalik.Models
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Product> Products { get; set; }
 
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Text> Texts { get; set; }
+
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Manufacturer> Manufacturers { get; set; }
+
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Season> Seasons { get; set; }
     }
 }

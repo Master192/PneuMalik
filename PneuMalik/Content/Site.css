@@ -1578,3 +1578,21 @@ span.rozbalovac {
 .navbar-inverse .navbar-nav > li:hover ul {
     visibility: visible;
 }
+
+span.help {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #efefef;
+    font-size: 23px;
+    text-align: center;
+    padding-top: 5px;
+    color: #42BADC;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+div.help-content { display: none; }
