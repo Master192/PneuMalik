@@ -1,4 +1,6 @@
-﻿namespace PneuMalik.Models.Dto
+﻿using System.Web.Mvc;
+
+namespace PneuMalik.Models.Dto
 {
     public class Cathegory
     {
@@ -11,6 +13,8 @@
         public string Keywords { get; set; }
         public string Description { get; set; }
         public string Annotation { get; set; }
+
+        [AllowHtml]
         public string Content { get; set; }
         public int ItemsOnPage { get; set; }
         public Product.ProductType Type { get; set; }

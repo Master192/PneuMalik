@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace PneuMalik.Models.Dto
 {
@@ -10,6 +11,8 @@ namespace PneuMalik.Models.Dto
         public string Name { get; set; }
         public bool Active { get; set; }
         public string ShortDescription { get; set; }
+
+        [AllowHtml]
         public string Description { get; set; }
         public string Image { get; set; }
         public bool Tip { get; set; }

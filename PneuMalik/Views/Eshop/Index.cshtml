@@ -4,7 +4,275 @@
 
 <div id="stred">
 
-    <h1>Nadpis</h1>
+    @Html.Raw(ViewBag.Uvod)
+
+    <h1>@ViewBag.UvodH1</h1>
+
+    <span id="mainContent_U_Filter1_UDP1">
+
+        <table class="tabfiltr">
+            <tbody>
+                <tr class="tfhead">
+                    <td id="mainContent_U_Filter1_td_sezona0">Sezóna</td>
+
+                    <td id="mainContent_U_Filter1_td_vyrobce0">Výrobce</td>
+
+                    <td id="mainContent_U_Filter1_td_sirka0">Šířka</td>
+
+                    <td id="mainContent_U_Filter1_td_profil0">Profil</td>
+
+                    <td id="mainContent_U_Filter1_td_rafek0">Ráfek</td>
+
+
+
+                </tr>
+                <tr>
+                    <td id="mainContent_U_Filter1_td_sezona">
+                        <select name="ctl00$mainContent$U_Filter1$ddSezona" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddSezona\',\'\')', 0)" id="mainContent_U_Filter1_ddSezona">
+                            <option value="Celoroční">Celoroční</option>
+                            <option selected="selected" value="Léto">Léto</option>
+                            <option value="Zima">Zima</option>
+
+                        </select>
+                    </td>
+
+                    <td id="mainContent_U_Filter1_td_vyrobce">
+                        <select name="ctl00$mainContent$U_Filter1$ddVyrobce" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddVyrobce\',\'\')', 0)" id="mainContent_U_Filter1_ddVyrobce">
+                            <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                            <option value="Aeolus">Aeolus</option>
+                            <option value="Achilles">Achilles</option>
+                            <option value="Altenzo">Altenzo</option>
+                            <option value="Aplus">Aplus</option>
+                            <option value="Apollo">Apollo</option>
+                            <option value="Atturo">Atturo</option>
+                            <option value="Autogrip">Autogrip</option>
+                            <option value="Avon">Avon</option>
+                            <option value="Barum">Barum</option>
+                            <option value="BF GOODRICH">BF GOODRICH</option>
+                            <option value="BFGoodrich">BFGoodrich</option>
+                            <option value="BKT">BKT</option>
+                            <option value="Bridgestone">Bridgestone</option>
+                            <option value="Compass">Compass</option>
+                            <option value="Continental">Continental</option>
+                            <option value="Cooper Tires">Cooper Tires</option>
+                            <option value="DAYTON">DAYTON</option>
+                            <option value="Debica">Debica</option>
+                            <option value="Dunlop">Dunlop</option>
+                            <option value="Evergreen">Evergreen</option>
+                            <option value="Falken">Falken</option>
+                            <option value="Federal">Federal</option>
+                            <option value="Firestone">Firestone</option>
+                            <option value="Fortuna">Fortuna</option>
+                            <option value="Fulda">Fulda</option>
+                            <option value="Fullrun">Fullrun</option>
+                            <option value="Gauth-Pneu (Reg.)">Gauth-Pneu (Reg.)</option>
+                            <option value="General Tire">General Tire</option>
+                            <option value="Gislaved">Gislaved</option>
+                            <option value="Goodride">Goodride</option>
+                            <option value="Goodyear">Goodyear</option>
+                            <option value="Gremax">Gremax</option>
+                            <option value="Gripmax">Gripmax</option>
+                            <option value="GT Radial">GT Radial</option>
+                            <option value="Hankook">Hankook</option>
+                            <option value="Hifly">Hifly</option>
+                            <option value="Infinity">Infinity</option>
+                            <option value="Interstate">Interstate</option>
+                            <option value="Intertrac">Intertrac</option>
+                            <option value="Kelly">Kelly</option>
+                            <option value="Kenda">Kenda</option>
+                            <option value="Kingstar">Kingstar</option>
+                            <option value="Kleber">Kleber</option>
+                            <option value="Kormoran">Kormoran</option>
+                            <option value="Kumho">Kumho</option>
+                            <option value="Landsail">Landsail</option>
+                            <option value="Markgum (Reg.)">Markgum (Reg.)</option>
+                            <option value="Marshal">Marshal</option>
+                            <option value="Matador">Matador</option>
+                            <option value="Maxxis">Maxxis</option>
+                            <option value="Membat">Membat</option>
+                            <option value="Michelin">Michelin</option>
+                            <option value="Milestone">Milestone</option>
+                            <option value="Minerva">Minerva</option>
+                            <option value="Momo">Momo</option>
+                            <option value="Nankang">Nankang</option>
+                            <option value="Nexen">Nexen</option>
+                            <option value="Nokian">Nokian</option>
+                            <option value="Novex">Novex</option>
+                            <option value="Petlas">Petlas</option>
+                            <option value="Pirelli">Pirelli</option>
+                            <option value="Platin">Platin</option>
+                            <option value="Riken">Riken</option>
+                            <option value="Riken pneu">Riken pneu</option>
+                            <option value="Roadstone">Roadstone</option>
+                            <option value="Sailun">Sailun</option>
+                            <option value="Sava">Sava</option>
+                            <option value="Seiberling">Seiberling</option>
+                            <option value="Semperit">Semperit</option>
+                            <option value="Silverstone">Silverstone</option>
+                            <option value="Sonar">Sonar</option>
+                            <option value="Sportiva">Sportiva</option>
+                            <option value="Starfire">Starfire</option>
+                            <option value="Starmaxx">Starmaxx</option>
+                            <option value="Sunny">Sunny</option>
+                            <option value="Sunwide">Sunwide</option>
+                            <option value="Syron">Syron</option>
+                            <option value="Taurus">Taurus</option>
+                            <option value="Technic (Reg.)">Technic (Reg.)</option>
+                            <option value="Tigar">Tigar</option>
+                            <option value="Toyo">Toyo</option>
+                            <option value="Tracmax">Tracmax</option>
+                            <option value="Tristar">Tristar</option>
+                            <option value="Uniroyal">Uniroyal</option>
+                            <option value="Viking">Viking</option>
+                            <option value="Voltyre">Voltyre</option>
+                            <option value="Vraník">Vraník</option>
+                            <option value="Vredestein">Vredestein</option>
+                            <option value="Wanli">Wanli</option>
+                            <option value="Yokohama">Yokohama</option>
+                            <option value="Zeetex">Zeetex</option>
+
+                        </select>
+                    </td>
+
+                    <td id="mainContent_U_Filter1_td_sirka">
+                        <select name="ctl00$mainContent$U_Filter1$ddSirka" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddSirka\',\'\')', 0)" id="mainContent_U_Filter1_ddSirka">
+                            <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                            <option value="10.50">10.50</option>
+                            <option value="110">110</option>
+                            <option value="115">115</option>
+                            <option value="12.50">12.50</option>
+                            <option value="120">120</option>
+                            <option value="125">125</option>
+                            <option value="135">135</option>
+                            <option value="145">145</option>
+                            <option value="155">155</option>
+                            <option value="160">160</option>
+                            <option value="165">165</option>
+                            <option value="175">175</option>
+                            <option value="185">185</option>
+                            <option value="195">195</option>
+                            <option value="195/45 R 16">195/45 R 16</option>
+                            <option value="205">205</option>
+                            <option value="215">215</option>
+                            <option value="225">225</option>
+                            <option value="23">23</option>
+                            <option value="235">235</option>
+                            <option value="245">245</option>
+                            <option value="255">255</option>
+                            <option value="265">265</option>
+                            <option value="275">275</option>
+                            <option value="285">285</option>
+                            <option value="295">295</option>
+                            <option value="30">30</option>
+                            <option value="305">305</option>
+                            <option value="31">31</option>
+                            <option value="315">315</option>
+                            <option value="32">32</option>
+                            <option value="325">325</option>
+                            <option value="33">33</option>
+                            <option value="335">335</option>
+                            <option value="345">345</option>
+                            <option value="35">35</option>
+                            <option value="355">355</option>
+                            <option value="6.40">6.40</option>
+                            <option value="7.50">7.50</option>
+                            <option value="9.50">9.50</option>
+
+                        </select>
+                    </td>
+
+                    <td id="mainContent_U_Filter1_td_profil">
+                        <select name="ctl00$mainContent$U_Filter1$ddProfil" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddProfil\',\'\')', 0)" id="mainContent_U_Filter1_ddProfil">
+                            <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                            <option value="10,5">10,5</option>
+                            <option value="10.50">10.50</option>
+                            <option value="11.50">11.50</option>
+                            <option value="12.50">12.50</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                            <option value="60">60</option>
+                            <option value="65">65</option>
+                            <option value="7">7</option>
+                            <option value="70">70</option>
+                            <option value="75">75</option>
+                            <option value="80">80</option>
+                            <option value="85">85</option>
+                            <option value="9,5">9,5</option>
+                            <option value="9.50">9.50</option>
+                            <option value="90">90</option>
+                            <option value="95">95</option>
+
+                        </select>
+                    </td>
+
+                    <td id="mainContent_U_Filter1_td_rafek">
+                        <select name="ctl00$mainContent$U_Filter1$ddRafek" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddRafek\',\'\')', 0)" id="mainContent_U_Filter1_ddRafek">
+                            <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="22.5">22.5</option>
+                            <option value="23">23</option>
+                            <option value="30">30</option>
+                            <option value="80">80</option>
+
+                        </select>
+                    </td>
+
+
+
+                </tr>
+                <tr class="tfenter">
+                    <td><p>Pneumatika:</p></td>
+                    <td id="mainContent_U_Filter1_td_footer0" colspan="2">
+                        <select name="ctl00$mainContent$U_Filter1$ddlKategorie" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddlKategorie\',\'\')', 0)" id="mainContent_U_Filter1_ddlKategorie">
+                            <option selected="selected" value="150">Osobní, offroad, 4x4, SUV</option>
+                            <option value="154">Offroad, 4x4, SUV</option>
+                            <option value="153">Užitkové zátěžové "C"</option>
+                            <option value="162">Nákladní</option>
+                            <option value="163">Industriální a Průmyslové</option>
+                            <option value="164">Motopneu</option>
+                            <option value="176">Zemědělské</option>
+                            <option value="177">ATV</option>
+                            <option value="178">Duše a motovložky</option>
+
+                        </select>
+
+                    </td>
+
+                    <td id="mainContent_U_Filter1_td_footer" colspan="1">
+                        <span id="mainContent_U_Filter1_lblInfo"></span>
+                        <input name="ctl00$mainContent$U_Filter1$hid_cat" type="hidden" id="mainContent_U_Filter1_hid_cat" value="150">
+                        <input type="submit" name="ctl00$mainContent$U_Filter1$Button1" value="Filtruj" id="mainContent_U_Filter1_Button1" class="enter1">
+                    </td>
+
+                    <td>
+                        <input type="submit" name="ctl00$mainContent$U_Filter1$Button2" value="Storno" id="mainContent_U_Filter1_Button2" class="enter2">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </span>
+
+    <div class="cleaner"><hr></div>
+    <hr />
+
+    <p>&nbsp;<input type="image" src="/images/image/motopneu/cestovni.jpg" width="120" height="95"><input type="image" src="/images/image/motopneu/custom.jpg" width="123" height="95"><input type="image" src="/images/image/motopneu/enduro.jpg" width="122" height="95"><input type="image" src="/images/image/motopneu/skutr.jpg" width="123" height="95"><input type="image" src="/images/image/motopneu/sportovni.jpg" width="123" height="95"><input type="image" src="/images/image/motopneu/terenni.jpg" width="123" height="95"><input type="image" src="/images/image/motopneu/zavodni.jpg" width="123" height="95"></p>
 
 </div>
 
