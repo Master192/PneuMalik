@@ -20,6 +20,7 @@ namespace PneuMalik.Controllers
         {
 
             ViewData["Message"] = "";
+            ViewBag.Title = "Aktualizace";
 
             return View();
         }
@@ -94,6 +95,9 @@ namespace PneuMalik.Controllers
 
         public ActionResult ImportXml()
         {
+
+            ViewBag.Title = "Import Xml";
+
             return View();
         }
 
@@ -105,6 +109,8 @@ namespace PneuMalik.Controllers
 
         public ActionResult PriceChange()
         {
+
+            ViewBag.Title = "Změna cen";
 
             var model = new MultipleChangeViewModel()
             {
@@ -124,6 +130,9 @@ namespace PneuMalik.Controllers
 
         public ActionResult ImageChange()
         {
+
+            ViewBag.Title = "Změna obrázků";
+
             var model = new MultipleChangeViewModel()
             {
                 Manufacturers = new List<string>() { "Aeolus", "Achilles" },
@@ -136,6 +145,9 @@ namespace PneuMalik.Controllers
 
         public ActionResult MultiDelete()
         {
+
+            ViewBag.Title = "Hromadné mazání";
+
             var model = new MultipleChangeViewModel()
             {
                 Manufacturers = new List<string>() { "Aeolus", "Achilles" },
@@ -149,6 +161,8 @@ namespace PneuMalik.Controllers
         public ActionResult SaleChange()
         {
 
+            ViewBag.Title = "Změna slev";
+
             var model = new MultipleChangeViewModel()
             {
                 Manufacturers = new List<string>() { "Aeolus", "Achilles" },
@@ -161,6 +175,9 @@ namespace PneuMalik.Controllers
 
         public ActionResult TextChange()
         {
+
+            ViewBag.Title = "Změna textů";
+
             var model = new MultipleChangeViewModel()
             {
                 Manufacturers = new List<string>() { "Aeolus", "Achilles" },
