@@ -28,7 +28,18 @@
 
         if (doFullImportButton) {
             doFullImportButton.onclick = (function () {
-                console.log("do full import");
+
+                window.setInterval(() => {
+                    var getStatus = new pneuMalik.RequestHelper("GET", "/api/import/status/");
+                    getStatus.makeRequest("getImportStatus").then(function (response) {
+                        fullImportStatus.innerHTML = "Stav importu: " + response;
+                    }, function (reject) {
+                        fullImportStatus.innerHTML = "Chyba importu: " + reject.message;
+                    })
+                }, 1000);
+
+                var runImport = new pneuMalik.RequestHelper("GET", "/api/import/importall/");
+                runImport.makeRequest("runImportFull");
             });
         }
     }

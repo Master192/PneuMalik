@@ -10,7 +10,7 @@ namespace PneuMalik.Controllers.Api
         public ImportController()
         {
 
-            _b2bService = new PneuB2bService();
+            _b2bService = new PneuB2bService(true);
         }
 
         [HttpGet]

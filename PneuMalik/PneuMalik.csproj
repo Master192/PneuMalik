@@ -242,6 +242,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MultipleChangeViewModel.cs" />
+    <Compile Include="Models\PneuB2b\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PneuB2bService.cs" />
     <Compile Include="Startup.cs" />

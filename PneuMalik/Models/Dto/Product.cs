@@ -1,10 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using PneuMalik.Models.PneuB2b;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace PneuMalik.Models.Dto
 {
     public class Product
     {
+
+        public Product()
+        {
+            // empty constructor
+        }
+
+        public Product(Response.Tyre tyre)
+        {
+            Code = tyre.Id.ToString();
+            Name = tyre.DisplayName;
+            Active = true;
+            Width = Convert.ToInt32(tyre.Width);
+            Diameter = Convert.ToInt32(tyre.Diameter);
+            Ean = tyre.Ean;
+            Price = tyre.StockPriceInfo.TotalPriceCZK;
+            Type = ProductType.Pneu;
+            Pattern = tyre.Pattern;
+            Design = tyre.ConstructionType;
+            IndexLi = Convert.ToInt32(tyre.LoadIndexFrom);
+            IndexSi = tyre.SpeedIndex;
+            HighPr = Convert.ToInt32(tyre.Profile);
+            FuelConsumption = tyre.TagConsumption;
+            Adhesion = tyre.TagAdhesion;
+            NoiseLevelDb = Convert.ToInt32(tyre.TagNoiseLevel_dB);
+            NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
+        }
+
         public int Id { get; set; }
         public string Code { get; set; }
         public IList<Cathegory> Cathegories { get; set; }
