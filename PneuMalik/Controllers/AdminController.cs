@@ -102,7 +102,7 @@ namespace PneuMalik.Controllers
         }
 
         [HttpPost]
-        public ActionResult DoImport(HttpPostedFileBase file)
+        public ActionResult DoImportFromFile(HttpPostedFileBase file)
         {
             return View("ImportXml");
         }

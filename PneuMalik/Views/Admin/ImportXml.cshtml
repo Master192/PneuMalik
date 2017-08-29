@@ -1,6 +1,6 @@
-﻿<h1>Import XML</h1>
+﻿<h1>Import XML z Pneu B2B</h1>
 
-@using (Html.BeginForm("DoImport", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("DoImportFromFile", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     <div class="form-horizontal">
         <div class="form-group">
@@ -10,3 +10,22 @@
         </div>
     </div>
 }
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <p>Aktualizace skladu a cen:</p>
+        <input class="btn btn-default" type="submit" value="Spustit" id="doStockImportButton" />
+        <span id="stockImportStatus"></span>
+    </div>
+</div>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <p>Aktualizace kompletního sortimentu:</p>
+        <input class="btn btn-default" type="submit" value="Spustit" id="doFullImportButton" />
+        <span id="fullImportStatus"></span>
+    </div>
+</div>
+
+<script src="~/Scripts/admin/importxml.js"></script>
+
