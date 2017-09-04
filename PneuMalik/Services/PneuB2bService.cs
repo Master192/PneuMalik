@@ -2,13 +2,10 @@
 using PneuMalik.Models.Dto;
 using PneuMalik.Models.PneuB2b;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading;
-using System.Web;
 using System.Web.Hosting;
 using System.Xml.Serialization;
 
@@ -39,7 +36,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlStock);
+            Download(_serviceUrlStock);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -58,7 +55,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlFull);
+            Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
