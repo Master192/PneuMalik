@@ -3,6 +3,7 @@ using PneuMalik.Models.Dto;
 using PneuMalik.Models.PneuB2b;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -68,8 +69,18 @@ namespace PneuMalik.Services
 
             SetStatus($"Zpracování pneumatik ({_response.Tyres.Count()})");
 
+            db.Products.ToList().ForEach(p => p.Active = false);
+            db.SaveChanges();
+
+            var counter = 0;
+
             foreach (var productToUpdate in _response.Tyres)
             {
+
+                if (counter % 20 == 0)
+                {
+                    SetStatus($"Zpracování pneumatik ({counter}/{_response.Tyres.Count()})");
+                }
 
                 var product = db.Products.FirstOrDefault(p => p.Code == productToUpdate.Id.ToString());
 
@@ -79,9 +90,47 @@ namespace PneuMalik.Services
                     product = new Product(productToUpdate);
                     db.Products.Add(product);
                 }
+                else
+                {
+
+                    product.Active = true;
+                    db.Entry(product).State = EntityState.Modified;
+                }
+
+                counter++;
             }
 
             db.SaveChanges();
+
+            SetStatus($"Zpracování cen");
+
+            foreach (var product in db.Products.Where(p => p.Active).ToList())
+            {
+
+                db.Prices.RemoveRange(db.Prices.Where(p => p.ProductId == product.Id).ToList());
+                db.SaveChanges();
+
+                var tyre = _response.Tyres.FirstOrDefault(t => t.Id.ToString() == product.Code);
+                db.Prices.Add(new PriceObject()
+                {
+                    ProductId = product.Id,
+                    Price = tyre.StockPriceInfo.TotalPriceCZK,
+                    Stock = Convert.ToInt32(tyre.StockPriceInfo.StockAmount),
+                    DeliveryTime = tyre.StockPriceInfo.DeliveryTime
+                });
+                if (tyre.StockPriceInfo_48 != null)
+                {
+
+                    db.Prices.Add(new PriceObject()
+                    {
+                        ProductId = product.Id,
+                        Price = tyre.StockPriceInfo_48.TotalPriceCZK,
+                        Stock = Convert.ToInt32(tyre.StockPriceInfo_48.StockAmount),
+                        DeliveryTime = tyre.StockPriceInfo_48.DeliveryTime
+                    });
+                }
+                db.SaveChanges();
+            }
 
             SetStatus("Import produktů byl ukončen");
         }
