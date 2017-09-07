@@ -16,9 +16,28 @@ namespace PneuMalik.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(string code, string text)
         {
-            return View(db.Products.ToList());
+
+            if (string.IsNullOrEmpty(code) && string.IsNullOrEmpty(text))
+            {
+
+                return View(db.Products.Take(50).ToList());
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+
+                return View(db.Products.Where(p => p.Code == code).ToList());
+            }
+
+            if (string.IsNullOrEmpty(code))
+            {
+
+                return View(db.Products.Where(p => p.Name.Contains(text)).ToList());
+            }
+
+            return View(db.Products.Where(p => p.Code == code && p.Name.Contains(text)).ToList());
         }
 
         // GET: Products/Details/5

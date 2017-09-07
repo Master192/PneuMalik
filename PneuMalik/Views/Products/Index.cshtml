@@ -5,18 +5,29 @@
 <p>
     @Html.ActionLink("Vložit nový", "Create")
 </p>
+
+@using (@Html.BeginForm("index", "products", FormMethod.Get))
+{ 
+
 <table class="table">
     <tr>
         <th>Název</th>
         <th>Kód</th>
-        <th>Rozměr</th>
-        <th>Výrobce</th>
-        <th>Dezén</th>
         <th>Kategorie</th>
         <th>Náš tip</th>
         <th>Akce</th>
         <th>Skladem</th>
         <th></th>
+    </tr>
+
+    <tr>
+        <th>@Html.TextBox("text")</th>
+        <th>@Html.TextBox("code")</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><input type="submit" name="SubmitButton" value="Filtruj" /></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -26,15 +37,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Manufacturer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Design)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cathegories)
@@ -56,3 +58,5 @@
 }
 
 </table>
+
+}

@@ -205,7 +205,7 @@
     <Compile Include="Controllers\CathegoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\EshopController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KategorieController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -816,7 +816,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Eshop\_EshopLayout.cshtml" />
+    <Content Include="Views\Shared\_EshopLayout.cshtml" />
     <Content Include="Views\Eshop\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
@@ -861,6 +861,7 @@
     <Content Include="Scripts\vendor\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Scripts\vendor\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\vendor\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Views\Kategorie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
