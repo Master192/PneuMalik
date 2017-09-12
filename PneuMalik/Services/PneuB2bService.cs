@@ -1,4 +1,5 @@
-﻿using PneuMalik.Models;
+﻿using PneuMalik.Helpers;
+using PneuMalik.Models;
 using PneuMalik.Models.Dto;
 using PneuMalik.Models.PneuB2b;
 using System;
@@ -71,11 +72,14 @@ namespace PneuMalik.Services
 
             var counter = 0;
 
+            var images = new ImageHelper();
+
             foreach (var productToUpdate in _response.Tyres)
             {
 
                 if (counter % 20 == 0)
                 {
+
                     SetStatus($"Zpracování pneumatik ({counter}/{_response.Tyres.Count()})");
                 }
 
@@ -93,6 +97,13 @@ namespace PneuMalik.Services
                     product.Active = true;
                     db.Entry(product).State = EntityState.Modified;
                 }
+
+                // obrázek
+                try
+                {
+                    images.Save(productToUpdate.ImageUrl, product.Code);
+                }
+                catch { }
 
                 counter++;
             }
