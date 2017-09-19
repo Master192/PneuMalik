@@ -11,23 +11,30 @@ namespace PneuMalik.Controllers
         [LayoutInjecter("_EshopLayout")]
         public ActionResult Index()
         {
-            var text = db.Texts.First(t => t.Id == 1);
-            var banner = db.Texts.First(t => t.Id == 11);
-            var provozniDoba = db.Texts.First(t => t.Id == 4);
-            var kontakty = db.Texts.First(t => t.Id == 7);
-            var firstStop = db.Texts.First(t => t.Id == 8);
-            var footer = db.Texts.First(t => t.Id == 13);
 
-            ViewBag.Title = text.Title;
-            ViewBag.Uvod = text.Content;
-            ViewBag.UvodH1 = text.Title;
-            ViewBag.Banner = banner.Content;
-            ViewBag.ProvozniDoba = provozniDoba.Content;
-            ViewBag.Kontakty = kontakty.Content;
-            ViewBag.FirstStop = firstStop.Content;
-            ViewBag.Footer = footer.Content;
+            var text = db.Texts.FirstOrDefault(t => t.Id == 1);
+            var banner = db.Texts.FirstOrDefault(t => t.Id == 11);
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
 
-            return View();
+            ViewBag.Title = text != null ? text.Title : string.Empty;
+            ViewBag.Uvod = text != null ? text.Content : string.Empty;
+            ViewBag.UvodH1 = text != null ? text.Title : string.Empty;
+            ViewBag.Banner = banner != null ? banner.Content : string.Empty;
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
+            var model = new EshopViewModel()
+            {
+                Products = db.Products.Where(p => p.Action && p.Active).ToList(),
+                Tips = db.Products.Where(p => p.Tip && p.Active).ToList()
+            };
+
+            return View(model);
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

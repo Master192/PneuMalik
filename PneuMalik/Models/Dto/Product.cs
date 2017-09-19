@@ -13,7 +13,7 @@ namespace PneuMalik.Models.Dto
             // empty constructor
         }
 
-        public Product(Response.Tyre tyre)
+        public Product(Response.Tyre tyre, Manufacturer manufacturer, VehicleType vehicleType)
         {
             Code = tyre.Id.ToString();
             Name = tyre.DisplayName;
@@ -32,6 +32,8 @@ namespace PneuMalik.Models.Dto
             Adhesion = tyre.TagAdhesion;
             NoiseLevelDb = Convert.ToInt32(tyre.TagNoiseLevel_dB);
             NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
+            Manufacturer = manufacturer;
+            VehicleType = vehicleType;
         }
 
         public int Id { get; set; }
@@ -48,6 +50,7 @@ namespace PneuMalik.Models.Dto
         public bool Action { get; set; }
         public bool InStock { get; set; }
         public Manufacturer Manufacturer { get; set; }
+        public VehicleType VehicleType { get; set; }
         public int Width { get; set; }
         public int Diameter { get; set; }           // Průměr
         public string Ean { get; set; }

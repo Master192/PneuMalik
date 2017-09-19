@@ -41,5 +41,7 @@ namespace PneuMalik.Models
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Season> Seasons { get; set; }
 
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.PriceObject> Prices { get; set; }
+
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.VehicleType> VehicleTypes { get; set; }
     }
 }

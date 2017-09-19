@@ -23,6 +23,12 @@ namespace PneuMalik
                 defaults: new { controller = "Kategorie", action = "Index", title = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Pneumatiky",
+                url: "pneumatiky/{title}",
+                defaults: new { controller = "Pneumatiky", action = "Index", title = UrlParameter.Optional }
+            );
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(routes);

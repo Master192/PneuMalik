@@ -56,7 +56,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            Download(_serviceUrlFull);
+            //Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -68,6 +68,37 @@ namespace PneuMalik.Services
             SetStatus($"Zpracování pneumatik ({_response.Tyres.Count()})");
 
             db.Products.ToList().ForEach(p => p.Active = false);
+            db.SaveChanges();
+
+            foreach (var manufacturer in _response.Tyres.GroupBy(m => m.ManufacturerID))
+            {
+
+                if (!db.Manufacturers.Any(m => m.Id == manufacturer.Key))
+                {
+
+                    db.Manufacturers.Add(new Manufacturer()
+                    {
+                        Id = manufacturer.Key,
+                        Name = _response.Tyres.FirstOrDefault(m => m.ManufacturerID == manufacturer.Key).Manufacturer
+                    });
+                }
+            }
+
+            db.SaveChanges();
+
+            foreach (var vehicleType in _response.Tyres.GroupBy(m => m.VehicleTypeCode))
+            {
+                if (!db.VehicleTypes.Any(v => v.Id == vehicleType.Key))
+                {
+
+                    db.VehicleTypes.Add(new VehicleType()
+                    {
+                        Id = vehicleType.Key,
+                        Name = _response.Tyres.FirstOrDefault(v => v.VehicleTypeCode == vehicleType.Key).VehicleType
+                    });
+                }
+            }
+
             db.SaveChanges();
 
             var counter = 0;
@@ -88,7 +119,9 @@ namespace PneuMalik.Services
                 if (product == null)
                 {
 
-                    product = new Product(productToUpdate);
+                    product = new Product(productToUpdate, 
+                        db.Manufacturers.FirstOrDefault(m => m.Id == productToUpdate.ManufacturerID),
+                        db.VehicleTypes.FirstOrDefault(v => v.Id == productToUpdate.VehicleTypeCode));
                     db.Products.Add(product);
                 }
                 else
@@ -105,10 +138,10 @@ namespace PneuMalik.Services
                 }
                 catch { }
 
+                db.SaveChanges();
+
                 counter++;
             }
-
-            db.SaveChanges();
 
             SetStatus($"Zpracování cen");
 

@@ -132,7 +132,7 @@ namespace PneuMalik.Models.PneuB2b
             [XmlElement("VehicleType")]
             public string VehicleType { get; set; }
             [XmlElement("VehicleTypeCode")]
-            public string VehicleTypeCode { get; set; }
+            public int VehicleTypeCode { get; set; }
             [XmlElement("CT")]
             public string Ct { get; set; }
             [XmlElement("ROF")]

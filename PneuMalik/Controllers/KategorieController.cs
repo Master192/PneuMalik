@@ -11,8 +11,6 @@ namespace PneuMalik.Controllers
     public class KategorieController : Controller
     {
 
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         [LayoutInjecter("_EshopLayout")]
         public ActionResult Index(string title)
         {
@@ -24,5 +22,7 @@ namespace PneuMalik.Controllers
 
             return View(db.Cathegories.FirstOrDefault(c => c.Url == title));
         }
+
+        private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

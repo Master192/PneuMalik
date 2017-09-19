@@ -1,11 +1,32 @@
-﻿<div id="right">
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+<div id="right">
 
     <div id="right2">
         @Html.Raw(ViewBag.ProvozniDoba)
     </div>
 
-    <div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9652-rhawk.aspx" title="Firestone RHAWK"><strong>Firestone RHAWK</strong></a></p><p>195/65 R15 </p><p><a href="/pneumatika/150-9652-rhawk.aspx" title="Firestone RHAWK"><img src="/images/nahled/RHawk.jpeg" alt="Firestone RHAWK 195/65 R15 " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1100,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><strong>BRIDGESTONE T001 EVO</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><img src="/images/nahled/BRIDGESTONE T001EVO.jpg" alt="BRIDGESTONE T001 EVO 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1670,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9649-roadhawk.aspx" title="FIRESTONE ROADHAWK"><strong>FIRESTONE ROADHAWK</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9649-roadhawk.aspx" title="FIRESTONE ROADHAWK"><img src="/images/nahled/FIRESTONE ROADHAWK.jpg" alt="FIRESTONE ROADHAWK 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1350,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-t429712-nokian-line.aspx" title="Nokian Nokian Line"><strong>Nokian Nokian Line</strong></a></p><p>195/65 R15  </p><p><a href="/pneumatika/150-t429712-nokian-line.aspx" title="Nokian Nokian Line"><img src="/images/nahled/nokian-h.jpg" alt="Nokian Nokian Line 195/65 R15  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1228,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><strong>BRIDGESTONE T001 EVO</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9959-t001-evo.aspx" title="BRIDGESTONE T001 EVO"><img src="/images/nahled/BRIDGESTONE T001EVO.jpg" alt="BRIDGESTONE T001 EVO 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1670,00 Kč</strong></p></div></div><div class="rbox"><p class="rbnadp">Náš TIP</p><p class="f14"><a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="DAYTON TOURING 2"><strong>DAYTON TOURING 2</strong></a></p><p>205/55 R16  </p><p><a href="/pneumatika/150-9480-touring-2.aspx" title="DAYTON TOURING 2"><img src="/images/nahled/DAYTON TOURING2.jpg" alt="DAYTON TOURING 2 205/55 R16  " /></a></p><div class="rb"><p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p><p class="f17 blue"><strong>1299,00 Kč</strong></p><p class="grn"><strong>SKLADEM</strong></p></div></div>
+    @foreach (var product in Model.Tips)
+    {
+        <div class="rbox">
+            <p class="rbnadp">Náš TIP</p>
+            <p class="f14"><a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
+                <strong>@product.Design</strong></a></p>
+            <p>@product.Name  </p>
+            <p><a href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
+                <img src="/images/nahled/DAYTON TOURING2.jpg" alt="@product.Design @product.Name" /></a>
+            </p>
+            <div class="rb">
+                <p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p>
+                <p class="f17 blue"><strong>1299,00 Kč</strong></p>
+                <p class="grn"><strong>@(product.InStock ? "SKLADEM" : "")</strong></p>
+            </div>
+        </div>
+    }
 
     <div id="right2"><br>ceny jsou platné při objednávání přes internet</div>
 
-</div><div class="cleaner"><hr /></div>
+</div>
+<div class="cleaner"><hr /></div>
