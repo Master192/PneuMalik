@@ -22,7 +22,7 @@ namespace PneuMalik.Helpers
             _storePathRoot = ConfigurationManager.AppSettings["FileAppUrl"];
         }
 
-        public void Save(string url, string id)
+        public void Save(string url, int id)
         {
 
             using (var client = new WebClient())

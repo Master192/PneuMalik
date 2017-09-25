@@ -870,6 +870,7 @@
     <Content Include="Scripts\vendor\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Views\Kategorie\Index.cshtml" />
     <Content Include="Views\Shared\_Filter.cshtml" />
+    <Content Include="Views\Eshop\Pneumatiky.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -34,5 +34,15 @@ namespace PneuMalik
             RouteConfig.RegisterRoutes(routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error()
+        {
+
+            //var exception = Server.GetLastError();
+           
+            // logování chyb sem
+
+            //Response.Redirect("/");
+        }
     }
 }

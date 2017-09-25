@@ -30,7 +30,7 @@ namespace PneuMalik.Controllers
                 Tips = db.Products.Where(p => p.Tip && p.Active).ToList()
             };
 
-            return View(model);
+            return View("~/Views/Eshop/Pneumatiky.cshtml", model);
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

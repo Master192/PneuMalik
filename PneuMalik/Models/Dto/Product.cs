@@ -13,9 +13,9 @@ namespace PneuMalik.Models.Dto
             // empty constructor
         }
 
-        public Product(Response.Tyre tyre, Manufacturer manufacturer, VehicleType vehicleType)
+        public Product(Response.Tyre tyre, Manufacturer manufacturer, VehicleType vehicleType, Season season)
         {
-            Code = tyre.Id.ToString();
+            Code = tyre.Id;
             Name = tyre.DisplayName;
             Active = true;
             Width = Convert.ToInt32(tyre.Width);
@@ -34,10 +34,11 @@ namespace PneuMalik.Models.Dto
             NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
             Manufacturer = manufacturer;
             VehicleType = vehicleType;
+            Season = season;
         }
 
         public int Id { get; set; }
-        public string Code { get; set; }
+        public int Code { get; set; }
         public IList<Cathegory> Cathegories { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }

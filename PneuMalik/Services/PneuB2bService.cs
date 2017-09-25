@@ -56,7 +56,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlFull);
+            Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -65,10 +65,7 @@ namespace PneuMalik.Services
                 return;
             }
 
-            SetStatus($"Zpracování pneumatik ({_response.Tyres.Count()})");
-
-            db.Products.ToList().ForEach(p => p.Active = false);
-            db.SaveChanges();
+            SetStatus($"Zpracování doplňkových informací");
 
             foreach (var manufacturer in _response.Tyres.GroupBy(m => m.ManufacturerID))
             {
@@ -86,24 +83,15 @@ namespace PneuMalik.Services
 
             db.SaveChanges();
 
-            foreach (var vehicleType in _response.Tyres.GroupBy(m => m.VehicleTypeCode))
-            {
-                if (!db.VehicleTypes.Any(v => v.Id == vehicleType.Key))
-                {
-
-                    db.VehicleTypes.Add(new VehicleType()
-                    {
-                        Id = vehicleType.Key,
-                        Name = _response.Tyres.FirstOrDefault(v => v.VehicleTypeCode == vehicleType.Key).VehicleType
-                    });
-                }
-            }
-
-            db.SaveChanges();
-
             var counter = 0;
 
             var images = new ImageHelper();
+
+            SetStatus($"Zpracování pneumatik ({_response.Tyres.Count()})");
+
+            var manufacturers = db.Manufacturers.ToList();
+            var vehicleTypes = db.VehicleTypes.ToList();
+            var seasons = db.Seasons.ToList();
 
             foreach (var productToUpdate in _response.Tyres)
             {
@@ -114,34 +102,26 @@ namespace PneuMalik.Services
                     SetStatus($"Zpracování pneumatik ({counter}/{_response.Tyres.Count()})");
                 }
 
-                var product = db.Products.FirstOrDefault(p => p.Code == productToUpdate.Id.ToString());
-
-                if (product == null)
+                if (!db.Products.Any(p => p.Code == productToUpdate.Id))
                 {
 
-                    product = new Product(productToUpdate, 
-                        db.Manufacturers.FirstOrDefault(m => m.Id == productToUpdate.ManufacturerID),
-                        db.VehicleTypes.FirstOrDefault(v => v.Id == productToUpdate.VehicleTypeCode));
-                    db.Products.Add(product);
-                }
-                else
-                {
-
-                    product.Active = true;
-                    db.Entry(product).State = EntityState.Modified;
+                    db.Products.Add(new Product(productToUpdate,
+                        manufacturers.FirstOrDefault(m => m.Id == productToUpdate.ManufacturerID),
+                        vehicleTypes.FirstOrDefault(v => v.Title == productToUpdate.VehicleType),
+                        seasons.FirstOrDefault(s => s.Id == (productToUpdate.Usage == "Summer" ? 3 : productToUpdate.Usage == "Winter" ? 2 : 4))));
                 }
 
                 // obrázek
                 try
                 {
-                    images.Save(productToUpdate.ImageUrl, product.Code);
+                    images.Save(productToUpdate.ImageUrl, productToUpdate.Id);
                 }
                 catch { }
 
-                db.SaveChanges();
-
                 counter++;
             }
+
+            db.SaveChanges();
 
             SetStatus($"Zpracování cen");
 
@@ -151,7 +131,7 @@ namespace PneuMalik.Services
                 db.Prices.RemoveRange(db.Prices.Where(p => p.ProductId == product.Id).ToList());
                 db.SaveChanges();
 
-                var tyre = _response.Tyres.FirstOrDefault(t => t.Id.ToString() == product.Code);
+                var tyre = _response.Tyres.FirstOrDefault(t => t.Id == product.Code);
                 db.Prices.Add(new PriceObject()
                 {
                     ProductId = product.Id,
@@ -172,6 +152,22 @@ namespace PneuMalik.Services
                 }
                 db.SaveChanges();
             }
+
+            // Remove inactive
+            SetStatus($"Deaktivace odstraněných položek");
+            foreach (var product in db.Products.Where(p => p.Active).ToList())
+            {
+
+                if (_response.Tyres.Any(t => t.Id == product.Code))
+                {
+
+                    continue;
+                }
+
+                product.Active = true;
+                db.Entry(product).State = EntityState.Modified;
+            }
+            db.SaveChanges();
 
             SetStatus("Import produktů byl ukončen");
         }

@@ -19,23 +19,23 @@
         odd = !odd;
 
         <div class="@(odd ? "proddark" : "prodlight")">
-            <p><a class="preview" href="/images/detail/Winterhavk 3.jpg" alt="@product.Design">
-                <img src="/images/ikona/Winterhavk 3.jpg" alt="@product.Design"></a>
+            <p><a class="preview" href="/images/detail/@(product.Code).jpg" alt="@product.Design">
+                <img src="/images/ikona/@(product.Code).jpg" alt="@product.Design"></a>
             </p>
             <table>
                 <tbody><tr>
-                    <td width="145">@product.Name</td>
+                    <td width="145">@($"{product.Width}/{product.HighPr} {product.Design}{product.Diameter} {product.IndexLi}{product.IndexSi}")</td>
                     <td width="155"><a href="/pneumatika/150-000206345-wh3.aspx" title="@product.Design">
-                        <strong>@(product.Manufacturer != null ? product.Manufacturer.Name : "-")</strong> @product.Design</a>
+                        <strong>@(product.Manufacturer != null ? product.Manufacturer.Name : "")</strong> @product.Pattern</a>
                     </td>
                     <td width="96"><span class="f15 blue"><strong>Vaše cena:</strong></span></td>
-                    <td class="rred"><strong>AKCE</strong></td>
+                    <td class="rred">@(product.Action ? "<strong>AKCE</strong>" : "")</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="grn"><strong>DOSTUPNOST:<br>SKLADEM</strong></td>
-                    <td><img src="/img/osobni.png" alt="Osobní"> <img src="/img/zimni.png" alt="Zima"></td>
-                    <td class="f15 blue"><strong>1669,00 Kč</strong></td>
+                    <td><img src="/img/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name"> <img src="/img/@(product.Season.Id).png" alt="@product.Season.Name"></td>
+                    <td class="f15 blue"><strong>@($"{product.Price:F} Kč")</strong></td>
                     <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/150-000206345-wh3.aspx';"></td>
                 </tr>
             </tbody></table>
@@ -51,3 +51,8 @@
 </div>
 
 @Html.Partial("_Right")
+
+@section Scripts {
+ 
+    <script type="text/javascript" src="/Scripts/image.preview.js"></script>
+}

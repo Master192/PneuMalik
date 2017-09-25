@@ -44,7 +44,7 @@ namespace PneuMalik.Controllers
                     var values = line.Split('\t');
                     if (values.Length >= 21)
                     {
-                        Product product = db.Products.First(p => p.Code == values[0]);
+                        Product product = db.Products.First(p => p.Code == Convert.ToInt32(values[0]));
 
                         if (product != null)
                         {
@@ -114,16 +114,16 @@ namespace PneuMalik.Controllers
 
             var model = new MultipleChangeViewModel()
             {
-                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
-                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
-                IndexesSi = new List<string>() { "A3", "A8", "B" }
+                Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
+                Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
+                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
             };
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult DoPriceChange(HttpPostedFileBase file)
+        public ActionResult DoPriceChange()
         {
             return View("PriceChange");
         }
@@ -135,9 +135,9 @@ namespace PneuMalik.Controllers
 
             var model = new MultipleChangeViewModel()
             {
-                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
-                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
-                IndexesSi = new List<string>() { "A3", "A8", "B" }
+                Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
+                Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
+                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
             };
 
             return View(model);
@@ -150,9 +150,9 @@ namespace PneuMalik.Controllers
 
             var model = new MultipleChangeViewModel()
             {
-                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
-                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
-                IndexesSi = new List<string>() { "A3", "A8", "B" }
+                Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
+                Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
+                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
             };
 
             return View(model);
@@ -165,9 +165,9 @@ namespace PneuMalik.Controllers
 
             var model = new MultipleChangeViewModel()
             {
-                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
-                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
-                IndexesSi = new List<string>() { "A3", "A8", "B" }
+                Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
+                Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
+                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
             };
 
             return View(model);
@@ -180,9 +180,9 @@ namespace PneuMalik.Controllers
 
             var model = new MultipleChangeViewModel()
             {
-                Manufacturers = new List<string>() { "Aeolus", "Achilles" },
-                Types = new List<string>() { "4x4", "Moto", "Nákladní", "Osobní", "VAN" },
-                IndexesSi = new List<string>() { "A3", "A8", "B" }
+                Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
+                Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
+                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
             };
 
             return View(model);
