@@ -90,7 +90,7 @@ namespace PneuMalik.Models.Dto
 
         public enum ProductType
         {
-            Pneu,
+            Pneu = 1,
             AluDisk,
             PbDisk,
             Accessories

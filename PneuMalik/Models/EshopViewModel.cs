@@ -8,5 +8,8 @@ namespace PneuMalik.Models
 
         public IList<Product> Products { get; set; }
         public IList<Product> Tips { get; set; }
+        public IList<Manufacturer> Manufacturers { get; set; }
+        public IList<VehicleType> VehicleTypes { get; set; }
+        public IList<Season> Seasons { get; set; }
     }
 }

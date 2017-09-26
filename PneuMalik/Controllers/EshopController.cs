@@ -31,7 +31,10 @@ namespace PneuMalik.Controllers
             var model = new EshopViewModel()
             {
                 Products = db.Products.Where(p => p.Action && p.Active).ToList(),
-                Tips = db.Products.Where(p => p.Tip && p.Active).ToList()
+                Tips = db.Products.Where(p => p.Tip && p.Active).ToList(),
+                Manufacturers = db.Manufacturers.ToList(),
+                VehicleTypes = db.VehicleTypes.ToList(),
+                Seasons = db.Seasons.ToList()
             };
 
             return View(model);

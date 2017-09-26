@@ -17,7 +17,7 @@ namespace PneuMalik.Models.Dto
         [AllowHtml]
         public string Content { get; set; }
         public int ItemsOnPage { get; set; }
-        public Product.ProductType Type { get; set; }
+        public int Type { get; set; }
         public string ExternalUrl { get; set; }
     }
 }

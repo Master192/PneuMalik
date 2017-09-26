@@ -1522,3 +1522,11 @@ p, table {
     margin: 10px 0;
     padding: 0;
 }
+div.help-content {
+    display: none;
+}
+
+.rred {
+    color: #DA0000;
+    text-align: right;
+}

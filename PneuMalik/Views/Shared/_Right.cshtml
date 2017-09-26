@@ -12,15 +12,18 @@
     {
         <div class="rbox">
             <p class="rbnadp">Náš TIP</p>
-            <p class="f14"><a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
-                <strong>@product.Design</strong></a></p>
-            <p>@product.Name  </p>
+            <p class="f14"><strong>
+                    <a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
+                        @product.Manufacturer.Name @product.Pattern
+                    </a>
+                </strong></p>
+            <p>@($"{product.Width}/{product.HighPr} {product.Design}{product.Diameter} {product.IndexLi}{product.IndexSi}")</p>
             <p><a href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
-                <img src="/images/nahled/DAYTON TOURING2.jpg" alt="@product.Design @product.Name" /></a>
+                <img src="/images/nahled/@(product.Code).jpg" alt="@product.Design" /></a>
             </p>
             <div class="rb">
-                <p><img src="/img/osobni.png" alt="Osobní" /> <img src="/img/letni.png" alt="Léto" /></p>
-                <p class="f17 blue"><strong>1299,00 Kč</strong></p>
+                <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></p>
+                <p class="f17 blue"><strong>@($"{product.Price:F} Kč")</strong></p>
                 <p class="grn"><strong>@(product.InStock ? "SKLADEM" : "")</strong></p>
             </div>
         </div>

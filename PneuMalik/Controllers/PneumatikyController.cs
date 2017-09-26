@@ -26,8 +26,11 @@ namespace PneuMalik.Controllers
 
             var model = new EshopViewModel()
             {
-                Products = db.Products.Where(p => p.Type == cathegory.Type && p.Active).ToList(),
-                Tips = db.Products.Where(p => p.Tip && p.Active).ToList()
+                Products = db.Products.Where(p => p.VehicleType.Id == cathegory.Type && p.Active).Take(100).ToList(),
+                Tips = db.Products.Where(p => p.Tip && p.Active).ToList(),
+                Manufacturers = db.Manufacturers.ToList(),
+                VehicleTypes = db.VehicleTypes.ToList(),
+                Seasons = db.Seasons.ToList()
             };
 
             return View("~/Views/Eshop/Pneumatiky.cshtml", model);

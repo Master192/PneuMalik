@@ -56,7 +56,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            Download(_serviceUrlFull);
+            //Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -67,16 +67,16 @@ namespace PneuMalik.Services
 
             SetStatus($"Zpracování doplňkových informací");
 
-            foreach (var manufacturer in _response.Tyres.GroupBy(m => m.ManufacturerID))
+            foreach (var dist in _response.Tyres.GroupBy(m => m.ManufacturerID))
             {
+                var manufacturer = _response.Tyres.FirstOrDefault(m => m.ManufacturerID == dist.Key).Manufacturer;
 
-                if (!db.Manufacturers.Any(m => m.Id == manufacturer.Key))
+                if (!db.Manufacturers.Any(m => m.Name == manufacturer))
                 {
 
                     db.Manufacturers.Add(new Manufacturer()
                     {
-                        Id = manufacturer.Key,
-                        Name = _response.Tyres.FirstOrDefault(m => m.ManufacturerID == manufacturer.Key).Manufacturer
+                        Name = manufacturer
                     });
                 }
             }
@@ -106,7 +106,7 @@ namespace PneuMalik.Services
                 {
 
                     db.Products.Add(new Product(productToUpdate,
-                        manufacturers.FirstOrDefault(m => m.Id == productToUpdate.ManufacturerID),
+                        manufacturers.FirstOrDefault(m => m.Name == productToUpdate.Manufacturer),
                         vehicleTypes.FirstOrDefault(v => v.Title == productToUpdate.VehicleType),
                         seasons.FirstOrDefault(s => s.Id == (productToUpdate.Usage == "Summer" ? 3 : productToUpdate.Usage == "Winter" ? 2 : 4))));
                 }
