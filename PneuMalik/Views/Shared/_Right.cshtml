@@ -1,6 +1,6 @@
-﻿@using PneuMalik.Models
+﻿@using PneuMalik.Models.Dto
 
-@model EshopViewModel
+@model IList<Product>
 
 <div id="right">
 
@@ -8,7 +8,7 @@
         @Html.Raw(ViewBag.ProvozniDoba)
     </div>
 
-    @foreach (var product in Model.Tips)
+    @foreach (var product in Model)
     {
         <div class="rbox">
             <p class="rbnadp">Náš TIP</p>

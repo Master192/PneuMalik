@@ -255,6 +255,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MultipleChangeViewModel.cs" />
     <Compile Include="Models\PneuB2b\Response.cs" />
+    <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PneuB2bService.cs" />
     <Compile Include="Startup.cs" />
@@ -871,6 +872,8 @@
     <Content Include="Views\Kategorie\Index.cshtml" />
     <Content Include="Views\Shared\_Filter.cshtml" />
     <Content Include="Views\Eshop\Pneumatiky.cshtml" />
+    <Content Include="Views\Eshop\_ProductRow.cshtml" />
+    <Content Include="Views\Eshop\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

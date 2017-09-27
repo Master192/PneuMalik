@@ -1,0 +1,35 @@
+﻿@model PneuMalik.Models.Dto.Product
+
+@{ 
+
+    var suf = $"{Model.Manufacturer.Name} {Model.Pattern}";
+    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+}
+
+<p>
+    <a class="preview" href="/images/detail/@(Model.Code).jpg" alt="@Model.Design">
+        <img src="/images/ikona/@(Model.Code).jpg" alt="@Model.Design">
+    </a>
+</p>
+<table>
+    <tbody>
+        <tr>
+            <td width="145">@($"{Model.Width}/{Model.HighPr} {Model.Design}{Model.Diameter} {Model.IndexLi}{Model.IndexSi}")</td>
+            <td width="155">
+                <a href="/pneumatika/@($"{Model.Id}/{urlSuffix}")" title="@Model.Design">
+                    <strong>@(Model.Manufacturer != null ? Model.Manufacturer.Name : "")</strong> @Model.Pattern
+                </a>
+            </td>
+            <td width="96"><span class="f15 blue"><strong>Vaše cena:</strong></span></td>
+            <td class="rred"><strong>@(Model.Action ? "AKCE" : "")</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="grn"><strong>DOSTUPNOST:<br>SKLADEM</strong></td>
+            <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Season.Id).png" alt="@Model.Season.Name"></td>
+            <td class="f15 blue"><strong>@($"{Model.Price:F} Kč")</strong></td>
+            <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/@($"{Model.Id}/{urlSuffix}")';"></td>
+        </tr>
+    </tbody>
+</table>
+<div class="cleaner"><hr></div>

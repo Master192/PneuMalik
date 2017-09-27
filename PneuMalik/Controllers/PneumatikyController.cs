@@ -36,6 +36,35 @@ namespace PneuMalik.Controllers
             return View("~/Views/Eshop/Pneumatiky.cshtml", model);
         }
 
+        public ActionResult Detail(int? id, string suffix)
+        {
+
+            if (!id.HasValue)
+            {
+
+                return View("~/Views/Eshop/Pneumatiky.cshtml");
+            }
+
+            var product = db.Products.FirstOrDefault(p => p.Id == id.Value);
+
+            if (product == null)
+            {
+
+                return View("~/Views/Eshop/Pneumatiky.cshtml");
+            }
+
+            var model = new ProductDetailViewModel()
+            {
+                Product = product,
+                Tips = db.Products.Where(p => p.Active && p.Tip).ToList(),
+                Manufacturers = db.Manufacturers.ToList(),
+                VehicleTypes = db.VehicleTypes.ToList(),
+                Seasons = db.Seasons.ToList()
+            };
+
+            return View("~/Views/Eshop/Detail.cshtml", model);
+        }
+
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }
