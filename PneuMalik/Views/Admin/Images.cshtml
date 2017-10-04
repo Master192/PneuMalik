@@ -1,0 +1,23 @@
+﻿<h1>Vložení nového obrázku</h1>
+
+@using (Html.BeginForm("Images", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            Obrázek:
+            <input type="file" id="new-file" name="file" accept="image/*" />
+        </div>
+        <div class="form-group">
+            <input class="btn btn-default" type="submit" value="VLOŽIT" />
+        </div>
+
+        @if (ViewBag.Uploaded != null)
+        {
+            <div class="form-group">
+                Vložený obrázek má tuto Url adresu:
+                <input type="text" id="uploaded-file" value="@ViewBag.Uploaded" autofocus style="width: 350px; font-size: 18px; padding: 5px;" onfocus="this.select();" />
+            </div>
+        }
+
+    </div>
+}

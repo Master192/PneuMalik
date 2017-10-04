@@ -1,5 +1,8 @@
-﻿<span id="mainContent_U_Filter1_UDP1">
+﻿@using PneuMalik.Models
+@model EshopViewModel
 
+@using (Html.BeginForm("filtrace", "pneumatiky", FormMethod.Post))
+{
     <table class="tabfiltr">
         <tbody>
             <tr class="tfhead">
@@ -11,114 +14,27 @@
             </tr>
             <tr>
                 <td id="mainContent_U_Filter1_td_sezona">
-                    <select name="ctl00$mainContent$U_Filter1$ddSezona" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddSezona\',\'\')', 0)" id="mainContent_U_Filter1_ddSezona">
-                        <option value="Celoroční">Celoroční</option>
-                        <option selected="selected" value="Léto">Léto</option>
-                        <option value="Zima">Zima</option>
+                    <select name="filterSeason" id="filter-season">
+                        <option value="4">Celoroční</option>
+                        <option selected="selected" value="3">Léto</option>
+                        <option value="2">Zima</option>
 
                     </select>
                 </td>
 
                 <td id="mainContent_U_Filter1_td_vyrobce">
-                    <select name="ctl00$mainContent$U_Filter1$ddVyrobce" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddVyrobce\',\'\')', 0)" id="mainContent_U_Filter1_ddVyrobce">
-                        <option selected="selected" value="nerozhoduje">nerozhoduje</option>
-                        <option value="Aeolus">Aeolus</option>
-                        <option value="Achilles">Achilles</option>
-                        <option value="Altenzo">Altenzo</option>
-                        <option value="Aplus">Aplus</option>
-                        <option value="Apollo">Apollo</option>
-                        <option value="Atturo">Atturo</option>
-                        <option value="Autogrip">Autogrip</option>
-                        <option value="Avon">Avon</option>
-                        <option value="Barum">Barum</option>
-                        <option value="BF GOODRICH">BF GOODRICH</option>
-                        <option value="BFGoodrich">BFGoodrich</option>
-                        <option value="BKT">BKT</option>
-                        <option value="Bridgestone">Bridgestone</option>
-                        <option value="Compass">Compass</option>
-                        <option value="Continental">Continental</option>
-                        <option value="Cooper Tires">Cooper Tires</option>
-                        <option value="DAYTON">DAYTON</option>
-                        <option value="Debica">Debica</option>
-                        <option value="Dunlop">Dunlop</option>
-                        <option value="Evergreen">Evergreen</option>
-                        <option value="Falken">Falken</option>
-                        <option value="Federal">Federal</option>
-                        <option value="Firestone">Firestone</option>
-                        <option value="Fortuna">Fortuna</option>
-                        <option value="Fulda">Fulda</option>
-                        <option value="Fullrun">Fullrun</option>
-                        <option value="Gauth-Pneu (Reg.)">Gauth-Pneu (Reg.)</option>
-                        <option value="General Tire">General Tire</option>
-                        <option value="Gislaved">Gislaved</option>
-                        <option value="Goodride">Goodride</option>
-                        <option value="Goodyear">Goodyear</option>
-                        <option value="Gremax">Gremax</option>
-                        <option value="Gripmax">Gripmax</option>
-                        <option value="GT Radial">GT Radial</option>
-                        <option value="Hankook">Hankook</option>
-                        <option value="Hifly">Hifly</option>
-                        <option value="Infinity">Infinity</option>
-                        <option value="Interstate">Interstate</option>
-                        <option value="Intertrac">Intertrac</option>
-                        <option value="Kelly">Kelly</option>
-                        <option value="Kenda">Kenda</option>
-                        <option value="Kingstar">Kingstar</option>
-                        <option value="Kleber">Kleber</option>
-                        <option value="Kormoran">Kormoran</option>
-                        <option value="Kumho">Kumho</option>
-                        <option value="Landsail">Landsail</option>
-                        <option value="Markgum (Reg.)">Markgum (Reg.)</option>
-                        <option value="Marshal">Marshal</option>
-                        <option value="Matador">Matador</option>
-                        <option value="Maxxis">Maxxis</option>
-                        <option value="Membat">Membat</option>
-                        <option value="Michelin">Michelin</option>
-                        <option value="Milestone">Milestone</option>
-                        <option value="Minerva">Minerva</option>
-                        <option value="Momo">Momo</option>
-                        <option value="Nankang">Nankang</option>
-                        <option value="Nexen">Nexen</option>
-                        <option value="Nokian">Nokian</option>
-                        <option value="Novex">Novex</option>
-                        <option value="Petlas">Petlas</option>
-                        <option value="Pirelli">Pirelli</option>
-                        <option value="Platin">Platin</option>
-                        <option value="Riken">Riken</option>
-                        <option value="Riken pneu">Riken pneu</option>
-                        <option value="Roadstone">Roadstone</option>
-                        <option value="Sailun">Sailun</option>
-                        <option value="Sava">Sava</option>
-                        <option value="Seiberling">Seiberling</option>
-                        <option value="Semperit">Semperit</option>
-                        <option value="Silverstone">Silverstone</option>
-                        <option value="Sonar">Sonar</option>
-                        <option value="Sportiva">Sportiva</option>
-                        <option value="Starfire">Starfire</option>
-                        <option value="Starmaxx">Starmaxx</option>
-                        <option value="Sunny">Sunny</option>
-                        <option value="Sunwide">Sunwide</option>
-                        <option value="Syron">Syron</option>
-                        <option value="Taurus">Taurus</option>
-                        <option value="Technic (Reg.)">Technic (Reg.)</option>
-                        <option value="Tigar">Tigar</option>
-                        <option value="Toyo">Toyo</option>
-                        <option value="Tracmax">Tracmax</option>
-                        <option value="Tristar">Tristar</option>
-                        <option value="Uniroyal">Uniroyal</option>
-                        <option value="Viking">Viking</option>
-                        <option value="Voltyre">Voltyre</option>
-                        <option value="Vraník">Vraník</option>
-                        <option value="Vredestein">Vredestein</option>
-                        <option value="Wanli">Wanli</option>
-                        <option value="Yokohama">Yokohama</option>
-                        <option value="Zeetex">Zeetex</option>
-
+                    <select name="filterManufacturer" id="filter-manufacturer">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                        @foreach (var manufacturer in Model.Manufacturers.OrderBy(m => m.Name))
+                        {
+                            <option value="@manufacturer.Id">@manufacturer.Name</option>
+                        }
+                        
                     </select>
                 </td>
 
                 <td id="mainContent_U_Filter1_td_sirka">
-                    <select name="ctl00$mainContent$U_Filter1$ddSirka" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddSirka\',\'\')', 0)" id="mainContent_U_Filter1_ddSirka">
+                    <select name="filterWidth" id="filter-width">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
                         <option value="10.50">10.50</option>
                         <option value="110">110</option>
@@ -165,7 +81,7 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_profil">
-                    <select name="ctl00$mainContent$U_Filter1$ddProfil" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddProfil\',\'\')', 0)" id="mainContent_U_Filter1_ddProfil">
+                    <select name="filterProfile" id="filter-profile">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
                         <option value="10,5">10,5</option>
                         <option value="10.50">10.50</option>
@@ -194,7 +110,7 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_rafek">
-                    <select name="ctl00$mainContent$U_Filter1$ddRafek" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddRafek\',\'\')', 0)" id="mainContent_U_Filter1_ddRafek">
+                    <select name="filterRim" id="filter-rim">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
                         <option value="10">10</option>
                         <option value="12">12</option>
@@ -222,32 +138,29 @@
             <tr class="tfenter">
                 <td><p>Pneumatika:</p></td>
                 <td id="mainContent_U_Filter1_td_footer0" colspan="2">
-                    <select name="ctl00$mainContent$U_Filter1$ddlKategorie" onchange="javascript:setTimeout('__doPostBack(\'ctl00$mainContent$U_Filter1$ddlKategorie\',\'\')', 0)" id="mainContent_U_Filter1_ddlKategorie">
-                        <option selected="selected" value="150">Osobní, offroad, 4x4, SUV</option>
-                        <option value="154">Offroad, 4x4, SUV</option>
-                        <option value="153">Užitkové zátěžové "C"</option>
-                        <option value="162">Nákladní</option>
-                        <option value="163">Industriální a Průmyslové</option>
-                        <option value="164">Motopneu</option>
-                        <option value="176">Zemědělské</option>
-                        <option value="177">ATV</option>
-                        <option value="178">Duše a motovložky</option>
-
+                    <select name="filterCathegory" id="filter-cathegory">
+                        <option selected="selected" value="1">Osobní, offroad, 4x4, SUV</option>
+                        <option value="1">Offroad, 4x4, SUV</option>
+                        <option value="2">Užitkové zátěžové "C"</option>
+                        <option value="3">Nákladní</option>
+                        <option value="4">Industriální a Průmyslové</option>
+                        <option value="5">Motopneu</option>
+                        <option value="6">Zemědělské</option>
+                        <option value="7">ATV</option>
+                        <option value="8">Duše a motovložky</option>
                     </select>
 
                 </td>
 
                 <td id="mainContent_U_Filter1_td_footer" colspan="1">
                     <span id="mainContent_U_Filter1_lblInfo"></span>
-                    <input name="ctl00$mainContent$U_Filter1$hid_cat" type="hidden" id="mainContent_U_Filter1_hid_cat" value="150">
                     <input type="submit" name="ctl00$mainContent$U_Filter1$Button1" value="Filtruj" id="mainContent_U_Filter1_Button1" class="enter1">
                 </td>
 
                 <td>
-                    <input type="submit" name="ctl00$mainContent$U_Filter1$Button2" value="Storno" id="mainContent_U_Filter1_Button2" class="enter2">
+                    <input type="submit" name="ctl00$mainContent$U_Filter1$Button2" value="Storno" id="filter-storno" class="enter2">
                 </td>
             </tr>
         </tbody>
     </table>
-
-</span>
+}

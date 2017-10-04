@@ -188,6 +188,31 @@ namespace PneuMalik.Controllers
             return View(model);
         }
 
+        public ActionResult Images()
+        {
+
+            ViewBag.Title = "Vložení obrázků";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Images(HttpPostedFileBase file)
+        {
+
+            if (file != null && file.ContentLength > 0)
+            {
+                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images/image/", $"{file.FileName}");
+
+                file.SaveAs(path);
+            }
+
+            ViewBag.Title = "Vložení obrázků";
+            ViewBag.Uploaded = $"/images/image/{file.FileName}";
+
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
