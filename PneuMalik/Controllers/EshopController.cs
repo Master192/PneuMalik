@@ -28,16 +28,10 @@ namespace PneuMalik.Controllers
             ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
             ViewBag.Footer = footer != null ? footer.Content : string.Empty;
 
-            var model = new EshopViewModel()
-            {
-                Products = db.Products.Where(p => p.Action && p.Active).ToList(),
-                Tips = db.Products.Where(p => p.Tip && p.Active).ToList(),
-                Manufacturers = db.Manufacturers.ToList(),
-                VehicleTypes = db.VehicleTypes.ToList(),
-                Seasons = db.Seasons.ToList()
-            };
+            // default product type
+            var cathegory = 1;
 
-            return View(model);
+            return View(new EshopViewModel(db, cathegory, new FilterParams()));
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();
