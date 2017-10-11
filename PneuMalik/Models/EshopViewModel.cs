@@ -8,22 +8,20 @@ namespace PneuMalik.Models
     public class EshopViewModel
     {
 
-        public EshopViewModel(ApplicationDbContext db, int cathegory, FilterParams parameters) 
-            : this(db, cathegory, parameters, db.Products.Where(p => p.Action && p.Active).ToList()) {
+        public EshopViewModel(ApplicationDbContext db, int cathegory) 
+            : this(db, cathegory, db.Products.Where(p => p.Action && p.Active).ToList()) {
         }
 
-        public EshopViewModel(ApplicationDbContext db, int cathegory, FilterParams parameters,
-            List<Product> products)
+        public EshopViewModel(ApplicationDbContext db, int cathegory, List<Product> products)
         {
+
             Products = products;
             Tips = db.Products.Where(p => p.Tip && p.Active).ToList();
             Manufacturers = db.Manufacturers.ToList();
             VehicleTypes = db.VehicleTypes.ToList();
             Seasons = db.Seasons.ToList();
             CathegoryType = cathegory;
-            Widths = parameters.Widths;
-            Rims = parameters.Rims;
-            Profiles = parameters.Profiles;
+            Filter = new FilterHelper(db, cathegory).Filter;
         }
 
         public int CathegoryType { get; set; }
@@ -32,8 +30,6 @@ namespace PneuMalik.Models
         public IList<Manufacturer> Manufacturers { get; set; }
         public IList<VehicleType> VehicleTypes { get; set; }
         public IList<Season> Seasons { get; set; }
-        public IList<int> Widths { get; set; }
-        public IList<int> Rims { get; set; }
-        public IList<int> Profiles { get; set; }
+        public Filter Filter { get; set; }
     }
 }

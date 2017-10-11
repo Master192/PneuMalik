@@ -35,6 +35,27 @@
     window.location.href = cathegoryUrl;
 }
 
+function filterChange(source) {
+
+    var sources = ['manufacturer', 'season', 'profile', 'width', 'rim'];
+
+    var cathegory = document.getElementById("filter-cathegory").options[selectCathegory.selectedIndex].value;
+    var season = document.getElementById("filter-season").options[selectCathegory.selectedIndex].value;
+    var manufacturer = document.getElementById("filter-manufacturer").options[selectCathegory.selectedIndex].value;
+    var width = document.getElementById("filter-width").options[selectCathegory.selectedIndex].value;
+    var rim = document.getElementById("filter-rim").options[selectCathegory.selectedIndex].value;
+    var profile = document.getElementById("filter-profile").options[selectCathegory.selectedIndex].value;
+
+    var query = "?cathegory=" + cathegory + "&season=" + season + "&manufacturer=" + manufacturer + "&width=" + width + "&rim=" + rim + "&profile=" + profile;
+
+    var getStatus = new pneuMalik.RequestHelper("GET", "/api/filter/reload" + query);
+    getStatus.makeRequest("filterChange").then(function (response) {
+        console.log(response);
+    }, function (reject) {
+        console.log("Filter reload error: " + reject.message);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // nothing onload yet

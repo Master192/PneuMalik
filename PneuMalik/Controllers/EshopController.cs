@@ -31,7 +31,7 @@ namespace PneuMalik.Controllers
             // default product type
             var cathegory = 1;
 
-            return View(new EshopViewModel(db, cathegory, new FilterParams()));
+            return View(new EshopViewModel(db, cathegory));
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

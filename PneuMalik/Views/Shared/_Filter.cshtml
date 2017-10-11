@@ -14,18 +14,18 @@
             </tr>
             <tr>
                 <td id="mainContent_U_Filter1_td_sezona">
-                    <select name="filterSeason" id="filter-season">
-                        <option value="4">Celoroční</option>
-                        <option selected="selected" value="3">Léto</option>
-                        <option value="2">Zima</option>
-
+                    <select name="filterSeason" id="filter-season" onChange="filterChange('season')">
+                        @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s.Id)).OrderBy(s => s.Name))
+                        {
+                            <option value="@season.Id">@season.Name</option>
+                        }
                     </select>
                 </td>
 
                 <td id="mainContent_U_Filter1_td_vyrobce">
-                    <select name="filterManufacturer" id="filter-manufacturer">
+                    <select name="filterManufacturer" id="filter-manufacturer" onChange="filterChange('manufacturer')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var manufacturer in Model.Manufacturers.OrderBy(m => m.Name))
+                        @foreach (var manufacturer in Model.Manufacturers.Where(m => Model.Filter.Manufacturers.Contains(m.Id)).OrderBy(m => m.Name))
                         {
                             <option value="@manufacturer.Id">@manufacturer.Name</option>
                         }
@@ -33,9 +33,9 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_sirka">
-                    <select name="filterWidth" id="filter-width">
+                    <select name="filterWidth" id="filter-width" onChange="filterChange('width')">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
-                        @foreach (var width in Model.Widths.OrderBy(m => m))
+                        @foreach (var width in Model.Filter.Widths.OrderBy(m => m))
                         {
                             <option value="@width">@width</option>
                         }
@@ -43,9 +43,9 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_profil">
-                    <select name="filterProfile" id="filter-profile">
+                    <select name="filterProfile" id="filter-profile" onChange="filterChange('profile')">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
-                        @foreach (var profile in Model.Profiles.OrderBy(m => m))
+                        @foreach (var profile in Model.Filter.Profiles.OrderBy(m => m))
                         {
                             <option value="@profile">@profile</option>
                         }
@@ -53,9 +53,9 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_rafek">
-                    <select name="filterRim" id="filter-rim">
+                    <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
                         <option selected="selected" value="nerozhoduje">nerozhoduje</option>
-                        @foreach (var rim in Model.Rims.OrderBy(m => m))
+                        @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
                         {
                             <option value="@rim">@rim</option>
                         }
@@ -65,7 +65,7 @@
             <tr class="tfenter">
                 <td><p>Pneumatika:</p></td>
                 <td id="mainContent_U_Filter1_td_footer0" colspan="2">
-                    <select name="filterCathegory" id="filter-cathegory"onChange="filterCathegoryChange()">
+                    <select name="filterCathegory" id="filter-cathegory" onChange="filterCathegoryChange()">
                         <option @(Model.CathegoryType == 1 ? "selected=\"selected\"" : "") value="1">Osobní, offroad, 4x4, SUV</option>
                         <option @(Model.CathegoryType == 2 ? "selected=\"selected\"" : "")value="2">Užitkové zátěžové "C"</option>
                         <option @(Model.CathegoryType == 3 ? "selected=\"selected\"" : "")value="3">Nákladní</option>

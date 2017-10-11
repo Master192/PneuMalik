@@ -22,7 +22,7 @@ namespace PneuMalik.Controllers
 
             var cathegory = db.Cathegories.FirstOrDefault(c => c.Url == title);
 
-            return View("~/Views/Eshop/Pneumatiky.cshtml", new EshopViewModel(db, cathegory.Type, new FilterParams()));
+            return View("~/Views/Eshop/Pneumatiky.cshtml", new EshopViewModel(db, cathegory.Type));
         }
 
         public ActionResult Detail(int? id, string suffix)
@@ -109,8 +109,7 @@ namespace PneuMalik.Controllers
                         && (diameter == 0 || p.Diameter == diameter))
                 .Take(100).ToList();
 
-            return View("~/Views/Eshop/Pneumatiky.cshtml", 
-                new EshopViewModel(db, cathegory, new FilterParams(), filtered));
+            return View("~/Views/Eshop/Pneumatiky.cshtml", new EshopViewModel(db, cathegory, filtered));
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();
