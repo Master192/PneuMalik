@@ -1,5 +1,10 @@
 ﻿@using PneuMalik.Models
+@using ExtensionMethods
 @model EshopViewModel
+
+@{ 
+    var seasonSelected = false;
+}
 
 @using (Html.BeginForm("filtrace", "pneumatiky", FormMethod.Post))
 {
@@ -15,9 +20,16 @@
             <tr>
                 <td id="mainContent_U_Filter1_td_sezona">
                     <select name="filterSeason" id="filter-season" onChange="filterChange('season')">
-                        @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s.Id)).OrderBy(s => s.Name))
+                        @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s.Id)).OrderBy(s => s.Id))
                         {
-                            <option value="@season.Id">@season.Name</option>
+                            var isInPeriod = DateTime.Now.Between(season.From, season.To);
+
+                            <option @(!seasonSelected && isInPeriod ? "selected=\"selected\"" : "") value="@season.Id">@season.Name</option>
+
+                            if (isInPeriod)
+                            {
+                                seasonSelected = true;
+                            }
                         }
                     </select>
                 </td>
@@ -34,7 +46,7 @@
 
                 <td id="mainContent_U_Filter1_td_sirka">
                     <select name="filterWidth" id="filter-width" onChange="filterChange('width')">
-                        <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                        <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var width in Model.Filter.Widths.OrderBy(m => m))
                         {
                             <option value="@width">@width</option>
@@ -44,7 +56,7 @@
 
                 <td id="mainContent_U_Filter1_td_profil">
                     <select name="filterProfile" id="filter-profile" onChange="filterChange('profile')">
-                        <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                        <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var profile in Model.Filter.Profiles.OrderBy(m => m))
                         {
                             <option value="@profile">@profile</option>
@@ -54,7 +66,7 @@
 
                 <td id="mainContent_U_Filter1_td_rafek">
                     <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
-                        <option selected="selected" value="nerozhoduje">nerozhoduje</option>
+                        <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
                         {
                             <option value="@rim">@rim</option>

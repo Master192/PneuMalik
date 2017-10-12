@@ -23,8 +23,8 @@ namespace PneuMalik.Controllers.Api
 
             var filter = new Filter()
             {
-                Manufacturers = availableProducts.GroupBy(m => m.Manufacturer.Id).Select(s => s.FirstOrDefault().Id).ToList(),
-                Seasons = availableProducts.GroupBy(s => s.Season.Id).Select(s => s.FirstOrDefault().Id).ToList(),
+                Manufacturers = availableProducts.GroupBy(m => m.Manufacturer.Id).Select(s => s.FirstOrDefault().Manufacturer.Id).ToList(),
+                Seasons = availableProducts.GroupBy(s => s.Season.Id).Select(s => s.FirstOrDefault().Season.Id).ToList(),
                 Profiles = availableProducts.GroupBy(p => p.HighPr).Select(s => s.FirstOrDefault().HighPr).ToList(),
                 Rims = availableProducts.GroupBy(r => r.Diameter).Select(s => s.FirstOrDefault().Diameter).ToList(),
                 Widths = availableProducts.GroupBy(w => w.Width).Select(s => s.FirstOrDefault().Width).ToList()

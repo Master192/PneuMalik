@@ -37,7 +37,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            Download(_serviceUrlStock);
+            //Download(_serviceUrlStock);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -56,7 +56,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlFull);
+            Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -64,6 +64,10 @@ namespace PneuMalik.Services
             {
                 return;
             }
+
+            //var vehicleTypess = _response.Tyres.GroupBy(g => g.VehicleType);
+            //var usage = _response.Tyres.GroupBy(g => g.Usage);
+            //var cath = _response.Tyres.GroupBy(g => g.ProductCategoryName);
 
             SetStatus($"Zpracování doplňkových informací");
 

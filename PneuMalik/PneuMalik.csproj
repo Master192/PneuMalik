@@ -215,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\FilterHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\LayoutInjecterAttribute.cs" />
