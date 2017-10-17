@@ -43,5 +43,7 @@ namespace PneuMalik.Models
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.PriceObject> Prices { get; set; }
 
         public System.Data.Entity.DbSet<PneuMalik.Models.Dto.VehicleType> VehicleTypes { get; set; }
+
+        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.CartRow> CartRows { get; set; }
     }
 }

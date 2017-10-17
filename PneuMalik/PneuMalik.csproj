@@ -201,6 +201,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Api\EshopController.cs" />
     <Compile Include="Controllers\Api\FilterController.cs" />
     <Compile Include="Controllers\Api\ImportController.cs" />
     <Compile Include="Controllers\CathegoriesController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Customer.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\FilterHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
@@ -245,6 +247,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dto\CartRow.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
     <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Filter.cs" />
@@ -461,6 +464,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\request-helper.js" />
     <Content Include="Scripts\respond.js" />
