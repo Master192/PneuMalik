@@ -42,13 +42,9 @@ namespace PneuMalik.Controllers
                 return View("~/Views/Eshop/Pneumatiky.cshtml");
             }
 
-            var model = new ProductDetailViewModel()
+            var model = new EshopViewModel(db, 1)
             {
-                Product = product,
-                Tips = db.Products.Where(p => p.Active && p.Tip).ToList(),
-                Manufacturers = db.Manufacturers.ToList(),
-                VehicleTypes = db.VehicleTypes.ToList(),
-                Seasons = db.Seasons.ToList()
+                ProductDetail = product
             };
 
             return View("~/Views/Eshop/Detail.cshtml", model);

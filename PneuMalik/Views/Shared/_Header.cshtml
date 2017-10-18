@@ -1,4 +1,12 @@
-﻿<div id="top">
+﻿@using PneuMalik.Models.Dto
+@model IList<CartRow>
+
+@{
+    var cartItems = Model.Count == 0 ? "bez položek" : $"{Model.Count} položek";
+    var totalPrice = Model.Sum(s => s.PriceTmp * s.Count);
+}
+
+<div id="top">
 
     <p id="logo"><a href="/" title="Pneuservis Petr Malík"><img src="/img/logo.png" alt="Pneuservis Petr Malík" /></a></p>
 
@@ -14,9 +22,9 @@
             <p>
                 <span id="u_Hlavicka11_u_KosikInfo1_lbUser">Uživatel</span>: <span id="u_Hlavicka11_u_KosikInfo1_User" class="wh">Nepřihlášený</span><br />
                 <span id="u_Hlavicka11_u_KosikInfo1_lblKosik">Košík</span>:
-                <strong><a id="u_Hlavicka11_u_KosikInfo1_hlKosik" class="wh" href="/nakup/kosik.aspx">bez položek</a></strong><br />
+                <strong><a id="u_Hlavicka11_u_KosikInfo1_hlKosik" class="wh" href="/eshop/kosik">@cartItems</a></strong><br />
                 <span id="u_Hlavicka11_u_KosikInfo1_lblCena">Cena</span>:
-                <strong><a id="u_Hlavicka11_u_KosikInfo1_CenaNakupu" class="wh" href="/nakup/kosik.aspx">0,00 Kč</a></strong>
+                <strong><a id="u_Hlavicka11_u_KosikInfo1_CenaNakupu" class="wh" href="/eshop/kosik">@($"{totalPrice:0}"),00 Kč</a></strong>
             </p>
 
             <div id="tkover">

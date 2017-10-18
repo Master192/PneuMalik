@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using PneuMalik.Models
+@model EshopViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,7 +22,7 @@
 
     <div id="vse">
 
-        @Html.Partial("_Header")
+        @Html.Partial("_Header", Model.Cart)
 
         <div id="obsah">
 

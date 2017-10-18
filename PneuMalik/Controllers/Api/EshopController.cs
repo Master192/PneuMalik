@@ -11,7 +11,7 @@ namespace PneuMalik.Controllers.Api
     {
 
         [HttpGet]
-        [Route("cart")]
+        [Route("cartadd")]
         public IHttpActionResult CartAdd(int id, double price, int count)
         {
             var customer = new Customer();
@@ -33,7 +33,10 @@ namespace PneuMalik.Controllers.Api
                     Count = count,
                     CustomerId = customer.Id,
                     ProductId = id,
-                    PriceTmp = price
+                    PriceTmp = price,
+                    Payment = 0,
+                    Shipping = 0,
+                    PriceType = 0
                 });
             }
 

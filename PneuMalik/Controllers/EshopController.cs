@@ -34,6 +34,27 @@ namespace PneuMalik.Controllers
             return View("~/Views/Eshop/Index.cshtml", new EshopViewModel(db, cathegory));
         }
 
+        [LayoutInjecter("_EshopLayout")]
+        public ActionResult Kosik()
+        {
+
+            var customer = new Customer();
+
+            var model = new EshopViewModel(db)
+            {
+                Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList()
+            };
+
+            model.CartProducts = db.CartRows.Join(db.Products, 
+                c => c.ProductId, 
+                p => p.Id, 
+                (cart, product) => new { Cart = cart, Product = product })
+                .Where(cp => cp.Cart.CustomerId == customer.Id)
+                .Select(cp => cp.Product).ToList();
+
+            return View("~/Views/Eshop/Cart.cshtml", model);
+        }
+
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

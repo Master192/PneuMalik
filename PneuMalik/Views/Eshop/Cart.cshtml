@@ -1,0 +1,67 @@
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+@{
+    var totalPrice = Model.Cart.Sum(s => s.PriceTmp * s.Count);
+}
+
+<div id="kosik">
+
+    <div class="cokoliv">
+        <div class="boxkosik">
+
+            <h1>Nákupní košík</h1>
+
+            <div class="tabkosik">
+
+                <table cellspacing="0">
+                    <tbody>
+                        <tr class="tkhead">
+                            <td>Kat. číslo</td>
+                            <td>Název</td>
+                            <td width="60">Jednotka</td>
+                            <td width="75">Cena</td>
+                            <td width="53">Množství</td>
+                            <td width="102">Mezisoučet</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var cartRow in Model.Cart)
+                        {
+                            var product = Model.CartProducts.FirstOrDefault(p => p.Id == cartRow.ProductId);
+
+                            <tr>
+                                <td>@product.Code</td>
+                                <td>@($"{product.Name}")</td>
+                                <td class="cent">ks</td>
+                                <td>@($"{cartRow.PriceTmp:0}"),00 Kč</td>
+                                <td class="cent"><input type="text" id="mn11645" value="@cartRow.Count" size="1" class="boks"></td>
+                                <td>@($"{cartRow.PriceTmp * cartRow.Count:0}"),00 Kč</td>
+                                <td><a title="odstranit"><img src="/img/delete.gif" alt="Mazání"></a></td>
+                            </tr>
+                        }
+
+                        <tr class="tkbottom">
+                            <td colspan="4">&nbsp;</td>
+                            <td class="cent"><p class="tkuloz"><a id="mainContent_u_Kosik1_hlUlozitPocet" title="Uložit" href="javascript:__doPostBack('ctl00$mainContent$u_Kosik1$MyPostBack','1_69_6_3');">Uložit</a></p></td>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <p><strong>Celková cena včetně DPH: <span class="f14 red">@($"{totalPrice:0}"),00 Kč</span></strong></p><p><strong>Dopravné: <span class="f14 red">200,00 Kč</span></strong></p>
+                                <p>
+                                    Doprava osobních pneu za <font color="#ff0000">1 ks 200,- kč</font>, <font color="#ff0000">2 ks a více 100,- kč za 1 ks</font>. Motocyklové pneu za 200,- kč do 2 ks. Cena za dopravu nákladních pneu po domluvě.<br>
+                                    Všechny ceny jsou uvedeny s DPH.
+                                </p>
+                                <p>Osobní odběr: pneumatiky, které si zákazník objedná, si musí vyzvednout do 3 pracovních dní nebo uhradit platbou hotově nebo fakturou a ponechat u nás do termínu přezutí.</p>
+                            </td>
+                        </tr>
+                        <tr class="tkbottom">
+                            <td colspan="7"><p class="tkpokr"><a id="mainContent_u_Kosik1_hlPokracovat" title="Pokračovat &amp;gt;" href="/nakup/objednavka-krok1.aspx">Pokračovat &gt;</a></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

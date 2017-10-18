@@ -1,64 +1,65 @@
 ﻿@using PneuMalik.Models
 
-@model ProductDetailViewModel
+@model EshopViewModel
 
 @{
-    var productName = $"{Model.Product.Manufacturer.Name} {Model.Product.Pattern}";
+    var product = Model.ProductDetail;
+    var productName = $"{product.Manufacturer.Name} {product.Pattern}";
 }
 
 <div id="stred">
 
     <h1>@productName</h1>
 
-    <p><img src="/images/detail/@(Model.Product.Id).jpg" class="detimg" alt="@productName" /></p>
+    <p><img src="/images/detail/@(product.Id).jpg" class="detimg" alt="@productName" /></p>
     
     <table class="tabdet">
         <tr>
-            <td class="td1">Výrobce:</td><td>@Model.Product.Manufacturer.Name</td>
+            <td class="td1">Výrobce:</td><td>@product.Manufacturer.Name</td>
         </tr>
         <tr>
-            <td class="td1">Dezén:</td><td>@Model.Product.Pattern</td>
+            <td class="td1">Dezén:</td><td>@product.Pattern</td>
         </tr>
         <tr>
-            <td class="td1">Šířka:</td><td>@Model.Product.Width</td>
+            <td class="td1">Šířka:</td><td>@product.Width</td>
         </tr>
         <tr>
-            <td class="td1">Série - výška:</td><td>@Model.Product.SerieWidth</td>
+            <td class="td1">Série - výška:</td><td>@product.SerieWidth</td>
         </tr>
         <tr>
-            <td class="td1">Konstrukce:</td><td>@Model.Product.Construction</td>
+            <td class="td1">Konstrukce:</td><td>@product.Construction</td>
         </tr>
         <tr>
-            <td class="td1">Průměr ráfku:</td><td>@Model.Product.Diameter</td>
+            <td class="td1">Průměr ráfku:</td><td>@product.Diameter</td>
         </tr>
         <tr>
-            <td class="td1">Rychlostní index:</td><td>@Model.Product.IndexSi</td>
+            <td class="td1">Rychlostní index:</td><td>@product.IndexSi</td>
         </tr>
         <tr>
-            <td class="td1">Hmotnostní index:</td><td>@Model.Product.IndexLi</td>
+            <td class="td1">Hmotnostní index:</td><td>@product.IndexLi</td>
         </tr>
         <tr>
-            <td class="td1">Typ vozidla:</td><td>@Model.Product.VehicleType.Title</td>
+            <td class="td1">Typ vozidla:</td><td>@product.VehicleType.Title</td>
         </tr>
         <tr>
-            <td class="td1">Dezén:</td><td>@Model.Product.Pattern</td>
+            <td class="td1">Dezén:</td><td>@product.Pattern</td>
         </tr>
     </table>
     <div class="det">
         <p class="detinfo">
-            <ins><img src="/img/vehicletype/@(Model.Product.VehicleType.Id).png" alt="@Model.Product.VehicleType.Title" /></ins>
-            <ins><img src="/img/seasons/@(Model.Product.Season.Id).png" alt="@Model.Product.Season.Name" /></ins>
-            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(Model.Product.InStock ? "SKLADEM" : "")</strong></span></ins>
+            <ins><img src="/img/vehicletype/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
+            <ins><img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.InStock ? "SKLADEM" : "")</strong></span></ins>
             <p class="detget">
                 <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
                 <ins>ks</ins>
-                <ins><input type="button" onClick="toTheCart(@(Model.Product.Id), @($"{Model.Product.Price:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
+                <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
             </p>
             <table>
                 <tr>
                     <td valign="top" width="80">Vaše cena:</td>
                     <td><input type="radio" name="gr" value="cena1" checked>&nbsp;
-                        <span class="f20 blue"><strong>@($"{Model.Product.Price:F} Kč")</strong></span> 
+                        <span class="f20 blue"><strong>@($"{product.Price:F} Kč")</strong></span> 
                         <span style="color:#008000;"><strong></strong></span><br />
                     </td>
                 </tr>

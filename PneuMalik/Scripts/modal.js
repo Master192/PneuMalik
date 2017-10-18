@@ -7,13 +7,12 @@
         count = countElement.value;
     }
 
-    var getStatus = new pneuMalik.RequestHelper("GET", "/api/eshop/cart?id=" + id + "&count=" + count + "&price=" + price);
+    openAlertWindow('Položka přidána do košíku.<br >' + sText + '&nbsp;' + count + ' ks');
+
+    var getStatus = new pneuMalik.RequestHelper("GET", "/api/eshop/cartadd?id=" + id + "&count=" + count + "&price=" + price);
     getStatus.makeRequest("toTheCart").then(function (response) {
 
-        openAlertWindow('Položka přidána do košíku.<br >' + sText + '&nbsp;' + count + ' ks');
-
         var cartRows = JSON.parse(response);
-        console.log(cartRows);
 
         var itemCountElement = document.getElementById("u_Hlavicka11_u_KosikInfo1_hlKosik");
         var cartPriceElement = document.getElementById("u_Hlavicka11_u_KosikInfo1_CenaNakupu")
@@ -21,7 +20,7 @@
         var totalPrice = 0;
         for (index = 0; index < cartRows.length; ++index) {
 
-            totalPrice += cartRows[index]["PriceTmp"];
+            totalPrice += cartRows[index]["PriceTmp"] * cartRows[index]["Count"];
         }
 
         itemCountElement.innerHTML = cartRows.length == 0 ? "bez položek" : cartRows.length + " položek";
@@ -33,7 +32,7 @@
 }
 
 function openAlertWindow(sText) {
-    
+
     showCover();
 
     var alert = document.getElementById("alert");
@@ -57,7 +56,7 @@ function openAlertWindow(sText) {
         var buttonsElement = document.createElement("p");
         buttonsElement.innerHTML = "<p>"
             + "<input type=\"button\" value=\"Přejít na košík\" class=\"enterA\" onclick=\"document.getElementById('cover').style.display='none';document.getElementById('alert').style.display='none';window.location.href='/eshop/kosik';\" />&nbsp;"
-            + "<input type=\"button\" value=\"Pokračovat v nákupu\" class=\"enterA\" onclick=\"document.getElementById('cover').style.display='none';document.getElementById('alert').style.display='none';window.location.reload(true);\" />"
+            + "<input type=\"button\" value=\"Pokračovat v nákupu\" class=\"enterA\" onclick=\"document.getElementById('cover').style.display='none';document.getElementById('alert').style.display='none';\" />"
             + "</p>";
         alertObsah.appendChild(buttonsElement);
 
@@ -67,14 +66,16 @@ function openAlertWindow(sText) {
         alertObsah.appendChild(cleanerElement);
 
         alert.appendChild(alertObsah);
-        document.getElementById("vse").appendChild(alert);
+        document.querySelector("body").appendChild(alert);
+
+        alert.style.left = parseInt(((document.documentElement.clientWidth / 2) - (alert.clientWidth / 2)) + document.documentElement.scrollLeft) + "px";
+        alert.style.top = parseInt(((document.documentElement.clientHeight / 2) - (alert.clientHeight)) + document.documentElement.scrollTop) + "px";
     }
 
     document.getElementById("paragkosik").innerHTML = sText;
 
-    alert.style.left = parseInt(((document.documentElement.clientWidth / 2) - (alert.clientWidth/2)) + document.documentElement.scrollLeft)+"px";
-    alert.style.top = parseInt(((document.documentElement.clientHeight / 2) - (alert.clientHeight)) + document.documentElement.scrollTop)+"px";
-}
+    alert.style.display = "block";
+ }
 
 function openPreloader() {
 
@@ -103,11 +104,13 @@ function showCover() {
         cover = document.createElement("div");
         cover.innerHTML = "&nbsp;";
         cover.id = "cover";
-        document.getElementById("vse").appendChild(cover);
+        document.querySelector("body").appendChild(cover);
     }
 
     cover.style.width = parseInt(document.body.clientWidth) + "px";
     cover.style.height = parseInt(document.body.clientHeight) + "px";
+
+    cover.style.display = "block";
 }
 
 function ScrollTop() {
