@@ -55,6 +55,13 @@ namespace PneuMalik.Controllers
             return View("~/Views/Eshop/Cart.cshtml", model);
         }
 
+        [LayoutInjecter("_EshopLayout")]
+        public ActionResult Konfigurator()
+        {
+
+            return View("~/Views/Eshop/Konfigurator.cshtml", new EshopViewModel(db, 1));
+        }
+
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }
