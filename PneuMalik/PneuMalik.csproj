@@ -201,6 +201,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Api\ConfiguratorController.cs" />
     <Compile Include="Controllers\Api\EshopController.cs" />
     <Compile Include="Controllers\Api\FilterController.cs" />
     <Compile Include="Controllers\Api\ImportController.cs" />
@@ -247,6 +248,18 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Configurator\ABELine.cs" />
+    <Compile Include="Models\Configurator\ACMBrandData_A2.cs" />
+    <Compile Include="Models\Configurator\ACMModelData_A2.cs" />
+    <Compile Include="Models\Configurator\ACMTypeData_A2.cs" />
+    <Compile Include="Models\Configurator\ACMWheelData_A2.cs" />
+    <Compile Include="Models\Configurator\BuyerParty.cs" />
+    <Compile Include="Models\Configurator\DataLine.cs" />
+    <Compile Include="Models\Configurator\DataLine2.cs" />
+    <Compile Include="Models\Configurator\DataLine3.cs" />
+    <Compile Include="Models\Configurator\DataLine4.cs" />
+    <Compile Include="Models\Configurator\ErrorHead.cs" />
+    <Compile Include="Models\Configurator\TyreLine.cs" />
     <Compile Include="Models\Dto\CartRow.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
     <Compile Include="Models\Dto\DiscType.cs" />
@@ -263,6 +276,7 @@
     <Compile Include="Models\MultipleChangeViewModel.cs" />
     <Compile Include="Models\PneuB2b\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConfiguratorService.cs" />
     <Compile Include="Services\PneuB2bService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -459,6 +473,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\configurator.js" />
     <Content Include="Scripts\filter.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

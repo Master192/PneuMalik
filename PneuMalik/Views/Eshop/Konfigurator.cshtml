@@ -2,6 +2,8 @@
 
 @model EshopViewModel
 
+@Scripts.Render("~/Scripts/configurator.js")
+
 <div id="stred">
 
     <h1>Litá kola - KONFIGURÁTOR</h1>
@@ -9,26 +11,28 @@
     <div class="cleaner"><hr></div>
     <hr />
 
-    <div class="tab">
+    <div class="tab configurator">
         <table>
             <tr>
                 <td>ZNAČKA VOZIDLA:</td>
-                <td><asp:DropDownList ID="ddlBrands" Width="200" runat="server" CssClass="select"></asp:DropDownList></td>
+                <td><select id="select-brand"></select></td>
             </tr>
-            <tr id="trConfig2" style="display: none;">
+            <tr id="tr-types" style="display: none;">
                 <td>MODELOVÁ ŘADA:</td>
-                <td><asp:DropDownList ID="ddlTypes" Width="200" runat="server" CssClass="select"></asp:DropDownList></td>
+                <td><select id="select-types"></select></td>
             </tr>
-            <tr id="trConfig3" style="display: none;">
+            <tr id="tr-models" style="display: none;">
                 <td>PROVEDENÍ:</td>
-                <td><asp:DropDownList ID="ddlModels" Width="200" runat="server" CssClass="select"></asp:DropDownList></td>
+                <td><select id="select-models"></select></td>
             </tr>
-            <tr id="trConfig4" style="display: none;">
+            <tr id="tr-sizes" style="display: none;">
                 <td>ROZMĚR KOLA:</td>
-                <td><asp:DropDownList ID="ddlRozmer" Width="200" runat="server" CssClass="select"></asp:DropDownList></td>
+                <td><select id="select-sizes"></select></td>
             </tr>
         </table>
     </div>
+
+    <div id="configurator-results"></div>
 
 </div>
 
