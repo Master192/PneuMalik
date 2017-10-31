@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace PneuMalik.Models.PneuB2b
@@ -25,6 +27,9 @@ namespace PneuMalik.Models.PneuB2b
         [Serializable()]
         public class SteelRim
         {
+            [Key]
+            [XmlIgnore]
+            public int Kis { get; set; }
             [XmlElement("ID")]
             public int Id { get; set; }
             [XmlElement("PartNo")]
@@ -51,6 +56,7 @@ namespace PneuMalik.Models.PneuB2b
             public bool Abe { get; set; }
             [XmlElement("ImageUrl")]
             public string ImageUrl { get; set; }
+            [NotMapped]
             [XmlElement("StockPriceInfo")]
             public StockPriceInfo StockPriceInfo { get; set; }
         }
@@ -96,7 +102,9 @@ namespace PneuMalik.Models.PneuB2b
         [Serializable()]
         public class Tyre
         {
-
+            [Key]
+            [XmlIgnore]
+            public int Kis { get; set; }
             [XmlElement("ID")]
             public int Id { get; set; }
             [XmlElement("PartNo")]
@@ -149,8 +157,10 @@ namespace PneuMalik.Models.PneuB2b
             public string TagNoiseLevel_dB { get; set; }
             [XmlElement("RetailPriceCurrency_CZ")]
             public string RetailPriceCurrency_CZ { get; set; }
+            [NotMapped]
             [XmlElement("StockPriceInfo")]
             public StockPriceInfo StockPriceInfo { get; set; }
+            [NotMapped]
             [XmlElement("StockPriceInfo_48")]
             public StockPriceInfo StockPriceInfo_48 { get; set; }
             [XmlElement("ProductCategoryID")]
