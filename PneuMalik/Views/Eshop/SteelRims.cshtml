@@ -1,0 +1,45 @@
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+<div id="stred">
+
+    @Html.Raw(ViewBag.Uvod)
+
+    <h1>@ViewBag.UvodH1</h1>
+
+    @Html.Partial("_FilterSteelRims")
+
+    @{
+        var odd = false;
+    }
+
+    @foreach (var product in Model.Products)
+    {
+        odd = !odd;
+
+        <div class="@(odd ? "proddark" : "prodlight")">
+
+            @Html.Partial("~/Views/Eshop/_ProductRow.cshtml", product)
+
+        </div>
+    }
+
+    @if (Model.Products.Count >= 100)
+    {
+        <input type="button" value="Zobrazit další" />
+    }
+
+    <div class="cleaner"><hr></div>
+    <hr />
+
+    @Html.Raw(ViewBag.Banner)
+
+</div>
+
+@Html.Partial("_Right", Model.Tips)
+
+@section Scripts {
+
+    <script type="text/javascript" src="/Scripts/image.preview.js"></script>
+}

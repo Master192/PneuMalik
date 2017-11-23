@@ -939,6 +939,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Eshop\Konfigurator.cshtml" />
+    <Content Include="Views\Eshop\SteelRims.cshtml" />
+    <Content Include="Views\Shared\_FilterSteelRims.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

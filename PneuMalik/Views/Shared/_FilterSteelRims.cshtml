@@ -1,0 +1,54 @@
+﻿@using PneuMalik.Models
+@using ExtensionMethods
+@model EshopViewModel
+
+@{
+    var seasonSelected = false;
+}
+
+@using (Html.BeginForm("filtrace", "ocelovedisky", FormMethod.Post))
+{
+    <table class="tabfiltr">
+        <tbody>
+            <tr class="tfhead">
+                <td id="mainContent_U_Filter1_td_rafek0">Ráfek</td>
+                <td id="mainContent_U_Filter1_td_znacka0">Značka</td>
+                <td id="mainContent_U_Filter1_td_model0">Model</td>
+            </tr>
+            <tr>
+                <td id="mainContent_U_Filter1_td_rafek">
+                    <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
+                        @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
+                        {
+                            <option value="@rim">@rim</option>
+                        }
+                    </select>
+                </td>
+
+                <td id="mainContent_U_Filter1_td_znacka">
+                    <select name="filterBrand" id="filter-brand" onChange="filterChange('brand')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                    </select>
+                </td>
+
+                <td id="mainContent_U_Filter1_td_model">
+                    <select name="filterModel" id="filter-model" onChange="filterChange('model')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                    </select>
+                </td>
+
+            </tr>
+            <tr class="tfenter">
+
+                <td id="mainContent_U_Filter1_td_footer" colspan="2">
+                    <span id="mainContent_U_Filter1_lblInfo"></span>
+                    <input type="submit" name="ctl00$mainContent$U_Filter1$Button1" value="Filtruj" id="mainContent_U_Filter1_Button1" class="enter1">
+                </td>
+
+                <td>
+                    <input type="submit" name="ctl00$mainContent$U_Filter1$Button2" value="Storno" id="filter-storno" class="enter2">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

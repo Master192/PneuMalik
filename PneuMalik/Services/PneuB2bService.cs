@@ -56,7 +56,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlFull);
+            Download(_serviceUrlFull);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -67,13 +67,23 @@ namespace PneuMalik.Services
 
             SetStatus($"Načtení zdrojových dat do databáze: Disky");
 
-            // rims
+            //// rims
             db.SteelRims.RemoveRange(db.SteelRims);
             db.SaveChanges();
 
+            var counter = 0;
             foreach (var rim in _response.SteelRims)
             {
                 db.SteelRims.Add(rim);
+
+                if (counter % 40 == 0)
+                {
+
+                    SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.SteelRims.Count()})");
+                    db.SaveChanges();
+                }
+
+                counter++;
             }
 
             db.SaveChanges();
@@ -84,14 +94,24 @@ namespace PneuMalik.Services
             db.Tyres.RemoveRange(db.Tyres);
             db.SaveChanges();
 
+            counter = 0;
             foreach (var tyre in _response.Tyres)
             {
                 db.Tyres.Add(tyre);
+
+                if (counter % 40 == 0)
+                {
+
+                    SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.Tyres.Count()})");
+                    db.SaveChanges();
+                }
+
+                counter++;
             }
 
             db.SaveChanges();
 
-            SetStatus($"Načtení zdrojových dat do databáze: Ceny");
+            SetStatus($"Načtení zdrojových dat do databáze: Ceny (disky)");
 
             // prices
             db.PriceInfos.RemoveRange(db.PriceInfos);
@@ -101,11 +121,14 @@ namespace PneuMalik.Services
             {
                 db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo) {
                         Period = 24,
-                        Type = PriceInfo.PriceInfoType.Rim
+                        Type = PriceInfo.PriceInfoType.Rim,
+                        ProductId = rim.Id
                 });
             }
 
             db.SaveChanges();
+
+            SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky)");
 
             foreach (var tyre in _response.Tyres)
             {
@@ -114,7 +137,8 @@ namespace PneuMalik.Services
                     db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo)
                     {
                         Period = 24,
-                        Type = PriceInfo.PriceInfoType.Tyre
+                        Type = PriceInfo.PriceInfoType.Tyre,
+                        ProductId = tyre.Id
                     });
                 }
 
@@ -123,7 +147,8 @@ namespace PneuMalik.Services
                     db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo_48)
                     {
                         Period = 48,
-                        Type = PriceInfo.PriceInfoType.Tyre
+                        Type = PriceInfo.PriceInfoType.Tyre,
+                        ProductId = tyre.Id
                     });
                 }
             }

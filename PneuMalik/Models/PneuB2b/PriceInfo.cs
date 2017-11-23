@@ -7,7 +7,8 @@ namespace PneuMalik.Models.PneuB2b
     {
 
         public PriceInfo()
-        { }
+        {
+        }
 
         public PriceInfo(StockPriceInfo price)
         {
@@ -26,6 +27,7 @@ namespace PneuMalik.Models.PneuB2b
 
         [Key]
         public int Kis { get; set; }
+        public int ProductId { get; set; }
         public PriceInfoType Type { get; set; }
         public int Period { get; set; }
 
