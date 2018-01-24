@@ -116,17 +116,17 @@ namespace PneuMalik.Controllers.Api
                 if (!disk.TyreLines.Any(t => t.Tyre.IndexOf($"R{size}") > -1))
                     continue;
 
-                if (result.Any(p => p.Code.ToString() == disk.Article))
+                if (result.Any(p => p.Ean == disk.Article))
                     continue;
 
                 try
                 {
-                    if (!db.Products.Any(p => p.Code == Int32.Parse(disk.Article)))
+                    if (!db.Products.Any(p => p.Ean == disk.Article))
                         continue;
                 }
                 catch { continue; }
 
-                var product = db.Products.FirstOrDefault(p => p.Code == Int32.Parse(disk.Article));
+                var product = db.Products.FirstOrDefault(p => p.Ean == disk.Article);
                 product.Description = disk.ImageOnCar;
                 result.Add(product);
             }

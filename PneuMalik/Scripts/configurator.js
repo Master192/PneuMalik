@@ -119,7 +119,7 @@ function ModelSelected() {
 
         var selectSizes = document.getElementById("select-sizes");
         while (selectSizes.firstChild) {
-            selectSizes.removeChild(selectModels.selectSizes);
+            selectSizes.removeChild(selectSizes.firstChild);
         }
 
         for (var i = 0; i < sizes.length; i++) {
@@ -147,13 +147,27 @@ function SizeSelected() {
     var type = document.getElementById("select-types").value;
     var model = document.getElementById("select-models").value;
     var size = document.getElementById("select-sizes").value;
+    var results = document.getElementById("configurator-results");
+    results.innerHTML = "<img src=\"/img/loading-configurator-results.gif\" />";
 
     var getDiskList = new pneuMalik.RequestHelper("GET", "/api/configurator/disks?model=" + model + "&size=" + size);
     getDiskList.makeRequest("configuratorDiskList").then(function (response) {
 
         var disks = JSON.parse(response);
 
-        console.log(disks);
+        for (var i = 0; i < disks.length; i++) {
+
+            var disk = disks[i];
+
+            var diskObject = document.createElement("div");
+            diskObject.innerHTML = "<a href=\"/disk/" + disk.Code + "/" + disk.Name.replace(" ", "-")
+                + "\" title=\"" + disk.Name + "\">"
+                + "<img class=\"rambl\" src=\"/images/nahled/" + disk.Image + "\" alt=\"\" width=\"100\" border=\"0\"><br />"
+                + "<strong>" + disk.Name + "</strong>" + disk.Design + "</a>";
+
+            results.innerHTML = "";
+            results.appendChild(diskObject);
+        }
 
     }, function (reject) {
         console.log("Configurator disk list: " + reject.message);
