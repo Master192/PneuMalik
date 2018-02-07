@@ -207,9 +207,11 @@
     <Compile Include="Controllers\Api\ImportController.cs" />
     <Compile Include="Controllers\CathegoriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DiskyController.cs" />
     <Compile Include="Controllers\EshopController.cs" />
     <Compile Include="Controllers\KategorieController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OcelovediskyController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PneumatikyController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -941,10 +943,16 @@
     <Content Include="Views\Eshop\Konfigurator.cshtml" />
     <Content Include="Views\Eshop\SteelRims.cshtml" />
     <Content Include="Views\Shared\_FilterSteelRims.cshtml" />
+    <Content Include="Views\Eshop\_ProductDiskRow.cshtml" />
+    <Content Include="Views\Eshop\DetailDisk.cshtml" />
+    <Content Include="Views\Shared\_FilterAluRims.cshtml" />
+    <Content Include="Views\Eshop\AluRims.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Customers\" />
+    <Folder Include="Views\Disky\" />
+    <Folder Include="Views\Ocelovedisky\" />
     <Folder Include="Views\Orders\" />
     <Folder Include="Views\Pneumatiky\" />
   </ItemGroup>

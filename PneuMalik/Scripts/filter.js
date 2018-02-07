@@ -120,6 +120,64 @@ function filterChange(source) {
     });
 }
 
+function filterSteelChange(source) {
+
+    var sources = ['rim', 'brand', 'model'];
+
+    var selectRim = document.getElementById('filter-rim');
+    var rim = selectRim.options[selectRim.selectedIndex].value;
+
+    var selectBrand = document.getElementById('filter-brand');
+    var brand = selectBrand.options[selectBrand.selectedIndex].value;
+
+    var selectModel = document.getElementById('filter-model');
+    var model = selectModel.options[selectModel.selectedIndex].value;
+
+    var query = "?rim=" + rim + "&brand=" + brand + "&model=" + model;
+
+    var getStatus = new pneuMalik.RequestHelper("GET", "/api/filter/steel" + query);
+    getStatus.makeRequest("filterSteelChange").then(function (response) {
+
+        var filter = JSON.parse(response);
+
+        [].forEach.call(document.querySelectorAll('#filter-rim option'), function (elm) {
+
+            if (elm.value == "0") {
+                return;
+            }
+
+            if (filter.Rims.indexOf(parseInt(elm.value)) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-brand option'), function (elm) {
+
+            if (elm.value == "0") {
+                return;
+            }
+
+            if (filter.Brands.indexOf(elm.value) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-model option'), function (elm) {
+
+            if (elm.value == "0") {
+                return;
+            }
+
+            if (filter.Models.indexOf(elm.value) < 0) {
+                elm.remove();
+            }
+        });
+
+    }, function (reject) {
+        console.log("Filter reload error: " + reject.message);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // nothing onload yet

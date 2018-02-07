@@ -74,7 +74,7 @@ namespace PneuMalik.Controllers.Api
             {
                 foreach (var tyre in size.TyreLines)
                 {
-                    var dimension = tyre.Tyre.Substring(tyre.Tyre.IndexOf('R') + 1, 2);
+                    var dimension = tyre.Tyre.IndexOf('R') > -1 ? tyre.Tyre.Substring(tyre.Tyre.IndexOf('R') + 1, 2) : "";
 
                     try
                     {

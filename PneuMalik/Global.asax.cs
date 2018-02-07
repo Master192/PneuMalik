@@ -30,9 +30,27 @@ namespace PneuMalik
             );
 
             routes.MapRoute(
+                name: "Disky",
+                url: "disky/{title}",
+                defaults: new { controller = "Disky", action = "Index", title = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Ocelovedisky",
+                url: "ocelovediskydisky/{title}",
+                defaults: new { controller = "Ocelovedisky", action = "Index", title = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Pneumatika",
                 url: "pneumatika/{id}/{suffix}",
                 defaults: new { controller = "Pneumatiky", action = "Detail", title = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Disk",
+                url: "disk/{id}/{suffix}",
+                defaults: new { controller = "Disky", action = "Detail", title = UrlParameter.Optional }
             );
 
             AreaRegistration.RegisterAllAreas();
@@ -44,11 +62,11 @@ namespace PneuMalik
         protected void Application_Error()
         {
 
-            //var exception = Server.GetLastError();
+            var exception = Server.GetLastError();
            
             // logování chyb sem
 
-            //Response.Redirect("/");
+            Response.Redirect("/");
         }
     }
 }

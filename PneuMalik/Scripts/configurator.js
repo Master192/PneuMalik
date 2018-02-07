@@ -155,19 +155,39 @@ function SizeSelected() {
 
         var disks = JSON.parse(response);
 
+        results.innerHTML = "";
+        var resultsTable = "<table><tbody>";
+
         for (var i = 0; i < disks.length; i++) {
 
             var disk = disks[i];
 
-            var diskObject = document.createElement("div");
-            diskObject.innerHTML = "<a href=\"/disk/" + disk.Code + "/" + disk.Name.replace(" ", "-")
-                + "\" title=\"" + disk.Name + "\">"
-                + "<img class=\"rambl\" src=\"/images/nahled/" + disk.Image + "\" alt=\"\" width=\"100\" border=\"0\"><br />"
-                + "<strong>" + disk.Name + "</strong>" + disk.Design + "</a>";
+            var diskObject = "<tr><td width=\"115\"><strong>"
+                + "<a href=\"/disk/" + disk.Id + "/" + disk.Name.replace(" ", "-") + "\" "
+                + "title=\"" + disk.Name + "\">" + disk.Name + "</a ></strong></td>"
+                + "<td width=\"180\"><div class=\"prod180\">"
+                + "šířka kola: " + disk.Width + "; průměr kola: " + disk.Diameter + "</div > "
+                + "</td><td></td><td></td><td><strong>Sleva " + disk.Sale + " %</strong></td></tr>"
+                + "<tr><td class=\"grn\"><strong>DOSTUPNOST:</strong><br />"
+                + "<div class=\"prodinfo\"><span "
+                + "onmouseover=\"document.getElementById('info" + disk.Id + "').style.display = 'block'\" "
+                + "onmouseout=\"document.getElementById('info" + disk.Id + "').style.display = 'none'\" "
+                + "class=\"dostupnostInfo\">INFO</span><div id=\"info" + disk.Id + "\" class=\"pi\">"
+                + "<p><strong>Objednejte vložením do košíku.</strong><br />"
+                + "Zboží není na skladě.<br >Prověříme Vám jeho dostupnost.<br />"
+                + "Info Vám dodáme dnes do 17:00 nebo zítra do 12:00 hod.</p></div></div></td>"
+                + "<td><div class=\"prod180\">Parametry: 5/114,3/50/67,1</div></td>"
+                + "<td class=\"f15 blue\"><strong>" + disk.Price + " Kč</strong></td>"
+                + "<td><input type=\"text\" class=\"boks1\" style=\"width: 20px;\" "
+                + "name =\"mn" + disk.Id + "\" value=\"1\" /> ks</td>"
+                + "<td><input type=\"button\" value=\"Do košíku\" class=\"enter3\" "
+                + "onclick=\"__doPostBack('ctl00$MyPostBack', '1_0_9_0_" + disk.Id + "_70000001');\"></td></tr>";
 
-            results.innerHTML = "";
-            results.appendChild(diskObject);
+            resultsTable += diskObject;
         }
+
+        resultsTable += "</tbody></table>";
+        results.innerHTML = resultsTable;
 
     }, function (reject) {
         console.log("Configurator disk list: " + reject.message);

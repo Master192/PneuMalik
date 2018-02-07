@@ -1,0 +1,107 @@
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+@{
+    var product = Model.ProductDetail;
+    product.VehicleType = new PneuMalik.Models.Dto.VehicleType();
+    var productName = $"{product.Manufacturer.Name} {product.Pattern}";
+}
+
+<div id="stred">
+
+    <h1>@productName</h1>
+
+    <p><img src="/images/detail/@(product.Id).jpg" class="detimg" alt="@productName" /></p>
+
+    <table class="tabdet">
+        <tr>
+            <td class="td1">Výrobce:</td>
+            <td>@product.Manufacturer.Name</td>
+        </tr>
+        <tr>
+            <td class="td1">Dezén:</td>
+            <td>@product.Pattern</td>
+        </tr>
+        <tr>
+            <td class="td1">Šířka:</td>
+            <td>@product.Width</td>
+        </tr>
+        <tr>
+            <td class="td1">Série - výška:</td>
+            <td>@product.SerieWidth</td>
+        </tr>
+        <tr>
+            <td class="td1">Konstrukce:</td>
+            <td>@product.Construction</td>
+        </tr>
+        <tr>
+            <td class="td1">Průměr ráfku:</td>
+            <td>@product.Diameter</td>
+        </tr>
+    </table>
+    <div class="det">
+        <p class="detinfo">
+            <ins><img src="/img/vehicletype/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
+            <ins><img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.InStock ? "SKLADEM" : "")</strong></span></ins>
+        <p class="detget">
+            <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
+            <ins>ks</ins>
+            <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
+        </p>
+        <table>
+            <tr>
+                <td valign="top" width="80">Vaše cena:</td>
+                <td>
+                    <input type="radio" name="gr" value="cena1" checked>&nbsp;
+                    <span class="f20 blue"><strong>@($"{product.Price:F} Kč")</strong></span>
+                    <span style="color:#008000;"><strong></strong></span><br />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <ul id="menuzal">
+        <li class="none this"><a href="#menuzal" title="">Informace</a></li>
+    </ul>
+    <div id="zal1">
+        Barum Polaris 3 nabízí mimořádné jízdní vlastnosti na zasněžené vozovce, ale také lepší stabilitu na mokré vozovce a kratší brzdnou dráhu.
+        <script type="text/javascript" src="/Scripts/facebox.js"></script>
+        <script type="text/javascript" src="/Scripts/jelly.js"></script>
+        <div class="stitek_eu_maly">
+            <a rel="facebox" href="#stitky" title="">
+                <img src="/img/stitek_prazdny_web_maly_tridahluku_2.png" alt="" />
+                <img class="spotrebaF" src="/img/stitek_maly_web_sipka_F.png" alt="" title="Spotřeba paliva : F" />
+                <img class="bezpecnostC" src="/img/stitek_maly_web_sipka_C.png" alt="" title="Bezpečnost za mokra : C" />
+                <span title="Vnější hluk : 71 dB">71dB</span>
+            </a>
+        </div>
+        <div class="cleaner"><hr /></div>
+    </div>
+    <div class="cleaner"><hr /></div>
+    <div id="stitky">
+        <p class="stitek_nadpis1">Nové nařízení EU zavádí požadavky na označování pneumatik týkající se zobrazení informací o&nbsp;spotřebě paliva (valivém odporu), přilnavosti za&nbsp;mokra a vnějším hluku z&nbsp;pneumatik. Cílem je zvýšit bezpečnost a účinnost silniční dopravy propagováním palivově úsporných a bezpečných pneumatik s&nbsp;nízkou hladinou hluku. Na štítku obecně platí, že třída A je nejlepší, třída G je nejhorší.</p>
+        <div class="stitek_eu_velky">
+            <img src="/img/stitek_prazdny_web_velky_tridahluku_2.png" alt="" title="" />
+            <img class="spotrebaF" src="/img/stitek_velky_web_sipka_F.png" alt="" title="Spotřeba paliva : F" />
+            <img class="bezpecnostC" src="/img/stitek_velky_web_sipka_C.png" alt="" title="Bezpečnost za mokra : C" />
+            <span title="Vnější hluk : 71 dB">71 dB</span>
+        </div>
+        <p class="stitek_nadpis2">SPOTŘEBA PALIVA SPOJENÁ S VALIVÝM ODPOREM PNEUMATIKY</p>
+        <p><img class="fl" src="/img/symbol_spotreba.gif" alt="Symbol spotřeby paliva" /></p>
+        <p class="stitek_text1">Valivý odpor je síla působící proti směru jízdy při točení pneumatiky. Vzhledem k tomu, že pneumatiky přispívají z 20% k celkové spotřebě paliva u osobních aut a až z 35% u nákladních, je důležité dosáhnout nízkých hodnot valivého odporu.<br />Rozdíl mezi pneumatikou třídy C a pneumatikou třídy B znamená pro osobní vozidlo <strong>snížení nebo zvýšení spotřeby paliva mezi 2,5% - 4,5%.</strong></p>
+        <p class="stitek_nadpis2">BEZPEČNOST SOUVISEJÍCÍ S PŘILNAVOSTÍ ZA MOKRA</p>
+        <p><img class="fl" src="/img/symbol_dest.gif" alt="Symbol přilnavosti na mokru" /></p>
+        <p class="stitek_text1">Přilnavost za mokra je jedna z nejdůležitějších bezpečnostních vlastností pneumatiky. Skvělá přilnavost za mokra znamená kratší brzdnou dráhu při jízdě v deštivém počasí.<br />Pro pneumatiky osobních vozidel znamená rozdíl mezi každou třídou <strong>navýšení nebo snížení brzdné dráhy o 2,6 m pokud brzdíme na mokré vozovce při rychlosti 80 km/h.</strong></p>
+        <p class="stitek_nadpis2">VNĚJŠÍ HLUK (V DECIBELECH)</p>
+        <p><img class="fl" src="/img/symbol_hluk.gif" alt="Symbol vnějšího hluku" /></p>
+        <p class="stitek_text1">Hluk způsobený dopravou je důležitý v otázce ochrany životního prostředí a závisí na několika faktorech, jakými například jsou: intenzita dopravy, typ vozidla, styl jízdy a vzájemné působení pneumatiky a vozovky.<br />Hodnota uvedená na etiketě není interní hodnota, kterou řidič bude vnímat při jízdě, ale<strong> externí hodnota, která přispívá k akustickému znečištění.</strong></p>
+        <p><strong>1 černá zvuková vlna</strong> - 3 db (A) méně než limit EC Reg 661/2009.<br /><strong>2 černé zvukové vlny</strong> - splňuje EC Reg 661/2009 limity.<br /><strong>3 černé zvukové vlny</strong> - splňuje EC Dir. 2001/43 limity. (Nejhorší výkon)</p>
+    </div>
+
+    <div class="cleaner"><hr></div>
+    <hr />
+
+</div>
+
+@Html.Partial("_Right", Model.Tips)

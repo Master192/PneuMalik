@@ -2,18 +2,38 @@
 @using ExtensionMethods
 @model EshopViewModel
 
-@using (Html.BeginForm("filtrace", "ocelovedisky", FormMethod.Post))
+@using (Html.BeginForm("filtrace", "hlinikovedisky", FormMethod.Post))
 {
     <table class="tabfiltr">
         <tbody>
             <tr class="tfhead">
+                <td id="mainContent_U_Filter1_td_vyrobce0">Výrobce</td>
+                <td id="mainContent_U_Filter1_td_sirka0">Šířka</td>
                 <td id="mainContent_U_Filter1_td_rafek0">Ráfek</td>
-                <td id="mainContent_U_Filter1_td_znacka0">Značka</td>
-                <td id="mainContent_U_Filter1_td_model0">Model</td>
             </tr>
             <tr>
+                <td id="mainContent_U_Filter1_td_vyrobce">
+                    <select name="filterManufacturer" id="filter-manufacturer" onChange="filterChange('manufacturer')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                        @foreach (var manufacturer in Model.Manufacturers.Where(m => Model.Filter.Manufacturers.Contains(m.Id)).OrderBy(m => m.Name))
+                        {
+                            <option value="@manufacturer.Id">@manufacturer.Name</option>
+                        }
+                    </select>
+                </td>
+
+                <td id="mainContent_U_Filter1_td_sirka">
+                    <select name="filterWidth" id="filter-width" onChange="filterChange('width')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                        @foreach (var width in Model.Filter.Widths.OrderBy(m => m))
+                        {
+                            <option value="@width">@width</option>
+                        }
+                    </select>
+                </td>
+
                 <td id="mainContent_U_Filter1_td_rafek">
-                    <select name="filterRim" id="filter-rim" onChange="filterSteelChange('rim')">
+                    <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
                         {
@@ -22,30 +42,10 @@
                     </select>
                 </td>
 
-                <td id="mainContent_U_Filter1_td_znacka">
-                    <select name="filterBrand" id="filter-brand" onChange="filterSteelChange('brand')">
-                        <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var brand in Model.Filter.Brands.OrderBy(m => m))
-                        {
-                            <option value="@brand">@brand</option>
-                        }
-                    </select>
-                </td>
-
-                <td id="mainContent_U_Filter1_td_model">
-                    <select name="filterModel" id="filter-model" onChange="filterSteelChange('model')">
-                        <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var modelItem in Model.Filter.Models.OrderBy(m => m))
-                        {
-                            <option value="@modelItem">@modelItem</option>
-                        }
-                    </select>
-                </td>
-
             </tr>
             <tr class="tfenter">
-
-                <td id="mainContent_U_Filter1_td_footer" colspan="2">
+                <td></td>
+                <td id="mainContent_U_Filter1_td_footer">
                     <span id="mainContent_U_Filter1_lblInfo"></span>
                     <input type="submit" name="ctl00$mainContent$U_Filter1$Button1" value="Filtruj" id="mainContent_U_Filter1_Button1" class="enter1">
                 </td>

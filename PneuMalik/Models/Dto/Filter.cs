@@ -9,5 +9,7 @@ namespace PneuMalik.Models.Dto
         public List<int> Widths { get; set; }
         public List<int> Rims { get; set; }
         public List<int> Profiles { get; set; }
+        public List<string> Brands { get; set; }
+        public List<string> Models { get; set; }
     }
 }
