@@ -16,7 +16,7 @@ namespace PneuMalik.Models
         }
 
         public EshopViewModel(ApplicationDbContext db, int cathegory) 
-            : this(db, cathegory, db.Products.Where(p => p.Action && p.Active).ToList()) {
+            : this(db, cathegory, db.Products.Where(p => p.Action && p.Active && p.VehicleType.Id == cathegory).ToList()) {
         }
 
         public EshopViewModel(ApplicationDbContext db, int cathegory, List<Product> products)

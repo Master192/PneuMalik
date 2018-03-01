@@ -2,13 +2,13 @@
 
 @{
 
-    var suf = $"{Model.Manufacturer.Name} {Model.Pattern}";
+    var suf = $"{Model.Manufacturer.Name} {Model.Code} {Model.Size}";
     var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
 }
 
 <p>
-    <a class="preview" href="/images/detail/@(Model.Code).jpg" alt="@Model.Name">
-        <img src="/images/ikona/@(Model.Code).jpg" alt="@Model.Name">
+    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
+        <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
     </a>
 </p>
 <table><tbody>
@@ -38,7 +38,7 @@
             </div>
         </td>
         <td>
-            <div class="prod180">Rozmer: 6Jx15, ET: 37,5</div>
+            <div class="prod180">Rozměr: @Model.Size, ET: @Model.Et</div>
         </td>
         <td class="f15 blue"><strong>@Model.Price,00 Kč</strong></td>
         <td><input type="text" class="boks1" style="width: 20px;" name="mn(@Model.Id)" value="1"> ks</td>

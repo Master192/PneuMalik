@@ -22,7 +22,7 @@ namespace PneuMalik.Services
             _statusFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "/pneub2b/status.txt");
             _dataFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "/pneub2b/data.xml");
             _serviceUrlFull = new Uri("http://www.pneub2b.eu/PartnerCommunication.ashx?cmd=products_list");
-            _serviceUrlStock = new Uri("http://www.pneub2b.eu/PartnerCommunication.ashx?cmd=stock_list");
+            _serviceUrlStock = new Uri("http://www.pneub2b.eu/PartnerCommunication.ashx?cmd=stock_price_list");
         }
 
         public string Status()
@@ -37,7 +37,7 @@ namespace PneuMalik.Services
 
             SetStatus("Začalo stahování datového souboru");
 
-            //Download(_serviceUrlStock);
+            Download(_serviceUrlStock);
 
             SetStatus("Začalo zpracování stažených dat");
 
@@ -45,6 +45,51 @@ namespace PneuMalik.Services
             {
                 return;
             }
+
+            SetStatus($"Načtení zdrojových dat do databáze: Ceny (disky)");
+
+            // prices
+            db.PriceInfos.RemoveRange(db.PriceInfos);
+            db.SaveChanges();
+
+            foreach (var rim in _response.SteelRims)
+            {
+                db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo)
+                {
+                    Period = 24,
+                    Type = PriceInfo.PriceInfoType.Rim,
+                    ProductId = rim.Id
+                });
+            }
+
+            db.SaveChanges();
+
+            SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky)");
+
+            foreach (var tyre in _response.Tyres)
+            {
+                if (tyre.StockPriceInfo != null)
+                {
+                    db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo)
+                    {
+                        Period = 24,
+                        Type = PriceInfo.PriceInfoType.Tyre,
+                        ProductId = tyre.Id
+                    });
+                }
+
+                if (tyre.StockPriceInfo_48 != null)
+                {
+                    db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo_48)
+                    {
+                        Period = 48,
+                        Type = PriceInfo.PriceInfoType.Tyre,
+                        ProductId = tyre.Id
+                    });
+                }
+            }
+
+            db.SaveChanges();
 
             SetStatus("Import skladu a cen byl ukončen");
         }
@@ -67,7 +112,7 @@ namespace PneuMalik.Services
 
             SetStatus($"Načtení zdrojových dat do databáze: Disky");
 
-            //// rims
+            // rims
             db.SteelRims.RemoveRange(db.SteelRims);
             db.SaveChanges();
 

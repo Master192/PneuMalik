@@ -42,6 +42,12 @@ namespace PneuMalik
             );
 
             routes.MapRoute(
+                name: "Hlinikovedisky",
+                url: "hlinikovediskydisky/{title}",
+                defaults: new { controller = "Hlinikovedisky", action = "Index", title = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Pneumatika",
                 url: "pneumatika/{id}/{suffix}",
                 defaults: new { controller = "Pneumatiky", action = "Detail", title = UrlParameter.Optional }

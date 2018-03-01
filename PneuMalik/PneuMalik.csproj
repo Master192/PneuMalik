@@ -209,6 +209,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DiskyController.cs" />
     <Compile Include="Controllers\EshopController.cs" />
+    <Compile Include="Controllers\HlinikovediskyController.cs" />
     <Compile Include="Controllers\KategorieController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OcelovediskyController.cs" />
@@ -952,6 +953,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Customers\" />
     <Folder Include="Views\Disky\" />
+    <Folder Include="Views\Hlinikovedisky\" />
     <Folder Include="Views\Ocelovedisky\" />
     <Folder Include="Views\Orders\" />
     <Folder Include="Views\Pneumatiky\" />

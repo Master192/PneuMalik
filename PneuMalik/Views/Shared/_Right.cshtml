@@ -10,16 +10,24 @@
 
     @foreach (var product in Model)
     {
+
+        var suf = $"{product.Manufacturer.Name} {product.Pattern}";
+        var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+
         <div class="rbox">
             <p class="rbnadp">Náš TIP</p>
-            <p class="f14"><strong>
+            <p class="f14">
+                <strong>
                     <a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
                         @product.Manufacturer.Name @product.Pattern
                     </a>
-                </strong></p>
+                </strong>
+            </p>
             <p>@($"{product.Width}/{product.HighPr} {product.Design}{product.Diameter} {product.IndexLi}{product.IndexSi}")</p>
-            <p><a href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
-                <img src="/images/nahled/@(product.Code).jpg" alt="@product.Design" /></a>
+            <p>
+                <a href="/pneumatika/@($"{product.Id}/{urlSuffix}")" title="@product.Design">
+                    <img src="/images/nahled/@(product.Code).jpg" alt="@product.Design" />
+                </a>
             </p>
             <div class="rb">
                 <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></p>

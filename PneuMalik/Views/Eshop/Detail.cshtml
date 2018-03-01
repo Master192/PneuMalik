@@ -11,43 +11,43 @@
 
     <h1>@productName</h1>
 
-    <p><img src="/images/detail/@(product.Id).jpg" class="detimg" alt="@productName" /></p>
+    <p><img src="/images/detail/@(product.Code).jpg" class="detimg" alt="@productName" /></p>
     
     <table class="tabdet">
-        <tr>
+        <tr style="display: @(string.IsNullOrEmpty(product.Manufacturer.Name) ? "none" : "table-row");">
             <td class="td1">Výrobce:</td><td>@product.Manufacturer.Name</td>
         </tr>
-        <tr>
+        <tr style="display: @(string.IsNullOrEmpty(product.Pattern) ? "none" : "table-row");">
             <td class="td1">Dezén:</td><td>@product.Pattern</td>
         </tr>
-        <tr>
+        <tr style="display: @(product.Width == 0 ? "none" : "table-row");">
             <td class="td1">Šířka:</td><td>@product.Width</td>
         </tr>
-        <tr>
+        <tr style="display: @(product.SerieWidth == 0 ? "none" : "table-row");">
             <td class="td1">Série - výška:</td><td>@product.SerieWidth</td>
         </tr>
-        <tr>
+        <tr style="display: @(string.IsNullOrEmpty(product.Construction) ? "none" : "table-row");">
             <td class="td1">Konstrukce:</td><td>@product.Construction</td>
         </tr>
-        <tr>
+        <tr style="display: @(product.Diameter == 0 ? "none" : "table-row");">
             <td class="td1">Průměr ráfku:</td><td>@product.Diameter</td>
         </tr>
-        <tr>
+        <tr style="display: @(string.IsNullOrEmpty(product.IndexSi) ? "none" : "table-row");">
             <td class="td1">Rychlostní index:</td><td>@product.IndexSi</td>
         </tr>
-        <tr>
+        <tr style="display: @(product.IndexLi == 0 ? "none" : "table-row");">
             <td class="td1">Hmotnostní index:</td><td>@product.IndexLi</td>
         </tr>
-        <tr>
-            <td class="td1">Typ vozidla:</td><td>@product.VehicleType.Title</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.VehicleType.Name) ? "none" : "table-row");">
+            <td class="td1">Typ vozidla:</td><td>@product.VehicleType.Name</td>
         </tr>
-        <tr>
+        <tr style="display: @(string.IsNullOrEmpty(product.Pattern) ? "none" : "table-row");">
             <td class="td1">Dezén:</td><td>@product.Pattern</td>
         </tr>
     </table>
     <div class="det">
         <p class="detinfo">
-            <ins><img src="/img/vehicletype/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
+            <ins><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
             <ins><img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></ins>
             <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.InStock ? "SKLADEM" : "")</strong></span></ins>
             <p class="detget">
@@ -68,15 +68,16 @@
     <ul id="menuzal">
         <li class="none this"><a href="#menuzal" title="">Informace</a></li>
     </ul>
-    <div id="zal1">Barum Polaris 3 nabízí mimořádné jízdní vlastnosti na zasněžené vozovce, ale také lepší stabilitu na mokré vozovce a kratší brzdnou dráhu.
+    <div id="zal1">
+        @Html.Raw(product.Description)
         <script type="text/javascript" src="/Scripts/facebox.js"></script>
         <script type="text/javascript" src="/Scripts/jelly.js"></script>
         <div class="stitek_eu_maly">
             <a rel="facebox" href="#stitky" title="">
-                <img src="/img/stitek_prazdny_web_maly_tridahluku_2.png" alt="" />
-                <img class="spotrebaF" src="/img/stitek_maly_web_sipka_F.png" alt="" title="Spotřeba paliva : F" />
-                <img class="bezpecnostC" src="/img/stitek_maly_web_sipka_C.png" alt="" title="Bezpečnost za mokra : C" />
-                <span title="Vnější hluk : 71 dB">71dB</span>
+                <img src="/img/stitek_prazdny_web_maly_tridahluku_@(product.NoiseLevel).png" alt="" />
+                <img class="spotreba@(product.FuelConsumption)" src="/img/stitek_maly_web_sipka_@(product.FuelConsumption).png" alt="" title="Spotřeba paliva : @(product.FuelConsumption)" />
+                <img class="bezpecnost@(product.Adhesion)" src="/img/stitek_maly_web_sipka_@(product.Adhesion).png" alt="" title="Bezpečnost za mokra : @(product.Adhesion)" />
+                <span title="Vnější hluk : @(product.NoiseLevelDb) dB">@(product.NoiseLevelDb)dB</span>
             </a>
         </div>
         <div class="cleaner"><hr /></div>
@@ -85,10 +86,10 @@
     <div id="stitky">
         <p class="stitek_nadpis1">Nové nařízení EU zavádí požadavky na označování pneumatik týkající se zobrazení informací o&nbsp;spotřebě paliva (valivém odporu), přilnavosti za&nbsp;mokra a vnějším hluku z&nbsp;pneumatik. Cílem je zvýšit bezpečnost a účinnost silniční dopravy propagováním palivově úsporných a bezpečných pneumatik s&nbsp;nízkou hladinou hluku. Na štítku obecně platí, že třída A je nejlepší, třída G je nejhorší.</p>
         <div class="stitek_eu_velky">
-            <img src="/img/stitek_prazdny_web_velky_tridahluku_2.png" alt="" title="" />
-            <img class="spotrebaF" src="/img/stitek_velky_web_sipka_F.png" alt="" title="Spotřeba paliva : F" />
-            <img class="bezpecnostC" src="/img/stitek_velky_web_sipka_C.png" alt="" title="Bezpečnost za mokra : C" />
-            <span title="Vnější hluk : 71 dB">71 dB</span>
+            <img src="/img/stitek_prazdny_web_velky_tridahluku_@(product.NoiseLevel).png" alt="" title="" />
+            <img class="spotreba@(product.FuelConsumption)" src="/img/stitek_velky_web_sipka_@(product.FuelConsumption).png" alt="" title="Spotřeba paliva : @(product.FuelConsumption)" />
+            <img class="bezpecnostC" src="/img/stitek_velky_web_sipka_@(product.Adhesion).png" alt="" title="Bezpečnost za mokra : @(product.Adhesion)" />
+            <span title="Vnější hluk : @(product.NoiseLevelDb) dB">@(product.NoiseLevelDb) dB</span>
         </div>
         <p class="stitek_nadpis2">SPOTŘEBA PALIVA SPOJENÁ S VALIVÝM ODPOREM PNEUMATIKY</p>
         <p><img class="fl" src="/img/symbol_spotreba.gif" alt="Symbol spotřeby paliva" /></p>

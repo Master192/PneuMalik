@@ -37,8 +37,10 @@ namespace PneuMalik.Controllers
             var model = filterModel ?? "0";
 
             var filtered = db.Products
-                .Where(p => p.Active && p.VehicleType.Id == 10 && (diameter == 0 || p.Diameter == diameter)
-                    && (brand == "0" || p.Model == brand) && (model == "0" || p.Construction == model))
+                .Where(p => p.Active && p.VehicleType.Id == 10 
+                    && (diameter == 0 || p.Diameter == diameter)
+                    && (brand == "0" || p.Model == brand) 
+                    && (model == "0" || p.Construction.Contains(model)))
                 .Take(100).ToList();
             
             return View("~/Views/Eshop/SteelRims.cshtml", new EshopViewModel(db, SteelDiscVehicleTypeId, filtered));
