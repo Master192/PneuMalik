@@ -2,6 +2,27 @@
 @using ExtensionMethods
 @model EshopViewModel
 
+@{
+
+    if (Model.Filter.Rims == null)
+    {
+
+        Model.Filter.Rims = new List<int>();
+    }
+
+    if (Model.Filter.Brands == null)
+    {
+
+        Model.Filter.Brands = new List<int>();
+    }
+
+    if (Model.Filter.Models == null)
+    {
+
+        Model.Filter.Models = new List<int>();
+    }
+}
+
 @using (Html.BeginForm("filtrace", "ocelovedisky", FormMethod.Post))
 {
     <table class="tabfiltr">
@@ -15,9 +36,9 @@
                 <td id="mainContent_U_Filter1_td_rafek">
                     <select name="filterRim" id="filter-rim" onChange="filterSteelChange('rim')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
+                        @foreach (var rim in Model.RafekList.Where(m => Model.Filter.Rims.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@rim">@rim</option>
+                            <option value="@rim">@rim.Name</option>
                         }
                     </select>
                 </td>
@@ -25,9 +46,9 @@
                 <td id="mainContent_U_Filter1_td_znacka">
                     <select name="filterBrand" id="filter-brand" onChange="filterSteelChange('brand')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var brand in Model.Filter.Brands.OrderBy(m => m))
+                        @foreach (var brand in Model.ZnackaList.Where(m => Model.Filter.Brands.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@brand">@brand</option>
+                            <option value="@brand">@brand.Name</option>
                         }
                     </select>
                 </td>
@@ -35,9 +56,9 @@
                 <td id="mainContent_U_Filter1_td_model">
                     <select name="filterModel" id="filter-model" onChange="filterSteelChange('model')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var modelItem in Model.Filter.Models.OrderBy(m => m))
+                        @foreach (var modelItem in Model.ModelList.Where(m => Model.Filter.Models.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@modelItem">@modelItem</option>
+                            <option value="@modelItem">@modelItem.Name</option>
                         }
                     </select>
                 </td>

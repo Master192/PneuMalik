@@ -1,6 +1,7 @@
 ﻿using PneuMalik.Models.PneuB2b;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace PneuMalik.Models.Dto
@@ -18,28 +19,55 @@ namespace PneuMalik.Models.Dto
             Code = tyre.Id;
             Name = tyre.DisplayName;
             Active = true;
-            Width = Convert.ToInt32(tyre.Width);
-            Diameter = Convert.ToInt32(tyre.Diameter);
             Ean = tyre.Ean;
             Price = tyre.StockPriceInfo.TotalPriceCZK;
-            Type = ProductType.Pneu;
-            Pattern = tyre.Pattern;
-            Design = tyre.ConstructionType;
-            IndexLi = Convert.ToInt32(tyre.LoadIndexFrom);
-            IndexSi = tyre.SpeedIndex;
-            HighPr = Convert.ToInt32(tyre.Profile);
-            FuelConsumption = tyre.TagConsumption;
-            Adhesion = tyre.TagAdhesion;
-            NoiseLevelDb = Convert.ToInt32(tyre.TagNoiseLevel_dB);
-            NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
+
             Manufacturer = manufacturer;
             VehicleType = vehicleType;
-            Season = season;
+
+            //Width = Convert.ToInt32(tyre.Width);
+            //Diameter = Convert.ToInt32(tyre.Diameter);
+            //Type = ProductType.Pneu;
+            //Pattern = tyre.Pattern;
+            //Design = tyre.ConstructionType;
+            //IndexLi = Convert.ToInt32(tyre.LoadIndexFrom);
+            //IndexSi = tyre.SpeedIndex;
+            //HighPr = Convert.ToInt32(tyre.Profile);
+            //FuelConsumption = tyre.TagConsumption;
+            //Adhesion = tyre.TagAdhesion;
+            //NoiseLevelDb = Convert.ToInt32(tyre.TagNoiseLevel_dB);
+            //NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
+            //Season = season;
+
+            //Prices = new List<PriceObject>();
+            //if (tyre.StockPriceInfo != null)
+            //{
+            //    Prices.Add(new PriceObject()
+            //    {
+            //        DeliveryTime = tyre.StockPriceInfo.DeliveryTime,
+            //        Id = tyre.Id,
+            //        Price = tyre.StockPriceInfo.TotalPriceCZK,
+            //        ProductId = tyre.Id,
+            //        Stock = Convert.ToInt32(tyre.StockPriceInfo.StockAmount)
+            //    });
+            //}
+
+            //if (tyre.StockPriceInfo_48 != null)
+            //{
+            //    Prices.Add(new PriceObject()
+            //    {
+            //        DeliveryTime = tyre.StockPriceInfo_48.DeliveryTime,
+            //        Id = tyre.Id,
+            //        Price = tyre.StockPriceInfo_48.TotalPriceCZK,
+            //        ProductId = tyre.Id,
+            //        Stock = Convert.ToInt32(tyre.StockPriceInfo_48.StockAmount)
+            //    });
+            //}
         }
 
         public int Id { get; set; }
         public int Code { get; set; }
-        public IList<Cathegory> Cathegories { get; set; }
+        public string Code2 { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; }
         public string ShortDescription { get; set; }
@@ -49,51 +77,34 @@ namespace PneuMalik.Models.Dto
         public string Image { get; set; }
         public bool Tip { get; set; }
         public bool Action { get; set; }
-        public bool InStock { get; set; }
-        public Manufacturer Manufacturer { get; set; }
-        public VehicleType VehicleType { get; set; }
-        public int Width { get; set; }
-        public int Diameter { get; set; }           // Průměr
         public string Ean { get; set; }
+
         public double PriceCommon { get; set; }
         public double Price { get; set; }
         public double Sale { get; set; }
         public double Dph { get; set; }
-        public ProductType Type { get; set; }
 
-        // Pneu
-        public string Pattern { get; set; }         // Dezén
-        public VehicleType Vehicle { get; set; }
-        public Season Season { get; set; }
-        public string Design { get; set; }          // Provedení
-        public int IndexLi { get; set; }
-        public int SerieWidth { get; set; }
-        public string Construction { get; set; }
-        public string IndexSi { get; set; }
-        public int HighPr { get; set; }
-        public string FuelConsumption { get; set; }
-        public string Adhesion { get; set; }
-        public int NoiseLevelDb { get; set; }
-        public int NoiseLevel { get; set; }
-        public string EfficiencyCathegory { get; set; }
-        public string Standard { get; set; }
+        public DataSource Source { get; set; }
 
-        // Disky
-        public DiscType DiscType { get; set; }
-        public string Model { get; set; }
-        public string Size { get; set; }
-        public int Et { get; set; }
-        public int Holes { get; set; }
-        public int Year { get; set; }
-        public int Pitch { get; set; }          // Rozteč
-        public int MiddleHole { get; set; }     // Středový otvor
+        public Manufacturer Manufacturer { get; set; }
+        public VehicleType VehicleType { get; set; }
 
-        public enum ProductType
+        [Column("Tyre_Id")]
+        public int? TyreId { get; set; }
+        public ProductsTyre Tyre { get; set; }
+        [Column("AluDisc_Id")]
+        public int? AluDiscId { get; set; }
+        public ProductsAluDisc AluDisc { get; set; }
+        [Column("PbDisc_Id")]
+        public int? PbDiscId { get; set; }
+        public ProductsPbDisc PbDisc { get; set; }
+
+        public IList<PriceObject> Prices { get; set; }
+
+        public enum DataSource
         {
-            Pneu = 1,
-            AluDisk,
-            PbDisk,
-            Accessories
+            PneuB2B = 1,
+            Gedip
         }
     }
 }

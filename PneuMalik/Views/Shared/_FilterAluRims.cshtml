@@ -2,6 +2,21 @@
 @using ExtensionMethods
 @model EshopViewModel
 
+@{ 
+
+    if (Model.Filter.Widths == null)
+    {
+
+        Model.Filter.Widths = new List<int>();
+    }
+
+    if (Model.Filter.Rims == null)
+    {
+
+        Model.Filter.Rims = new List<int>();
+    }
+}
+
 @using (Html.BeginForm("filtrace", "hlinikovedisky", FormMethod.Post))
 {
     <table class="tabfiltr">
@@ -13,7 +28,7 @@
             </tr>
             <tr>
                 <td id="mainContent_U_Filter1_td_vyrobce">
-                    <select name="filterManufacturer" id="filter-manufacturer" onChange="filterChange('manufacturer')">
+                    <select name="filterManufacturer" id="filter-manufacturer" onChange="filterAluChange('manufacturer')">
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var manufacturer in Model.Manufacturers.Where(m => Model.Filter.Manufacturers.Contains(m.Id)).OrderBy(m => m.Name))
                         {
@@ -23,21 +38,21 @@
                 </td>
 
                 <td id="mainContent_U_Filter1_td_sirka">
-                    <select name="filterWidth" id="filter-width" onChange="filterChange('width')">
+                    <select name="filterWidth" id="filter-width" onChange="filterAluChange('width')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var width in Model.Filter.Widths.OrderBy(m => m))
+                        @foreach (var width in Model.SirkaList.Where(m => Model.Filter.Widths.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@width">@width</option>
+                            <option value="@width">@width.Name</option>
                         }
                     </select>
                 </td>
 
                 <td id="mainContent_U_Filter1_td_rafek">
-                    <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
+                    <select name="filterRim" id="filter-rim" onChange="filterAluChange('rim')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
+                        @foreach (var rim in Model.RafekList.Where(m => Model.Filter.Rims.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@rim">@rim</option>
+                            <option value="@rim">@rim.Name</option>
                         }
                     </select>
                 </td>

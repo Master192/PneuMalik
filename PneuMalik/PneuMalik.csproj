@@ -215,6 +215,7 @@
     <Compile Include="Controllers\OcelovediskyController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PneumatikyController.cs" />
+    <Compile Include="Controllers\PrislusenstviController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TextsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,30 +226,6 @@
     <Compile Include="Helpers\FilterHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\LayoutInjecterAttribute.cs" />
-    <Compile Include="Migrations\201707041947433_Cathegory.cs" />
-    <Compile Include="Migrations\201707041947433_Cathegory.Designer.cs">
-      <DependentUpon>201707041947433_Cathegory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707041951473_Product.cs" />
-    <Compile Include="Migrations\201707041951473_Product.Designer.cs">
-      <DependentUpon>201707041951473_Product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708101910379_Text.cs" />
-    <Compile Include="Migrations\201708101910379_Text.Designer.cs">
-      <DependentUpon>201708101910379_Text.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708152011551_Product1.cs" />
-    <Compile Include="Migrations\201708152011551_Product1.Designer.cs">
-      <DependentUpon>201708152011551_Product1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708311922197_Prices.cs" />
-    <Compile Include="Migrations\201708311922197_Prices.Designer.cs">
-      <DependentUpon>201708311922197_Prices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709182014589_Cathegory1.cs" />
-    <Compile Include="Migrations\201709182014589_Cathegory1.Designer.cs">
-      <DependentUpon>201709182014589_Cathegory1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurator\ABELine.cs" />
@@ -263,15 +240,17 @@
     <Compile Include="Models\Configurator\DataLine4.cs" />
     <Compile Include="Models\Configurator\ErrorHead.cs" />
     <Compile Include="Models\Configurator\TyreLine.cs" />
+    <Compile Include="Models\Dto\AluDiscParameters.cs" />
     <Compile Include="Models\Dto\CartRow.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
-    <Compile Include="Models\Dto\DiscType.cs" />
     <Compile Include="Models\Dto\Filter.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
+    <Compile Include="Models\Dto\PbDiscParameters.cs" />
     <Compile Include="Models\Dto\Price.cs" />
     <Compile Include="Models\Dto\Product.cs" />
     <Compile Include="Models\Dto\Season.cs" />
     <Compile Include="Models\Dto\Text.cs" />
+    <Compile Include="Models\Dto\TyreParameters.cs" />
     <Compile Include="Models\Dto\VehicleType.cs" />
     <Compile Include="Models\EshopViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -944,10 +923,14 @@
     <Content Include="Views\Eshop\Konfigurator.cshtml" />
     <Content Include="Views\Eshop\SteelRims.cshtml" />
     <Content Include="Views\Shared\_FilterSteelRims.cshtml" />
-    <Content Include="Views\Eshop\_ProductDiskRow.cshtml" />
+    <Content Include="Views\Eshop\_ProductAluDiskRow.cshtml" />
     <Content Include="Views\Eshop\DetailDisk.cshtml" />
     <Content Include="Views\Shared\_FilterAluRims.cshtml" />
     <Content Include="Views\Eshop\AluRims.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Eshop\Prislusenstvi.cshtml" />
+    <Content Include="Views\Eshop\_ProductAccessoriesRow.cshtml" />
+    <Content Include="Views\Eshop\_ProductPbDiskRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -957,6 +940,7 @@
     <Folder Include="Views\Ocelovedisky\" />
     <Folder Include="Views\Orders\" />
     <Folder Include="Views\Pneumatiky\" />
+    <Folder Include="Views\Prislusenstvi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -972,26 +956,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707041947433_Cathegory.resx">
-      <DependentUpon>201707041947433_Cathegory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707041951473_Product.resx">
-      <DependentUpon>201707041951473_Product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708101910379_Text.resx">
-      <DependentUpon>201708101910379_Text.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708152011551_Product1.resx">
-      <DependentUpon>201708152011551_Product1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708311922197_Prices.resx">
-      <DependentUpon>201708311922197_Prices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709182014589_Cathegory1.resx">
-      <DependentUpon>201709182014589_Cathegory1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -8,8 +8,6 @@
 
     <h1>@ViewBag.UvodH1</h1>
 
-    @Html.Partial("_FilterSteelRims")
-
     @{
         var odd = false;
     }
@@ -20,7 +18,7 @@
 
         <div class="@(odd ? "proddark" : "prodlight")">
 
-            @Html.Partial("~/Views/Eshop/_ProductPbDiskRow.cshtml", product)
+            @Html.Partial("~/Views/Eshop/_ProductAccessoriesRow.cshtml", product)
 
         </div>
     }
@@ -32,8 +30,6 @@
 
     <div class="cleaner"><hr></div>
     <hr />
-
-    @Html.Raw(ViewBag.Banner)
 
 </div>
 

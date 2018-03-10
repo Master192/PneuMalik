@@ -38,6 +38,16 @@ namespace PneuMalik.Controllers
         public ActionResult Kosik()
         {
 
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
             var customer = new Customer();
 
             var model = new EshopViewModel(db)
@@ -59,7 +69,23 @@ namespace PneuMalik.Controllers
         public ActionResult Konfigurator()
         {
 
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
             return View("~/Views/Eshop/Konfigurator.cshtml", new EshopViewModel(db, 1));
+        }
+
+        public ActionResult Error()
+        {
+
+            return View();
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

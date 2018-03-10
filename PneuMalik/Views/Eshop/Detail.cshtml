@@ -4,52 +4,69 @@
 
 @{
     var product = Model.ProductDetail;
-    var productName = $"{product.Manufacturer.Name} {product.Pattern}";
+    var productName = $"{product.Manufacturer.Name} {product.Tyre.Dezen}";
+
+    var seasonName = "-";
+    switch ((PneuMalik.Models.Dto.Season)product.Tyre.Sezona)
+    {
+        case PneuMalik.Models.Dto.Season.Allyear:
+            seasonName = "Celoroční";
+            break;
+        case PneuMalik.Models.Dto.Season.Winter:
+            seasonName = "Zima";
+            break;
+        case PneuMalik.Models.Dto.Season.Unknown:
+            seasonName = "Neznámá";
+            break;
+        default:
+            seasonName = "Léto";
+            break;
+    }
 }
 
 <div id="stred">
 
     <h1>@productName</h1>
 
-    <p><img src="/images/detail/@(product.Code).jpg" class="detimg" alt="@productName" /></p>
+    <p><img src="/images/detail/@(product.Image)" class="detimg" alt="@productName" /></p>
     
     <table class="tabdet">
         <tr style="display: @(string.IsNullOrEmpty(product.Manufacturer.Name) ? "none" : "table-row");">
             <td class="td1">Výrobce:</td><td>@product.Manufacturer.Name</td>
         </tr>
-        <tr style="display: @(string.IsNullOrEmpty(product.Pattern) ? "none" : "table-row");">
-            <td class="td1">Dezén:</td><td>@product.Pattern</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.Dezen) ? "none" : "table-row");">
+            <td class="td1">Dezén:</td><td>@product.Tyre.Dezen</td>
         </tr>
-        <tr style="display: @(product.Width == 0 ? "none" : "table-row");">
-            <td class="td1">Šířka:</td><td>@product.Width</td>
+        <tr style="display: @(product.Tyre.Sirka.Id == 0 ? "none" : "table-row");">
+            <td class="td1">Šířka:</td><td>@product.Tyre.Sirka.Name</td>
         </tr>
-        <tr style="display: @(product.SerieWidth == 0 ? "none" : "table-row");">
-            <td class="td1">Série - výška:</td><td>@product.SerieWidth</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.SerieVyska) ? "none" : "table-row");">
+            <td class="td1">Série - výška:</td><td>@product.Tyre.SerieVyska</td>
         </tr>
-        <tr style="display: @(string.IsNullOrEmpty(product.Construction) ? "none" : "table-row");">
-            <td class="td1">Konstrukce:</td><td>@product.Construction</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.Konstrukce) ? "none" : "table-row");">
+            <td class="td1">Konstrukce:</td><td>@product.Tyre.Konstrukce</td>
         </tr>
-        <tr style="display: @(product.Diameter == 0 ? "none" : "table-row");">
-            <td class="td1">Průměr ráfku:</td><td>@product.Diameter</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.PrumerRafku) ? "none" : "table-row");">
+            <td class="td1">Průměr ráfku:</td><td>@product.Tyre.PrumerRafku</td>
         </tr>
-        <tr style="display: @(string.IsNullOrEmpty(product.IndexSi) ? "none" : "table-row");">
-            <td class="td1">Rychlostní index:</td><td>@product.IndexSi</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.RychlostniIndex) ? "none" : "table-row");">
+            <td class="td1">Rychlostní index:</td><td>@product.Tyre.RychlostniIndex</td>
         </tr>
-        <tr style="display: @(product.IndexLi == 0 ? "none" : "table-row");">
-            <td class="td1">Hmotnostní index:</td><td>@product.IndexLi</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.Hmotnost) ? "none" : "table-row");">
+            <td class="td1">Hmotnostní index:</td><td>@product.Tyre.Hmotnost</td>
         </tr>
         <tr style="display: @(string.IsNullOrEmpty(product.VehicleType.Name) ? "none" : "table-row");">
             <td class="td1">Typ vozidla:</td><td>@product.VehicleType.Name</td>
         </tr>
-        <tr style="display: @(string.IsNullOrEmpty(product.Pattern) ? "none" : "table-row");">
-            <td class="td1">Dezén:</td><td>@product.Pattern</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.Rof) ? "none" : "table-row");">
+            <td class="td1">Rof:</td><td>@product.Tyre.Rof</td>
         </tr>
     </table>
     <div class="det">
         <p class="detinfo">
             <ins><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
-            <ins><img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></ins>
-            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.InStock ? "SKLADEM" : "")</strong></span></ins>
+            <ins><img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@seasonName" /></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.Source == PneuMalik.Models.Dto.Product.DataSource.Gedip ? "SKLADEM" : "")</strong></span></ins>
             <p class="detget">
                 <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
                 <ins>ks</ins>
@@ -74,10 +91,10 @@
         <script type="text/javascript" src="/Scripts/jelly.js"></script>
         <div class="stitek_eu_maly">
             <a rel="facebox" href="#stitky" title="">
-                <img src="/img/stitek_prazdny_web_maly_tridahluku_@(product.NoiseLevel).png" alt="" />
-                <img class="spotreba@(product.FuelConsumption)" src="/img/stitek_maly_web_sipka_@(product.FuelConsumption).png" alt="" title="Spotřeba paliva : @(product.FuelConsumption)" />
-                <img class="bezpecnost@(product.Adhesion)" src="/img/stitek_maly_web_sipka_@(product.Adhesion).png" alt="" title="Bezpečnost za mokra : @(product.Adhesion)" />
-                <span title="Vnější hluk : @(product.NoiseLevelDb) dB">@(product.NoiseLevelDb)dB</span>
+                <img src="/img/stitek_prazdny_web_maly_tridahluku_@(product.Tyre.UrovenHluku).png" alt="" />
+                <img class="spotreba@(product.Tyre.Spotreba)" src="/img/stitek_maly_web_sipka_@(product.Tyre.Spotreba).png" alt="" title="Spotřeba paliva : @(product.Tyre.Spotreba)" />
+                <img class="bezpecnost@(product.Tyre.Prilnavost)" src="/img/stitek_maly_web_sipka_@(product.Tyre.Prilnavost).png" alt="" title="Bezpečnost za mokra : @(product.Tyre.Prilnavost)" />
+                <span title="Vnější hluk : @(product.Tyre.UrovenHlukudB) dB">@(product.Tyre.UrovenHlukudB)dB</span>
             </a>
         </div>
         <div class="cleaner"><hr /></div>
@@ -86,10 +103,10 @@
     <div id="stitky">
         <p class="stitek_nadpis1">Nové nařízení EU zavádí požadavky na označování pneumatik týkající se zobrazení informací o&nbsp;spotřebě paliva (valivém odporu), přilnavosti za&nbsp;mokra a vnějším hluku z&nbsp;pneumatik. Cílem je zvýšit bezpečnost a účinnost silniční dopravy propagováním palivově úsporných a bezpečných pneumatik s&nbsp;nízkou hladinou hluku. Na štítku obecně platí, že třída A je nejlepší, třída G je nejhorší.</p>
         <div class="stitek_eu_velky">
-            <img src="/img/stitek_prazdny_web_velky_tridahluku_@(product.NoiseLevel).png" alt="" title="" />
-            <img class="spotreba@(product.FuelConsumption)" src="/img/stitek_velky_web_sipka_@(product.FuelConsumption).png" alt="" title="Spotřeba paliva : @(product.FuelConsumption)" />
-            <img class="bezpecnostC" src="/img/stitek_velky_web_sipka_@(product.Adhesion).png" alt="" title="Bezpečnost za mokra : @(product.Adhesion)" />
-            <span title="Vnější hluk : @(product.NoiseLevelDb) dB">@(product.NoiseLevelDb) dB</span>
+            <img src="/img/stitek_prazdny_web_velky_tridahluku_@(product.Tyre.UrovenHluku).png" alt="" title="" />
+            <img class="spotreba@(product.Tyre.Spotreba)" src="/img/stitek_velky_web_sipka_@(product.Tyre.Spotreba).png" alt="" title="Spotřeba paliva : @(product.Tyre.Spotreba)" />
+            <img class="bezpecnostC" src="/img/stitek_velky_web_sipka_@(product.Tyre.Prilnavost).png" alt="" title="Bezpečnost za mokra : @(product.Tyre.Prilnavost)" />
+            <span title="Vnější hluk : @(product.Tyre.UrovenHlukudB) dB">@(product.Tyre.UrovenHlukudB) dB</span>
         </div>
         <p class="stitek_nadpis2">SPOTŘEBA PALIVA SPOJENÁ S VALIVÝM ODPOREM PNEUMATIKY</p>
         <p><img class="fl" src="/img/symbol_spotreba.gif" alt="Symbol spotřeby paliva" /></p>

@@ -1,5 +1,6 @@
 ﻿using PneuMalik.Models;
 using PneuMalik.Models.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -16,19 +17,19 @@ namespace PneuMalik.Controllers.Api
         {
 
             var availableProducts = db.Products.Where(p => p.Active && p.VehicleType.Id == cathegory 
-                        && (season == 0 || p.Season.Id == season)
+                        && (season == 0 || p.Tyre.Sezona == season)
                         && (manufacturer == 0 || p.Manufacturer.Id == manufacturer)
-                        && (width == 0 || p.Width == width)
-                        && (profile == 0 || p.HighPr == profile)
-                        && (rim == 0 || p.Diameter == rim));
+                        && (width == 0 || p.Tyre.Sirka.Id == width)
+                        && (profile == 0 || p.Tyre.Profil.Id == profile)
+                        && (rim == 0 || p.Tyre.Rafek.Id == rim));
 
             var filter = new Filter()
             {
                 Manufacturers = availableProducts.GroupBy(m => m.Manufacturer.Id).Select(s => s.FirstOrDefault().Manufacturer.Id).ToList(),
-                Seasons = availableProducts.GroupBy(s => s.Season.Id).Select(s => s.FirstOrDefault().Season.Id).ToList(),
-                Profiles = availableProducts.GroupBy(p => p.HighPr).Select(s => s.FirstOrDefault().HighPr).ToList(),
-                Rims = availableProducts.GroupBy(r => r.Diameter).Select(s => s.FirstOrDefault().Diameter).ToList(),
-                Widths = availableProducts.GroupBy(w => w.Width).Select(s => s.FirstOrDefault().Width).ToList()
+                Seasons = availableProducts.GroupBy(s => s.Tyre.Sezona).Select(s => s.FirstOrDefault().Tyre.Sezona).ToList(),
+                Profiles = availableProducts.GroupBy(p => p.Tyre.Profil.Id).Select(s => s.FirstOrDefault().Tyre.Profil.Id).ToList(),
+                Rims = availableProducts.GroupBy(r => r.Tyre.Rafek.Id).Select(s => s.FirstOrDefault().Tyre.Rafek.Id).ToList(),
+                Widths = availableProducts.GroupBy(w => w.Tyre.Sirka.Id).Select(s => s.FirstOrDefault().Tyre.Sirka.Id).ToList()
             };
 
             return Json(filter);
@@ -36,32 +37,46 @@ namespace PneuMalik.Controllers.Api
 
         [HttpGet]
         [Route("steel")]
-        public IHttpActionResult Steel(int rim, string brand, string model)
+        public IHttpActionResult Steel(int rim, int brand, int model)
         {
 
-            var availableProducts = db.Products.Where(p => p.Active && p.VehicleType.Id == 10
-                        && (rim == 0 || p.Diameter == rim)
-                        && (brand == "0" || p.Model == brand)
-                        && (model == "0" || p.Construction.Contains(model)));
-
-            var models = availableProducts
-                .GroupBy(m => m.Construction).Select(s => s.FirstOrDefault().Construction).ToList();
-            var modelsDelimited = new List<string>();
-            foreach (var modl in models)
-            {
-                modelsDelimited.AddRange(modl.Split('/'));
-            }
+            var availableProducts = db.Products.Where(p => p.Active && p.VehicleType.Id == SteelDiscVehicleTypeId
+                        && (rim == 0 || p.PbDisc.Rafek.Id == rim)
+                        && (brand == 0 || p.PbDisc.Znacka.Id == brand)
+                        && (model == 0 || p.PbDisc.Model.Id == model));
 
             var filter = new Filter()
             {
-                Rims = availableProducts.GroupBy(r => r.Diameter).Select(s => s.FirstOrDefault().Diameter).ToList(),
-                Brands = availableProducts.GroupBy(w => w.Model).Select(s => s.FirstOrDefault().Model).ToList(),
-                Models = modelsDelimited
+                Rims = availableProducts.GroupBy(r => r.PbDisc.Rafek.Id).Select(s => s.FirstOrDefault().PbDisc.Rafek.Id).ToList(),
+                Brands = availableProducts.GroupBy(w => w.PbDisc.Znacka.Id).Select(s => s.FirstOrDefault().PbDisc.Znacka.Id).ToList(),
+                Models = availableProducts.GroupBy(w => w.PbDisc.Model.Id).Select(s => s.FirstOrDefault().PbDisc.Model.Id).ToList()
             };
 
             return Json(filter);
         }
 
+        [HttpGet]
+        [Route("alu")]
+        public IHttpActionResult Alu(int manufacturer, int width, int rim)
+        {
+
+            var availableProducts = db.Products.Where(p => p.Active && p.VehicleType.Id == AluDiscVehicleTypeId
+                        && (rim == 0 || p.AluDisc.Rafek.Id == rim)
+                        && (manufacturer == 0 || p.Manufacturer.Id == manufacturer)
+                        && (width == 0 || p.AluDisc.Sirka.Id == width));
+
+            var filter = new Filter()
+            {
+                Rims = availableProducts.GroupBy(r => r.AluDisc.Rafek.Id).Select(s => s.FirstOrDefault().AluDisc.Rafek.Id).ToList(),
+                Widths = availableProducts.GroupBy(w => w.AluDisc.Sirka.Id).Select(s => s.FirstOrDefault().AluDisc.Sirka.Id).ToList(),
+                Manufacturers = availableProducts.GroupBy(m => m.Manufacturer.Id).Select(s => s.FirstOrDefault().Manufacturer.Id).ToList()
+            };
+
+            return Json(filter);
+        }
+
+        private const int SteelDiscVehicleTypeId = 9;
+        private const int AluDiscVehicleTypeId = 10;
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

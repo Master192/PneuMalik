@@ -4,6 +4,30 @@
 
 @{ 
     var seasonSelected = false;
+
+    if (Model.Filter.Seasons == null)
+    {
+
+        Model.Filter.Seasons = new List<int>();
+    }
+
+    if (Model.Filter.Widths == null)
+    {
+
+        Model.Filter.Widths = new List<int>();
+    }
+
+    if (Model.Filter.Profiles == null)
+    {
+
+        Model.Filter.Profiles = new List<int>();
+    }
+
+    if (Model.Filter.Rims == null)
+    {
+
+        Model.Filter.Rims = new List<int>();
+    }
 }
 
 @using (Html.BeginForm("filtrace", "pneumatiky", FormMethod.Post))
@@ -20,11 +44,28 @@
             <tr>
                 <td id="mainContent_U_Filter1_td_sezona">
                     <select name="filterSeason" id="filter-season" onChange="filterChange('season')">
-                        @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s.Id)).OrderBy(s => s.Id))
+                        @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s)).OrderBy(s => s))
                         {
-                            var isInPeriod = DateTime.Now.Between(season.From, season.To);
+                            var isInPeriod = true;
 
-                            <option @(!seasonSelected && isInPeriod ? "selected=\"selected\"" : "") value="@season.Id">@season.Name</option>
+                            var seasonName = "-";
+                            switch((PneuMalik.Models.Dto.Season)season)
+                            {
+                                case PneuMalik.Models.Dto.Season.Allyear:
+                                    seasonName = "Celoroční";
+                                    break;
+                                case PneuMalik.Models.Dto.Season.Winter:
+                                    seasonName = "Zima";
+                                    break;
+                                case PneuMalik.Models.Dto.Season.Unknown:
+                                    seasonName = "Neznámá";
+                                    break;
+                                default:
+                                    seasonName = "Léto";
+                                    break;
+                            }
+
+                            <option @(!seasonSelected && isInPeriod ? "selected=\"selected\"" : "") value="@season">@seasonName</option>
 
                             if (isInPeriod)
                             {
@@ -47,9 +88,9 @@
                 <td id="mainContent_U_Filter1_td_sirka">
                     <select name="filterWidth" id="filter-width" onChange="filterChange('width')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var width in Model.Filter.Widths.OrderBy(m => m))
+                        @foreach (var width in Model.SirkaList.Where(m => Model.Filter.Widths.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@width">@width</option>
+                            <option value="@width.Id">@width.Name</option>
                         }
                     </select>
                 </td>
@@ -57,9 +98,9 @@
                 <td id="mainContent_U_Filter1_td_profil">
                     <select name="filterProfile" id="filter-profile" onChange="filterChange('profile')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var profile in Model.Filter.Profiles.OrderBy(m => m))
+                        @foreach (var profile in Model.ProfilList.Where(m => Model.Filter.Profiles.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@profile">@profile</option>
+                            <option value="@profile.Id">@profile.Name</option>
                         }
                     </select>
                 </td>
@@ -67,9 +108,9 @@
                 <td id="mainContent_U_Filter1_td_rafek">
                     <select name="filterRim" id="filter-rim" onChange="filterChange('rim')">
                         <option selected="selected" value="0">nerozhoduje</option>
-                        @foreach (var rim in Model.Filter.Rims.OrderBy(m => m))
+                        @foreach (var rim in Model.RafekList.Where(m => Model.Filter.Rims.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@rim">@rim</option>
+                            <option value="@rim.Id">@rim.Name</option>
                         }
                     </select>
                 </td>

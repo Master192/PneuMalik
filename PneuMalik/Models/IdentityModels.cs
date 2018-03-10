@@ -23,33 +23,49 @@ namespace PneuMalik.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
+        //public static ApplicationDbContext Create()
+        //{
+        //    return new ApplicationDbContext();
+        //}
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Cathegory> Cathegories { get; set; }
+        public DbSet<Dto.Cathegory> Cathegories { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Product> Products { get; set; }
+        public DbSet<Dto.Product> Products { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Text> Texts { get; set; }
+        public DbSet<Dto.ProductsAluDisc> ProductsAluDisc { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Manufacturer> Manufacturers { get; set; }
+        public DbSet<Dto.ProductsPbDisc> ProductsPbDisc { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.Season> Seasons { get; set; }
+        public DbSet<Dto.ProductsTyre> ProductsTyres { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.PriceObject> Prices { get; set; }
+        public DbSet<Dto.ProductParamModel> ParamModel { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.VehicleType> VehicleTypes { get; set; }
+        public DbSet<Dto.ProductParamProfil> ParamProfil { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.Dto.CartRow> CartRows { get; set; }
+        public DbSet<Dto.ProductParamRafek> ParamRafek { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.PneuB2b.Response.SteelRim> SteelRims { get; set; }
+        public DbSet<Dto.ProductParamSirka> ParamSirka { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.PneuB2b.Response.Tyre> Tyres { get; set; }
+        public DbSet<Dto.ProductParamZnacka> ParamZnacka { get; set; }
 
-        public System.Data.Entity.DbSet<PneuMalik.Models.PneuB2b.PriceInfo> PriceInfos { get; set; }
+        public DbSet<Dto.Text> Texts { get; set; }
+
+        public DbSet<Dto.Manufacturer> Manufacturers { get; set; }
+
+        public DbSet<Dto.PriceObject> Prices { get; set; }
+
+        public DbSet<Dto.VehicleType> VehicleTypes { get; set; }
+
+        public DbSet<Dto.CartRow> CartRows { get; set; }
+
+        public DbSet<PneuB2b.Response.SteelRim> SteelRims { get; set; }
+
+        public DbSet<PneuB2b.Response.Tyre> Tyres { get; set; }
+
+        public DbSet<PneuB2b.PriceInfo> PriceInfos { get; set; }
     }
 }

@@ -8,20 +8,20 @@ using System.Web.Mvc;
 
 namespace PneuMalik.Controllers
 {
-    public class KategorieController : Controller
+
+    [LayoutInjecter("_EshopLayout")]
+    public class PrislusenstviController : Controller
     {
 
-        [LayoutInjecter("_EshopLayout")]
+        [HttpGet]
         public ActionResult Index(string title)
         {
 
-            var banner = db.Texts.FirstOrDefault(t => t.Id == 11);
             var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
             var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
             var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
             var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
 
-            ViewBag.Banner = banner != null ? banner.Content : string.Empty;
             ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
             ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
             ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
@@ -29,13 +29,13 @@ namespace PneuMalik.Controllers
 
             if (string.IsNullOrEmpty(title))
             {
-                return View("~/Views/Eshop/Index.cshtml");
+                return View("~/Views/Eshop/Pneumatiky.cshtml");
             }
 
-            var view = new EshopViewModel(db);
-            view.Cathegory = db.Cathegories.FirstOrDefault(c => c.Url == title);
+            var cathegory = db.Cathegories.FirstOrDefault(c => c.Url == title);
+            var products = db.Products.Where(p => p.Active && p.VehicleType.Id == cathegory.Type).ToList();
 
-            return View("~/Views/Kategorie/Index.cshtml", view);
+            return View("~/Views/Eshop/Prislusenstvi.cshtml", new EshopViewModel(db, cathegory.Type, products));
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

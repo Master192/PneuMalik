@@ -17,12 +17,14 @@ namespace PneuMalik.Controllers
         // GET: Cathegories
         public ActionResult Index()
         {
+
             return View(db.Cathegories.ToList());
         }
 
         // GET: Cathegories/Details/5
         public ActionResult Details(int? id)
         {
+        
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

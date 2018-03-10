@@ -11,9 +11,21 @@ namespace PneuMalik.Controllers
     [LayoutInjecter("_EshopLayout")]
     public class HlinikovediskyController : Controller
     {
-        // GET: Ocelovedisky
+
         public ActionResult Index()
         {
+
+            var banner = db.Texts.FirstOrDefault(t => t.Id == 11);
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
             return View();
         }
 
@@ -48,15 +60,15 @@ namespace PneuMalik.Controllers
 
             var filtered = db.Products
                 .Where(p => p.Active && p.VehicleType.Id == AluDiscVehicleTypeId
-                    && (diameter == 0 || p.Diameter == diameter)
+                    && (diameter == 0 || p.AluDisc.Rafek.Id == diameter)
                     && (manufacturer == 0 || p.Manufacturer.Id == manufacturer) 
-                    && (width == 0 || p.Width == width))
+                    && (width == 0 || p.AluDisc.Sirka.Id == width))
                 .Take(100).ToList();
 
             return View("~/Views/Eshop/AluRims.cshtml", new EshopViewModel(db, AluDiscVehicleTypeId, filtered));
         }
 
-        private const int AluDiscVehicleTypeId = 9;
+        private const int AluDiscVehicleTypeId = 10;
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

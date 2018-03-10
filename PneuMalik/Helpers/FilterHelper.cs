@@ -23,38 +23,50 @@ namespace PneuMalik.Helpers
 
                 Filter = new Filter()
                 {
-
-                    Rims = available.GroupBy(g => g.Diameter).Select(s => s.FirstOrDefault().Diameter).ToList(),
-                    Manufacturers = available.GroupBy(g => g.Manufacturer.Id).Select(s => s.FirstOrDefault().Manufacturer.Id).ToList(),
-                    Widths = available.GroupBy(g => g.Width).Select(s => s.FirstOrDefault().Width).ToList()
+                    Manufacturers = available.GroupBy(g => g.Manufacturer.Id)
+                        .Select(s => s.FirstOrDefault().Manufacturer.Id).ToList()
                 };
 
                 if (cathegoryType < 9)      // pneu
                 {
 
-                    Filter.Profiles = available.GroupBy(g => g.HighPr)
-                        .Select(s => s.FirstOrDefault().HighPr).ToList();
-                    Filter.Seasons = available
-                        .GroupBy(g => g.Season.Id).Select(s => s.FirstOrDefault().Season.Id).ToList();
+                    var avail = available.ToList();
+
+                    Filter.Rims = available.Where(r => r.Tyre.Rafek.Name != "-")
+                        .GroupBy(g => g.Tyre.Rafek.Id)
+                        .Select(s => s.FirstOrDefault().Tyre.Rafek.Id).ToList();
+                    Filter.Widths = available.Where(r => r.Tyre.Sirka.Name != "-")
+                        .GroupBy(g => g.Tyre.Sirka.Id)
+                        .Select(s => s.FirstOrDefault().Tyre.Sirka.Id).ToList();
+                    Filter.Profiles = available.Where(r => r.Tyre.Profil.Name != "-")
+                        .GroupBy(g => g.Tyre.Profil.Id)
+                        .Select(s => s.FirstOrDefault().Tyre.Profil.Id).ToList();
+                    Filter.Seasons = available.Where(r => (Season)r.Tyre.Sezona != Season.Unknown)
+                        .GroupBy(g => g.Tyre.Sezona)
+                        .Select(s => s.FirstOrDefault().Tyre.Sezona).ToList();
                     
                 }
 
-                if (cathegoryType == 10)     // ocelové disky
+                if (cathegoryType == 9)     // ocelové disky
                 {
 
-                    var models = available.Where(w => !string.IsNullOrEmpty(w.Construction))
-                        .GroupBy(g => g.Construction).Select(s => s.FirstOrDefault().Construction).ToList();
+                    Filter.Brands = available.Where(r => r.PbDisc.Znacka.Name != "-")
+                        .GroupBy(g => g.PbDisc.Znacka.Id)
+                        .Select(s => s.FirstOrDefault().PbDisc.Znacka.Id).ToList();
+                    Filter.Models = available.Where(r => r.PbDisc.Model.Name != "-")
+                        .GroupBy(g => g.PbDisc.Model.Id)
+                        .Select(s => s.FirstOrDefault().PbDisc.Model.Id).ToList();
+                }
 
-                    var modelsDelimited = new List<string>();
-                    foreach (var model in models)
-                    {
-                        modelsDelimited.AddRange(model.Split('/'));
-                    }
+                if (cathegoryType == 10)        // hlinikové disky
+                {
 
-                    Filter.Brands = available.Where(w => !string.IsNullOrEmpty(w.Model))
-                        .GroupBy(g => g.Model).Select(s => s.FirstOrDefault().Model).ToList();
-                    Filter.Models = modelsDelimited.GroupBy(g => g).Select(s => s.FirstOrDefault())
-                        .OrderBy(o => o).ToList();
+                    Filter.Rims = available.Where(r => r.AluDisc.Rafek.Name != "-")
+                        .GroupBy(g => g.AluDisc.Rafek.Id)
+                        .Select(s => s.FirstOrDefault().AluDisc.Rafek.Id).ToList();
+                    Filter.Widths = available.Where(r => r.AluDisc.Sirka.Name != "-")
+                        .GroupBy(g => g.AluDisc.Sirka.Id)
+                        .Select(s => s.FirstOrDefault().AluDisc.Sirka.Id).ToList();
                 }
 
                 File.WriteAllText(path, JsonConvert.SerializeObject(Filter));

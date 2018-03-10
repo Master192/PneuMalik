@@ -2,22 +2,30 @@
 
 @{ 
 
-    var suf = $"{Model.Manufacturer.Name} {Model.Pattern}";
-    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+    var suf = $"{Model.Manufacturer.Name} {Model.Tyre.Dezen}";
+    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-"));
+
+    var availability = Model.Source == PneuMalik.Models.Dto.Product.DataSource.Gedip ? "SKLADEM" : "NA DOTAZ";
+
+    if (Model.Prices != null && Model.Prices.Count > 0)
+    {
+
+        availability = $"SKLADEM DO {Model.Prices.OrderBy(p => p.DeliveryTime).FirstOrDefault().DeliveryTime} hod";
+    }
 }
 
 <p>
-    <a class="preview" href="/images/detail/@(Model.Code).jpg" alt="@Model.Design">
-        <img src="/images/ikona/@(Model.Code).jpg" alt="@Model.Design">
+    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Tyre.Dezen">
+        <img src="/images/ikona/@(Model.Image)" alt="@Model.Tyre.Dezen">
     </a>
 </p>
 <table>
     <tbody>
         <tr>
-            <td width="145">@($"{Model.Width}/{Model.HighPr} {Model.Design}{Model.Diameter} {Model.IndexLi}{Model.IndexSi}")</td>
+            <td width="145">@($"{Model.Tyre.Sirka.Name}/{Model.Tyre.Profil.Name} {Model.Tyre.Konstrukce}{Model.Tyre.PrumerRafku} {Model.Tyre.HmotnostniIndex}{Model.Tyre.RychlostniIndex}")</td>
             <td width="155">
-                <a href="/pneumatika/@($"{Model.Id}/{urlSuffix}")" title="@Model.Design">
-                    <strong>@(Model.Manufacturer != null ? Model.Manufacturer.Name : "")</strong> @Model.Pattern
+                <a href="/pneumatika/@($"{Model.Id}/{urlSuffix}")" title="@Model.Tyre.Dezen">
+                    <strong>@(Model.Manufacturer != null ? Model.Manufacturer.Name : "")</strong> @Model.Tyre.Dezen
                 </a>
             </td>
             <td width="96"><span class="f15 blue"><strong>Vaše cena:</strong></span></td>
@@ -25,8 +33,8 @@
             <td></td>
         </tr>
         <tr>
-            <td class="grn"><strong>DOSTUPNOST:<br>SKLADEM</strong></td>
-            <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Season.Id).png" alt="@Model.Season.Name"></td>
+            <td class="grn"><strong>DOSTUPNOST:<br>@availability</strong></td>
+            <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Tyre.Sezona).png" alt="@Model.Tyre.Sezona"></td>
             <td class="f15 blue"><strong>@($"{Model.Price:F} Kč")</strong></td>
             <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/@($"{Model.Id}/{urlSuffix}")';"></td>
         </tr>

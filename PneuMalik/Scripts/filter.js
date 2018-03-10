@@ -66,7 +66,7 @@ function filterChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-manufacturer option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
@@ -84,7 +84,7 @@ function filterChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-width option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
@@ -95,7 +95,7 @@ function filterChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-rim option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
@@ -106,11 +106,69 @@ function filterChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-profile option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
             if (filter.Profiles.indexOf(parseInt(elm.value)) < 0) {
+                elm.remove();
+            }
+        });
+
+    }, function (reject) {
+        console.log("Filter reload error: " + reject.message);
+    });
+}
+
+function filterAluChange(source) {
+
+    var sources = ['rim', 'manufacturer', 'width'];
+
+    var selectRim = document.getElementById('filter-rim');
+    var rim = selectRim.options[selectRim.selectedIndex].value;
+
+    var selectManufacturer = document.getElementById('filter-manufacturer');
+    var manufacturer = selectManufacturer.options[selectManufacturer.selectedIndex].value;
+
+    var selectWidth = document.getElementById('filter-width');
+    var width = selectWidth.options[selectWidth.selectedIndex].value;
+
+    var query = "?rim=" + rim + "&manufacturer=" + manufacturer + "&width=" + width;
+
+    var getStatus = new pneuMalik.RequestHelper("GET", "/api/filter/alu" + query);
+    getStatus.makeRequest("filterAluChange").then(function (response) {
+
+        var filter = JSON.parse(response);
+
+        [].forEach.call(document.querySelectorAll('#filter-manufacturer option'), function (elm) {
+
+            if (elm.value === "0") {
+                return;
+            }
+
+            if (filter.Manufacturers.indexOf(elm.value) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-width option'), function (elm) {
+
+            if (elm.value === "0") {
+                return;
+            }
+
+            if (filter.Widths.indexOf(elm.value) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-rim option'), function (elm) {
+
+            if (elm.value === "0") {
+                return;
+            }
+
+            if (filter.Rims.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });
@@ -142,7 +200,7 @@ function filterSteelChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-rim option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
@@ -153,7 +211,7 @@ function filterSteelChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-brand option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 
@@ -164,7 +222,7 @@ function filterSteelChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-model option'), function (elm) {
 
-            if (elm.value == "0") {
+            if (elm.value === "0") {
                 return;
             }
 

@@ -11,28 +11,28 @@
     @foreach (var product in Model)
     {
 
-        var suf = $"{product.Manufacturer.Name} {product.Pattern}";
+        var suf = $"{product.Manufacturer.Name} {product.Tyre.Dezen}";
         var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
 
         <div class="rbox">
             <p class="rbnadp">Náš TIP</p>
             <p class="f14">
                 <strong>
-                    <a class="carm" href="/pneumatika/150-9480-touring-2.aspx" title="@product.Design">
-                        @product.Manufacturer.Name @product.Pattern
+                    <a class="carm" href="/pneumatika/@($"{product.Id}/{urlSuffix}")" title="@product.Tyre.Dezen">
+                        @product.Manufacturer.Name @product.Tyre.Dezen
                     </a>
                 </strong>
             </p>
-            <p>@($"{product.Width}/{product.HighPr} {product.Design}{product.Diameter} {product.IndexLi}{product.IndexSi}")</p>
+            <p>@($"{product.Tyre.Sirka}/{product.Tyre.Profil} {product.Tyre.Konstrukce}{product.Tyre.PrumerRafku} {product.Tyre.HmotnostniIndex}{product.Tyre.RychlostniIndex}")</p>
             <p>
-                <a href="/pneumatika/@($"{product.Id}/{urlSuffix}")" title="@product.Design">
-                    <img src="/images/nahled/@(product.Code).jpg" alt="@product.Design" />
+                <a href="/pneumatika/@($"{product.Id}/{urlSuffix}")" title="@product.Tyre.Dezen">
+                    <img src="/images/nahled/@(product.Image)" alt="@product.Tyre.Dezen" />
                 </a>
             </p>
             <div class="rb">
-                <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></p>
+                <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@((Season)product.Tyre.Sezona)" /></p>
                 <p class="f17 blue"><strong>@($"{product.Price:F} Kč")</strong></p>
-                <p class="grn"><strong>@(product.InStock ? "SKLADEM" : "")</strong></p>
+                <p class="grn"><strong>@(product.Source == Product.DataSource.Gedip ? "SKLADEM" : "")</strong></p>
             </div>
         </div>
     }

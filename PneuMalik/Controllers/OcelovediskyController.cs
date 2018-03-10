@@ -13,6 +13,17 @@ namespace PneuMalik.Controllers
         // GET: Ocelovedisky
         public ActionResult Index()
         {
+
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
             return View();
         }
 
@@ -33,20 +44,29 @@ namespace PneuMalik.Controllers
                 diameter = 0;
             }
 
-            var brand = filterBrand ?? "0";
-            var model = filterModel ?? "0";
+            var brand = 0;
+            if (!Int32.TryParse(filterBrand, out brand))
+            {
+                brand = 0;
+            }
+
+            var model = 0;
+            if (!Int32.TryParse(filterModel, out model))
+            {
+                model = 0;
+            }
 
             var filtered = db.Products
-                .Where(p => p.Active && p.VehicleType.Id == 10 
-                    && (diameter == 0 || p.Diameter == diameter)
-                    && (brand == "0" || p.Model == brand) 
-                    && (model == "0" || p.Construction.Contains(model)))
+                .Where(p => p.Active && p.VehicleType.Id == SteelDiscVehicleTypeId
+                    && (diameter == 0 || p.PbDisc.Rafek.Id == diameter)
+                    && (brand == 0 || p.PbDisc.Znacka.Id == brand) 
+                    && (model == 0 || p.PbDisc.Model.Id == model))
                 .Take(100).ToList();
             
             return View("~/Views/Eshop/SteelRims.cshtml", new EshopViewModel(db, SteelDiscVehicleTypeId, filtered));
         }
 
-        private const int SteelDiscVehicleTypeId = 10;
+        private const int SteelDiscVehicleTypeId = 9;
         private ApplicationDbContext db = new ApplicationDbContext();
     }
 }

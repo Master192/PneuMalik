@@ -1,0 +1,655 @@
+
+
+Cas vygenerovani chyby: 5.3.2018 20:37:06
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:10
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:37:13
+
+Text chyby: The controller for path '/Home/Error' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Home\Error
+HTTP_COOKIE: UserID=eFxkkV+NYj0CH7F7RmtZv6xQ0NMvdhQVAzvYA1KL9b53r0EbObcyo7IGyW4y3/Y9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:12
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:21
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:25
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:30
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:31
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:33
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:34
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:40
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:40:41
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: Void Execute()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Eshop\Error
+HTTP_COOKIE: UserID=cSqPkNjmpfj/ToR8v6LVRBaaeh2zT4r3VyFquSUfWrtztxYDHeDDYZGsNLobSewZ
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 20:41:46
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=DvHa2ZobGWsZ1st7LhZJL5ACzSd+aeCRbA8lueSRw9a+d11ZCVKxEirhww/Y1SYe
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 21:24:03
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=GI9Qff+lClNogIK+AOa933pMBDD81xefRP3O//g3Vb62G5PMqiHI1f44yv5PXq91
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 21:34:43
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=GI9Qff+lClNogIK+AOa933pMBDD81xefRP3O//g3Vb62G5PMqiHI1f44yv5PXq91
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 21:46:38
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=2Mg3F7kBmgee9JW4i1qTZ/FplGPFuwCK2qStH4Kq4eDYbkAEFjSRmBssQudmjg2H
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 22:00:21
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=9Fe/iGpjwUp+K1eDmh1j6xVkdYBUnzpP7ZHq/3HeTqsjs0NdZkDf/L5JpaF6+lpS
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 22:58:42
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=YD/lnKX1+IxRf+ZfUYwCqrJn/XOPurYoI5e0orSCbYNnjEyQXHn+QLhOwsgNQkTu
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 22:58:48
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=YD/lnKX1+IxRf+ZfUYwCqrJn/XOPurYoI5e0orSCbYNnjEyQXHn+QLhOwsgNQkTu
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/osobni-offroad-4x4-suv
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 22:58:59
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=YD/lnKX1+IxRf+ZfUYwCqrJn/XOPurYoI5e0orSCbYNnjEyQXHn+QLhOwsgNQkTu
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:08:48
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=jZbzuJId2uUOnbcuLzKMy5NHAeJ7+8FNTwH6LHJ817JmEUOXecQadaNFT2RxlbF1
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:09:41
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=jZbzuJId2uUOnbcuLzKMy5NHAeJ7+8FNTwH6LHJ817JmEUOXecQadaNFT2RxlbF1
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:10:15
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=jZbzuJId2uUOnbcuLzKMy5NHAeJ7+8FNTwH6LHJ817JmEUOXecQadaNFT2RxlbF1
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:10:43
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=jZbzuJId2uUOnbcuLzKMy5NHAeJ7+8FNTwH6LHJ817JmEUOXecQadaNFT2RxlbF1
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:10:51
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=jZbzuJId2uUOnbcuLzKMy5NHAeJ7+8FNTwH6LHJ817JmEUOXecQadaNFT2RxlbF1
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:18:09
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=OwGSdxZ5dKDsWQmrvhxydM0P6S3dYO4KvoBlf9Tz20bjJcuq7R08ezND1z6bmpI+
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:18:12
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=OwGSdxZ5dKDsWQmrvhxydM0P6S3dYO4KvoBlf9Tz20bjJcuq7R08ezND1z6bmpI+
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/osobni-offroad-4x4-suv
+------------------------------------------------
+
+Cas vygenerovani chyby: 5.3.2018 23:18:15
+
+Text chyby: The controller for path '/images/ikona/' was not found or does not implement IController.
+Pocatek trasovani chyby: System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\images\ikona\
+HTTP_COOKIE: UserID=OwGSdxZ5dKDsWQmrvhxydM0P6S3dYO4KvoBlf9Tz20bjJcuq7R08ezND1z6bmpI+
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/filtrace
+------------------------------------------------
+
+Cas vygenerovani chyby: 6.3.2018 22:46:47
+
+Text chyby: Invalid column name 'AluDisc_Id'.
+Invalid column name 'PbDisc_Id'.
+Invalid column name 'Tyre_Id'.
+Pocatek trasovani chyby: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik
+HTTP_HOST: localhost:19222
+------------------------------------------------
+
+Cas vygenerovani chyby: 6.3.2018 23:01:40
+
+Text chyby: Invalid column name 'AluDisc_Id'.
+Invalid column name 'PbDisc_Id'.
+Invalid column name 'Tyre_Id'.
+Pocatek trasovani chyby: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik
+HTTP_HOST: localhost:19222
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 20:37:33
+
+Text chyby: LINQ to Entities does not recognize the method 'Int32 ToInt32(System.Object)' method, and this method cannot be translated into a store expression.
+Pocatek trasovani chyby: System.Data.Entity.Core.Common.CommandTrees.DbExpression Translate(System.Data.Entity.Core.Objects.ELinq.ExpressionConverter, System.Linq.Expressions.MethodCallExpression)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik
+HTTP_HOST: localhost:19222
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 20:44:35
+
+Text chyby: c:\git\PneuMalik\PneuMalik\Views\Shared\_Filter.cshtml(23): error CS1503: Argument 1: cannot convert from 'method group' to 'int'
+Pocatek trasovani chyby: System.CodeDom.Compiler.CompilerResults Compile()
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik
+HTTP_HOST: localhost:19222
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 21:03:45
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: System.Web.Mvc.ActionResult Index(System.String)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\pneumatiky\uzitkove-zatezove-c
+HTTP_COOKIE: UserID=L7O4wi+Cnjo4YBMU/W6WOt8YrHYtv6ypXsv1GXnJB0X9oaxAHEJ0oLT5LUGKBST9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 21:09:16
+
+Text chyby: The model item passed into the dictionary is of type 'PneuMalik.Models.Dto.Cathegory', but this dictionary requires a model item of type 'System.Collections.Generic.IList`1[PneuMalik.Models.Dto.Product]'.
+Pocatek trasovani chyby: Void SetModel(System.Object)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\kategorie\nakup-u-nas
+HTTP_COOKIE: UserID=L7O4wi+Cnjo4YBMU/W6WOt8YrHYtv6ypXsv1GXnJB0X9oaxAHEJ0oLT5LUGKBST9
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/pneumatiky/osobni-offroad-4x4-suv
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 21:19:13
+
+Text chyby: Odkaz na objekt není nastaven na instanci objektu.
+Pocatek trasovani chyby: System.Web.Mvc.ActionResult Index(System.String)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\Kategorie\Index
+HTTP_HOST: localhost:19222
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 21:19:36
+
+Text chyby: The model item passed into the dictionary is of type 'PneuMalik.Models.Dto.Cathegory', but this dictionary requires a model item of type 'PneuMalik.Models.EshopViewModel'.
+Pocatek trasovani chyby: Void SetModel(System.Object)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\kategorie\nakup-u-nas
+HTTP_COOKIE: UserID=hBmVAXWyeGHcnON7wCo1Zfqbjr4laB4NW9782gs+CAg2R2wLBXM76mYG8/Oam2wd
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------
+
+Cas vygenerovani chyby: 7.3.2018 21:20:10
+
+Text chyby: The model item passed into the dictionary is of type 'PneuMalik.Models.Dto.Cathegory', but this dictionary requires a model item of type 'PneuMalik.Models.EshopViewModel'.
+Pocatek trasovani chyby: Void SetModel(System.Object)
+QueryString:
+Post Data:
+PATH_TRANSLATED: c:\git\PneuMalik\PneuMalik\kategorie\nakup-u-nas
+HTTP_COOKIE: UserID=hBmVAXWyeGHcnON7wCo1Zfqbjr4laB4NW9782gs+CAg2R2wLBXM76mYG8/Oam2wd
+HTTP_HOST: localhost:19222
+HTTP_REFERER: http://localhost:19222/
+------------------------------------------------

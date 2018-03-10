@@ -224,7 +224,7 @@ namespace PneuMalik.Services
 
             var manufacturers = db.Manufacturers.ToList();
             var vehicleTypes = db.VehicleTypes.ToList();
-            var seasons = db.Seasons.ToList();
+            var seasons = Enum.GetValues(typeof(Season)).Cast<Season>().ToList();
 
             foreach (var tyreToUpdate in _response.Tyres)
             {

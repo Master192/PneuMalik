@@ -2,12 +2,12 @@
 
 namespace PneuMalik.Models.Dto
 {
-    public class Season
+    public enum Season
     {
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
+        Summer = 1,
+        Winter,
+        Allyear,
+        Unknown
     }
 }

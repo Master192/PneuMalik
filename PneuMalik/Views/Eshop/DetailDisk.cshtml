@@ -5,46 +5,84 @@
 @{
     var product = Model.ProductDetail;
     product.VehicleType = new PneuMalik.Models.Dto.VehicleType();
-    var productName = $"{product.Manufacturer.Name} {product.Pattern}";
+    var productName = $"{product.Manufacturer.Name} {product.Name}";
 }
 
 <div id="stred">
 
     <h1>@productName</h1>
 
-    <p><img src="/images/detail/@(product.Id).jpg" class="detimg" alt="@productName" /></p>
+    <p><img src="/images/detail/@(product.Image)" class="detimg" alt="@productName" /></p>
 
     <table class="tabdet">
         <tr>
             <td class="td1">Výrobce:</td>
             <td>@product.Manufacturer.Name</td>
         </tr>
+
+        @if (product.AluDisc != null)
+        {
+            <tr>
+                <td class="td1">Dezén:</td>
+                <td>@product.AluDisc.Dezen</td>
+            </tr>
+            <tr>
+                <td class="td1">Šířka:</td>
+                <td>@product.AluDisc.Sirka.Name</td>
+            </tr>
+            <tr>
+                <td class="td1">Et:</td>
+                <td>@product.AluDisc.Et</td>
+            </tr>
+            <tr>
+                <td class="td1">Model:</td>
+                <td>@product.AluDisc.Model</td>
+            </tr>
+            <tr>
+                <td class="td1">Počet děr:</td>
+                <td>@product.AluDisc.PocetDer</td>
+            </tr>
+            <tr>
+                <td class="td1">Ráfek:</td>
+                <td>@product.AluDisc.Rafek.Name</td>
+            </tr>
+            <tr>
+                <td class="td1">Rozměr:</td>
+                <td>@product.AluDisc.Rozmer</td>
+            </tr>
+            <tr>
+                <td class="td1">Rozteč:</td>
+                <td>@product.AluDisc.Roztec</td>
+            </tr>
+            <tr>
+                <td class="td1">Středový otvor:</td>
+                <td>@product.AluDisc.StredovaDira</td>
+            </tr>
+        }
+        @if (product.PbDisc != null)
+    {
         <tr>
             <td class="td1">Dezén:</td>
-            <td>@product.Pattern</td>
+            <td>@product.PbDisc.Dezen</td>
         </tr>
         <tr>
             <td class="td1">Šířka:</td>
-            <td>@product.Width</td>
+            <td>@product.PbDisc.Sirka</td>
         </tr>
         <tr>
-            <td class="td1">Série - výška:</td>
-            <td>@product.SerieWidth</td>
+            <td class="td1">Model:</td>
+            <td>@product.PbDisc.Model</td>
         </tr>
         <tr>
-            <td class="td1">Konstrukce:</td>
-            <td>@product.Construction</td>
+            <td class="td1">Značka:</td>
+            <td>@product.PbDisc.Znacka.Name</td>
         </tr>
-        <tr>
-            <td class="td1">Průměr ráfku:</td>
-            <td>@product.Diameter</td>
-        </tr>
+}
     </table>
     <div class="det">
         <p class="detinfo">
             <ins><img src="/img/vehicletype/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
-            <ins><img src="/img/seasons/@(product.Season.Id).png" alt="@product.Season.Name" /></ins>
-            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.InStock ? "SKLADEM" : "")</strong></span></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.Source == PneuMalik.Models.Dto.Product.DataSource.Gedip ? "SKLADEM" : "")</strong></span></ins>
         <p class="detget">
             <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
             <ins>ks</ins>

@@ -51,24 +51,24 @@ namespace PneuMalik.Controllers
                             try
                             {
                                 product.Manufacturer = db.Manufacturers.First(m => m.Name == values[1]);
-                                product.Design = values[2];
-                                product.Cathegories = db.Cathegories.Where(c => c.Name == values[3]).ToList();
-                                product.Width = Int32.Parse(values[4]);
-                                product.SerieWidth = Int32.Parse(values[5]);
-                                product.Construction = values[6];
-                                product.Diameter = Int32.Parse(values[7]);
-                                product.Pattern = values[8];
-                                product.IndexLi = Int32.Parse(values[9]);
-                                product.IndexSi = values[10];
-                                product.Sale = Double.Parse(values[11]);
-                                product.Dph = Double.Parse(values[12]);
-                                product.Season = db.Seasons.First(s => s.Name == values[13]);
-                                product.FuelConsumption = values[14];
-                                product.Adhesion = values[15];
-                                product.NoiseLevelDb = Int32.Parse(values[16]);
-                                product.NoiseLevel = Int32.Parse(values[17]);
-                                product.EfficiencyCathegory = values[18];
-                                product.Standard = values[19];
+                                //product.Design = values[2];
+                                //product.Cathegories = db.Cathegories.Where(c => c.Name == values[3]).ToList();
+                                //product.Width = Int32.Parse(values[4]);
+                                //product.SerieWidth = Int32.Parse(values[5]);
+                                //product.Construction = values[6];
+                                //product.Diameter = Int32.Parse(values[7]);
+                                //product.Pattern = values[8];
+                                //product.IndexLi = Int32.Parse(values[9]);
+                                //product.IndexSi = values[10];
+                                //product.Sale = Double.Parse(values[11]);
+                                //product.Dph = Double.Parse(values[12]);
+                                //product.Season = db.Seasons.First(s => s.Name == values[13]);
+                                //product.FuelConsumption = values[14];
+                                //product.Adhesion = values[15];
+                                //product.NoiseLevelDb = Int32.Parse(values[16]);
+                                //product.NoiseLevel = Int32.Parse(values[17]);
+                                //product.EfficiencyCathegory = values[18];
+                                //product.Standard = values[19];
                                 product.Price = Double.Parse(values[20]);
                             }
                             catch
@@ -115,7 +115,7 @@ namespace PneuMalik.Controllers
             {
                 Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
                 Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
-                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
+                IndexesSi = db.Products.OrderBy(p => p.Tyre.RychlostniIndex).Select(p => p.Tyre.RychlostniIndex).Distinct().ToList()
             };
 
             return View(model);
@@ -136,7 +136,7 @@ namespace PneuMalik.Controllers
             {
                 Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
                 Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
-                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
+                IndexesSi = db.Products.OrderBy(p => p.Tyre.RychlostniIndex).Select(p => p.Tyre.RychlostniIndex).Distinct().ToList()
             };
 
             return View(model);
@@ -151,7 +151,7 @@ namespace PneuMalik.Controllers
             {
                 Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
                 Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
-                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
+                IndexesSi = db.Products.OrderBy(p => p.Tyre.RychlostniIndex).Select(p => p.Tyre.RychlostniIndex).Distinct().ToList()
             };
 
             return View(model);
@@ -166,7 +166,7 @@ namespace PneuMalik.Controllers
             {
                 Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
                 Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
-                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
+                IndexesSi = db.Products.OrderBy(p => p.Tyre.RychlostniIndex).Select(p => p.Tyre.RychlostniIndex).Distinct().ToList()
             };
 
             return View(model);
@@ -181,7 +181,7 @@ namespace PneuMalik.Controllers
             {
                 Manufacturers = db.Manufacturers.OrderBy(m => m.Name).Select(m => m.Name).ToList(),
                 Types = db.VehicleTypes.OrderBy(t => t.Name).Select(t => t.Name).ToList(),
-                IndexesSi = db.Products.OrderBy(p => p.IndexSi).Select(p => p.IndexSi).Distinct().ToList()
+                IndexesSi = db.Products.OrderBy(p => p.Tyre.RychlostniIndex).Select(p => p.Tyre.RychlostniIndex).Distinct().ToList()
             };
 
             return View(model);
