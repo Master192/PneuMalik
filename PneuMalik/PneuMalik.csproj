@@ -474,6 +474,7 @@
     <Content Include="Scripts\request-helper.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\vendor\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\vendor\ckeditor\build-config.js" />
     <Content Include="Scripts\vendor\ckeditor\ckeditor.js" />
@@ -931,6 +932,9 @@
     <Content Include="Views\Eshop\Prislusenstvi.cshtml" />
     <Content Include="Views\Eshop\_ProductAccessoriesRow.cshtml" />
     <Content Include="Views\Eshop\_ProductPbDiskRow.cshtml" />
+    <Content Include="Views\Eshop\OrderStep1.cshtml" />
+    <Content Include="Views\Eshop\OrderStep2.cshtml" />
+    <Content Include="Views\Eshop\OrderStep3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

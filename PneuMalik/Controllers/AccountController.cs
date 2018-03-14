@@ -448,7 +448,7 @@ namespace PneuMalik.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Products");
+            return RedirectToAction("Index", "Cathegories");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

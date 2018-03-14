@@ -43,6 +43,8 @@ namespace PneuMalik.Services
 
             if (!CheckDownloadedData())
             {
+
+                SetStatus("Chyba stažených dat");
                 return;
             }
 
@@ -54,16 +56,22 @@ namespace PneuMalik.Services
 
             foreach (var rim in _response.SteelRims)
             {
-                db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo)
+
+                if (rim.StockPriceInfo != null)
                 {
-                    Period = 24,
-                    Type = PriceInfo.PriceInfoType.Rim,
-                    ProductId = rim.Id
-                });
+
+                    db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo)
+                    {
+                        Period = 24,
+                        Type = PriceInfo.PriceInfoType.Rim,
+                        ProductId = rim.Id
+                    });
+                }
             }
 
             db.SaveChanges();
 
+            var counter = 0;
             SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky)");
 
             foreach (var tyre in _response.Tyres)
@@ -87,9 +95,26 @@ namespace PneuMalik.Services
                         ProductId = tyre.Id
                     });
                 }
+
+                if (counter % 200 == 0)
+                {
+
+                    SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky) ({counter}/{_response.Tyres.Count()})");
+                    db.SaveChanges();
+                }
+
+                counter++;
             }
 
             db.SaveChanges();
+
+            // call stored procedure
+            using (var context = new ApplicationDbContext())
+            {
+
+                SetStatus($"Zpracovávání načtených dat o skladech a cenách");
+                var result = context.Database.SqlQuery<string>("ProcessPneuB2BPrices");
+            }
 
             SetStatus("Import skladu a cen byl ukončen");
         }

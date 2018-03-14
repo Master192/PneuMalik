@@ -14,6 +14,23 @@
         var suf = $"{product.Manufacturer.Name} {product.Tyre.Dezen}";
         var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
 
+        var availability = "SKLADEM";
+
+        if (product.Prices != null && product.Prices.Where(p => p.Stock > 0).Count() > 0)
+        {
+
+            var prices = product.Prices.Where(p => p.Stock > 0 && p.DeliveryTime > 0).OrderBy(o => o.DeliveryTime).ToList();
+
+            if (prices.Count > 0)
+            {
+                availability = $"SKLADEM DO {prices.FirstOrDefault().DeliveryTime} hod";
+            }
+        }
+        else
+        {
+            availability = "NA DOTAZ";
+        }
+
         <div class="rbox">
             <p class="rbnadp">Náš TIP</p>
             <p class="f14">
@@ -23,7 +40,7 @@
                     </a>
                 </strong>
             </p>
-            <p>@($"{product.Tyre.Sirka}/{product.Tyre.Profil} {product.Tyre.Konstrukce}{product.Tyre.PrumerRafku} {product.Tyre.HmotnostniIndex}{product.Tyre.RychlostniIndex}")</p>
+            <p>@($"{product.Tyre.Sirka.Name}/{product.Tyre.Profil.Name} {product.Tyre.Konstrukce}{product.Tyre.PrumerRafku} {product.Tyre.HmotnostniIndex}{product.Tyre.RychlostniIndex}")</p>
             <p>
                 <a href="/pneumatika/@($"{product.Id}/{urlSuffix}")" title="@product.Tyre.Dezen">
                     <img src="/images/nahled/@(product.Image)" alt="@product.Tyre.Dezen" />
@@ -32,7 +49,7 @@
             <div class="rb">
                 <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@((Season)product.Tyre.Sezona)" /></p>
                 <p class="f17 blue"><strong>@($"{product.Price:F} Kč")</strong></p>
-                <p class="grn"><strong>@(product.Source == Product.DataSource.Gedip ? "SKLADEM" : "")</strong></p>
+                <p class="grn"><strong>@availability</strong></p>
             </div>
         </div>
     }

@@ -44,12 +44,18 @@
             <tr>
                 <td id="mainContent_U_Filter1_td_sezona">
                     <select name="filterSeason" id="filter-season" onChange="filterChange('season')">
+                        @if (Model.CathegoryType == 5 || Model.CathegoryType == 8)
+                        {
+                            seasonSelected = true;
+
+                            <option selected="selected" value="0">nerozhoduje</option>
+                        }
                         @foreach (var season in Model.Seasons.Where(s => Model.Filter.Seasons.Contains(s)).OrderBy(s => s))
                         {
                             var isInPeriod = true;
 
                             var seasonName = "-";
-                            switch((PneuMalik.Models.Dto.Season)season)
+                            switch ((PneuMalik.Models.Dto.Season)season)
                             {
                                 case PneuMalik.Models.Dto.Season.Allyear:
                                     seasonName = "Celoroční";

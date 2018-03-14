@@ -38,7 +38,7 @@
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var rim in Model.RafekList.Where(m => Model.Filter.Rims.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@rim">@rim.Name</option>
+                            <option value="@rim.Id">@rim.Name</option>
                         }
                     </select>
                 </td>
@@ -48,7 +48,7 @@
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var brand in Model.ZnackaList.Where(m => Model.Filter.Brands.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@brand">@brand.Name</option>
+                            <option value="@brand.Id">@brand.Name</option>
                         }
                     </select>
                 </td>
@@ -58,7 +58,7 @@
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var modelItem in Model.ModelList.Where(m => Model.Filter.Models.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@modelItem">@modelItem.Name</option>
+                            <option value="@modelItem.Id">@modelItem.Name</option>
                         }
                     </select>
                 </td>

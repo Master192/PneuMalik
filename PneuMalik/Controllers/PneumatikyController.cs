@@ -84,6 +84,8 @@ namespace PneuMalik.Controllers
                 }
             }
 
+            product.Prices = db.Prices.Where(p => p.ProductId == product.Id).ToList();
+
             var model = new EshopViewModel(db, 1)
             {
                 ProductDetail = product

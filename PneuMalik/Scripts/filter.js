@@ -77,6 +77,10 @@ function filterChange(source) {
 
         [].forEach.call(document.querySelectorAll('#filter-season option'), function (elm) {
 
+            if (elm.value === "0") {
+                return;
+            }
+
             if (filter.Seasons.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
@@ -146,7 +150,7 @@ function filterAluChange(source) {
                 return;
             }
 
-            if (filter.Manufacturers.indexOf(elm.value) < 0) {
+            if (filter.Manufacturers.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });
@@ -157,7 +161,7 @@ function filterAluChange(source) {
                 return;
             }
 
-            if (filter.Widths.indexOf(elm.value) < 0) {
+            if (filter.Widths.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });
@@ -215,7 +219,7 @@ function filterSteelChange(source) {
                 return;
             }
 
-            if (filter.Brands.indexOf(elm.value) < 0) {
+            if (filter.Brands.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });
@@ -226,7 +230,7 @@ function filterSteelChange(source) {
                 return;
             }
 
-            if (filter.Models.indexOf(elm.value) < 0) {
+            if (filter.Models.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });

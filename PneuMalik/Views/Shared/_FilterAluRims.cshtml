@@ -42,7 +42,7 @@
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var width in Model.SirkaList.Where(m => Model.Filter.Widths.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@width">@width.Name</option>
+                            <option value="@width.Id">@width.Name</option>
                         }
                     </select>
                 </td>
@@ -52,7 +52,7 @@
                         <option selected="selected" value="0">nerozhoduje</option>
                         @foreach (var rim in Model.RafekList.Where(m => Model.Filter.Rims.Contains(m.Id)).OrderBy(m => m.Name))
                         {
-                            <option value="@rim">@rim.Name</option>
+                            <option value="@rim.Id">@rim.Name</option>
                         }
                     </select>
                 </td>

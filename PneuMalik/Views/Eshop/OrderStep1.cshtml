@@ -1,0 +1,250 @@
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+@{
+    var totalPrice = Model.Cart.Sum(s => s.PriceTmp * s.Count);
+}
+
+@Scripts.Render("~/Scripts/validation.js?v=1.0")
+
+<div id="kosik">
+
+    <div class="boxkosik">
+
+        <p><strong>Objednávka</strong> - krok 1/3</p>
+
+        <p class="kzalthis">Osobní a dodací údaje</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzal">Doprava a platba</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzal">Souhrn a odeslání</p>
+        <div class="cleaner"><hr></div>
+
+        <h1>Osobní a dodací údaje:</h1>
+
+        <div id="mainContent_UDP1">
+
+
+            <table cellspacing="0" class="tabzak">
+                <tbody>
+                    <tr>
+                        <td id="mainContent_td1" class="this"><a id="mainContent_lbJednorazovy" href="javascript:directionChange(1);">Jednorázový nákup bez registrace</a></td>
+
+                        <td id="mainContent_td2"><a id="mainContent_lbRegistrace" href="javascript:directionChange(2);">Registrace nového zákazníka</a></td>
+
+                        <td id="mainContent_td3"><a id="mainContent_lbPrihlaseni" href="javascript:directionChange(3);">Přihlášení registrovaného zákazníka</a></td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tabobal">
+
+                <div id="mainContent_zak1">
+
+                    <table cellspacing="0" class="tabdata">
+                        <tbody>
+                            <tr>
+                                <td width="65">Jméno:</td>
+                                <td><input name="ctl00$mainContent$tbJmenoNoreg" type="text" id="mainContent_tbJmenoNoreg" class="boks" onblur="validateRequiedField('mainContent_tbJmenoNoreg', 'mainContent_imgJmenoNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgJmenoNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td width="50">Příjmení:</td>
+                                <td><input name="ctl00$mainContent$tbPrijmeniNoreg" type="text" id="mainContent_tbPrijmeniNoreg" class="boks" onblur="validateRequiedField('mainContent_tbPrijmeniNoreg', 'mainContent_imgPrijmeniNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgPrijmeniNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td width="30"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Váš e-mail:</td>
+                                <td><input name="ctl00$mainContent$tbEmailNoreg" type="text" id="mainContent_tbEmailNoreg" class="boks" onblur="validateRegexField('mainContent_tbEmailNoreg', 'mainContent_imgEmailNoreg', 'OK', 'E-mailová adresa není ve správném tvaru. Příklad: j.novak@seznam.cz', 'email');"> <img id="mainContent_imgEmailNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Telefon:</td>
+                                <td><input name="ctl00$mainContent$tbTelefonNoreg" type="text" id="mainContent_tbTelefonNoreg" class="boks" onblur="validateRegexField('mainContent_tbTelefonNoreg', 'mainContent_imgTelefonNoreg', 'OK', 'Telefonní číslo není ve správném tvaru. Příklad: 777 123 456', 'phone');"> <img id="mainContent_imgTelefonNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><strong>Fakturační adresa:</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Ulice, č.p.:</td>
+                                <td><input name="ctl00$mainContent$tbUliceNoreg" type="text" id="mainContent_tbUliceNoreg" class="boks" onblur="validateRequiedField('mainContent_tbUliceNoreg', 'mainContent_imgUliceNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgUliceNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Město/Obec:</td>
+                                <td><input name="ctl00$mainContent$tbMestoNoreg" type="text" id="mainContent_tbMestoNoreg" class="boks" onblur="validateRequiedField('mainContent_tbMestoNoreg', 'mainContent_imgMestoNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgMestoNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>PSČ:</td>
+                                <td><input name="ctl00$mainContent$tbPSCNoreg" type="text" id="mainContent_tbPSCNoreg" class="boks" onblur="validateRegexField('mainContent_tbPSCNoreg', 'mainContent_imgPSCNoreg', 'OK', 'PSČ není ve správném tvaru. Příklad: 561 23 nebo 56123', /\d{3} ?\d{2}$/);"> <img id="mainContent_imgPSCNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+                            <tr>
+                                <td>Stát:</td>
+                                <td><input name="ctl00$mainContent$tbStatNoreg" type="text" value="Česká republika" id="mainContent_tbStatNoreg" class="boks" onblur="validateRequiedField('mainContent_tbStatNoreg', 'mainContent_imgStatNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgStatNoreg" title="OK" src="/img/yes.png" alt="OK"></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><input id="mainContent_chbFirmaNoreg" type="checkbox" name="ctl00$mainContent$chbFirmaNoreg" onclick="nakupNaFirmu('mainContent_chbFirmaNoreg', 'mainContent_firemni1noreg')"> Nákup na firmu</td>
+                            </tr>
+
+                            <tr id="mainContent_firemni1noreg" style="display: none;">
+                                <td>Název firmy:</td>
+                                <td><input name="ctl00$mainContent$tbFirmaNoreg" type="text" id="mainContent_tbFirmaNoreg" class="boks" onblur="validateRequiedField('mainContent_tbFirmaNoreg', 'mainContent_imgFirmaNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgFirmaNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>IČ:</td>
+                                <td><input name="ctl00$mainContent$tbICNoreg" type="text" id="mainContent_tbICNoreg" class="boks" onblur="validateRequiedField('mainContent_tbICNoreg', 'mainContent_imgICNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgICNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>DIČ:</td>
+                                <td><input name="ctl00$mainContent$tbDICNoreg" type="text" id="mainContent_tbDICNoreg" class="boks" onblur="validateRequiedField('mainContent_tbDICNoreg', 'mainContent_imgDICNoreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgDICNoreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6"><input id="mainContent_chbDodaciNoreg" type="checkbox" name="ctl00$mainContent$chbDodaciNoreg" checked="checked" onclick="dodaciAdresaStejna('mainContent_chbDodaciNoreg', 'noreg')"> Dodací adresa je stejná s fakturační</td>
+                            </tr>
+                            <tr id="mainContent_adresa2anoreg" style="display: none;">
+                                <td colspan="6"><strong>Dodací adresa:</strong></td>
+                            </tr>
+                            <tr id="mainContent_adresa2bnoreg" style="display: none;">
+                                <td>Jméno:</td>
+                                <td><input name="ctl00$mainContent$tbJmeno2Noreg" type="text" id="mainContent_tbJmeno2Noreg" class="boks" onblur="validateRequiedField('mainContent_tbJmeno2Noreg', 'mainContent_imgJmeno2Noreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgJmeno2Noreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                            <tr id="mainContent_adresa2cnoreg" style="display: none;">
+                                <td>Ulice, č.p.:</td>
+                                <td><input name="ctl00$mainContent$tbUlice2Noreg" type="text" id="mainContent_tbUlice2Noreg" class="boks" onblur="validateRequiedField('mainContent_tbUlice2Noreg', 'mainContent_imgUlice2Noreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgUlice2Noreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Město/Obec:</td>
+                                <td><input name="ctl00$mainContent$tbMesto2Noreg" type="text" id="mainContent_tbMesto2Noreg" class="boks" onblur="validateRequiedField('mainContent_tbMesto2Noreg', 'mainContent_imgMesto2Noreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgMesto2Noreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>PSČ:</td>
+                                <td><input name="ctl00$mainContent$tbPSC2Noreg" type="text" id="mainContent_tbPSC2Noreg" class="boks" onblur="validateRegexField('mainContent_tbPSC2Noreg', 'mainContent_imgPSC2Noreg', 'OK', 'PSČ není ve správném tvaru. Příklad: 561 23 nebo 56123', /\d{3} ?\d{2}$/);"> <img id="mainContent_imgPSC2Noreg" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+                            <tr id="mainContent_adresa2dnoreg" style="display: none;">
+                                <td>Stát:</td>
+                                <td><input name="ctl00$mainContent$tbStat2Noreg" type="text" value="Česká republika" id="mainContent_tbStat2Noreg" class="boks" onblur="validateRequiedField('mainContent_tbStat2Noreg', 'mainContent_imgStat2Noreg', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgStat2Noreg" title="OK" src="/img/yes.png" alt="OK"></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div id="mainContent_zaknew" style="display: none;">
+
+                    <table cellspacing="0" class="tabdata">
+                        <tbody>
+                            <tr>
+                                <td width="65">Jméno:</td>
+                                <td><input name="ctl00$mainContent$tbJmeno" type="text" id="mainContent_tbJmeno" class="boks" onblur="validateRequiedField('mainContent_tbJmeno', 'mainContent_imgJmeno', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgJmeno" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td width="50">Příjmení:</td>
+                                <td><input name="ctl00$mainContent$tbPrijmeni" type="text" id="mainContent_tbPrijmeni" class="boks" onblur="validateRequiedField('mainContent_tbPrijmeni', 'mainContent_imgPrijmeni', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgPrijmeni" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td width="30"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Váš e-mail:</td>
+                                <td><input name="ctl00$mainContent$tbEmail" type="text" id="mainContent_tbEmail" class="boks" onblur="validateRegexField('mainContent_tbEmail', 'mainContent_imgEmail', 'OK', 'E-mailová adresa není ve správném tvaru. Příklad: j.novak@seznam.cz', 'email');"> <img id="mainContent_imgEmail" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Telefon:</td>
+                                <td><input name="ctl00$mainContent$tbTelefon" type="text" id="mainContent_tbTelefon" class="boks" onblur="validateRegexField('mainContent_tbTelefon', 'mainContent_imgTelefon', 'OK', 'Telefonní číslo není ve správném tvaru. Příklad: 777 123 456', 'phone');"> <img id="mainContent_imgTelefon" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Heslo:<input type="hidden" name="ctl00$mainContent$hidHeslo1" id="mainContent_hidHeslo1" value="dsfasd"></td>
+                                <td><input name="ctl00$mainContent$tbHeslo" type="password" id="mainContent_tbHeslo" class="boks" onblur="validateRequiedField('mainContent_tbHeslo', 'mainContent_imgHeslo', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgHeslo" title="OK" src="/img/yes.png" alt="OK"></td>
+                                <td>Heslo (kontrola):<input type="hidden" name="ctl00$mainContent$hidHeslo2" id="mainContent_hidHeslo2" value="dfasdf"></td>
+                                <td><input name="ctl00$mainContent$tbHeslo2" type="password" id="mainContent_tbHeslo2" class="boks" onblur="validateCompareField('mainContent_tbHeslo2', 'mainContent_tbHeslo', 'mainContent_imgHeslo2', 'OK', 'Hesla se neshodují.');"> <img id="mainContent_imgHeslo2" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><strong>Fakturační adresa:</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Ulice, č.p.:</td>
+                                <td><input name="ctl00$mainContent$tbUlice" type="text" id="mainContent_tbUlice" class="boks" onblur="validateRequiedField('mainContent_tbUlice', 'mainContent_imgUlice', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgUlice" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Město/Obec:</td>
+                                <td><input name="ctl00$mainContent$tbMesto" type="text" id="mainContent_tbMesto" class="boks" onblur="validateRequiedField('mainContent_tbMesto', 'mainContent_imgMesto', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgMesto" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>PSČ:</td>
+                                <td><input name="ctl00$mainContent$tbPSC" type="text" id="mainContent_tbPSC" class="boks" onblur="validateRegexField('mainContent_tbPSC', 'mainContent_imgPSC', 'OK', 'PSČ není ve správném tvaru. Příklad: 561 23 nebo 56123', /\d{3} ?\d{2}$/);"> <img id="mainContent_imgPSC" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+                            <tr>
+                                <td>Stát:</td>
+                                <td><input name="ctl00$mainContent$tbStat" type="text" value="Česká republika" id="mainContent_tbStat" class="boks" onblur="validateRequiedField('mainContent_tbStat', 'mainContent_imgStat', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgStat" title="OK" src="/img/yes.png" alt="OK"></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><input id="mainContent_chbFirma" type="checkbox" name="ctl00$mainContent$chbFirma" checked="checked" onclick="nakupNaFirmu('mainContent_chbFirma', 'mainContent_firemni1')"> Nákup na firmu</td>
+                            </tr>
+                            <tr id="mainContent_firemni1" style="display: none;">
+                                <td>Název firmy:</td>
+                                <td><input name="ctl00$mainContent$tbFirma" type="text" id="mainContent_tbFirma" class="boks" onblur="validateRequiedField('mainContent_tbFirma', 'mainContent_imgFirma', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgFirma" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>IČ:</td>
+                                <td><input name="ctl00$mainContent$tbIC" type="text" id="mainContent_tbIC" class="boks" onblur="validateRequiedField('mainContent_tbIC', 'mainContent_imgIC', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgIC" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>DIČ:</td>
+                                <td><input name="ctl00$mainContent$tbDIC" type="text" id="mainContent_tbDIC" class="boks" onblur="validateRequiedField('mainContent_tbDIC', 'mainContent_imgDIC', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgDIC" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6"><input id="mainContent_chbDodaci" type="checkbox" name="ctl00$mainContent$chbDodaci" onclick="dodaciAdresaStejna('mainContent_chbDodaci', '')"> Dodací adresa je stejná s fakturační</td>
+                            </tr>
+                            <tr id="mainContent_adresa2d" style="display: none;">
+                                <td colspan="6"><strong>Dodací adresa:</strong></td>
+                            </tr>
+
+                            <tr id="mainContent_adresa2a" style="display: none;">
+                                <td>Jméno:</td>
+                                <td><input name="ctl00$mainContent$tbJmeno2" type="text" id="mainContent_tbJmeno2" class="boks" onblur="validateRequiedField('mainContent_tbJmeno2', 'mainContent_imgJmeno2', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgJmeno2" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+
+                            <tr id="mainContent_adresa2b" style="display: none;">
+                                <td>Ulice, č.p.:</td>
+                                <td><input name="ctl00$mainContent$tbUlice2" type="text" id="mainContent_tbUlice2" class="boks" onblur="validateRequiedField('mainContent_tbUlice2', 'mainContent_imgUlice2', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgUlice2" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>Město/Obec:</td>
+                                <td><input name="ctl00$mainContent$tbMesto2" type="text" id="mainContent_tbMesto2" class="boks" onblur="validateRequiedField('mainContent_tbMesto2', 'mainContent_imgMesto2', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgMesto2" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                                <td>PSČ:</td>
+                                <td><input name="ctl00$mainContent$tbPSC2" type="text" id="mainContent_tbPSC2" class="boks" onblur="validateRegexField('mainContent_tbPSC2', 'mainContent_imgPSC2', 'OK', 'PSČ není ve správném tvaru. Příklad: 561 23 nebo 56123', /\d{3} ?\d{2}$/);"> <img id="mainContent_imgPSC2" title="Tuto hodnotu je nutno vyplnit." src="/img/no.png" alt="Tuto hodnotu je nutno vyplnit."></td>
+                            </tr>
+
+                            <tr id="mainContent_adresa2c" style="display: none;">
+                                <td>Stát:</td>
+                                <td><input name="ctl00$mainContent$tbStat2" type="text" value="Česká republika" id="mainContent_tbStat2" class="boks" onblur="validateRequiedField('mainContent_tbStat2', 'mainContent_imgStat2', 'OK', 'Tuto hodnotu je nutno vyplnit.');"> <img id="mainContent_imgStat2" title="OK" src="/img/yes.png" alt="OK"></td>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div id="mainContent_zakreg" style="display:none;">
+
+                    <table cellspacing="0" class="tabdata">
+                        <tbody>
+                            <tr>
+                                <td width="120">Přihlašovací jméno:</td>
+                                <td><input name="ctl00$mainContent$tbLogin" type="text" id="mainContent_tbLogin" class="boks"></td>
+                                <td width="50">&nbsp;</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td width="120">Heslo:</td>
+                                <td><input name="ctl00$mainContent$tbPass" type="password" id="mainContent_tbPass" class="boks"></td>
+                                <td width="50">&nbsp;</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <input name="ctl00$mainContent$hidSmer" type="hidden" id="mainContent_hidSmer" value="1">
+                <input name="ctl00$mainContent$hidUserInit" type="hidden" id="mainContent_hidUserInit" value="e75d3e98-38b5-4caf-8505-6df54b03fcd6">
+
+                <p class="tkpokr"><a id="mainContent_lbPokracovat" href="javascript:Step1Continue()">Pokračovat &gt;</a></p>
+                <p class="tkzpet"><a href="/eshop/kosik" title="zpět na košík">&lt; Zpět na košík</a></p>
+
+                <div class="cleaner"><hr></div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -5,20 +5,32 @@
     var suf = $"{Model.Manufacturer.Name} {Model.Tyre.Dezen}";
     var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-"));
 
-    var availability = Model.Source == PneuMalik.Models.Dto.Product.DataSource.Gedip ? "SKLADEM" : "NA DOTAZ";
+    var availability = "SKLADEM";
 
-    if (Model.Prices != null && Model.Prices.Count > 0)
+    if (Model.Prices != null && Model.Prices.Where(p => p.Stock > 0).Count() > 0)
     {
 
-        availability = $"SKLADEM DO {Model.Prices.OrderBy(p => p.DeliveryTime).FirstOrDefault().DeliveryTime} hod";
+        var prices = Model.Prices.Where(p => p.Stock > 0 && p.DeliveryTime > 0).OrderBy(o => o.DeliveryTime).ToList();
+
+        if (prices.Count > 0)
+        {
+            availability = $"SKLADEM DO {prices.FirstOrDefault().DeliveryTime} hod";
+        }
+    }
+    else
+    {
+        availability = "NA DOTAZ";
     }
 }
 
-<p>
-    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Tyre.Dezen">
-        <img src="/images/ikona/@(Model.Image)" alt="@Model.Tyre.Dezen">
-    </a>
-</p>
+@if (!string.IsNullOrEmpty(Model.Image))
+{
+    <p>
+        <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Tyre.Dezen">
+            <img src="/images/ikona/@(Model.Image)" alt="@Model.Tyre.Dezen">
+        </a>
+    </p>
+}
 <table>
     <tbody>
         <tr>
@@ -35,7 +47,7 @@
         <tr>
             <td class="grn"><strong>DOSTUPNOST:<br>@availability</strong></td>
             <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Tyre.Sezona).png" alt="@Model.Tyre.Sezona"></td>
-            <td class="f15 blue"><strong>@($"{Model.Price:F} Kč")</strong></td>
+            <td class="f15 blue"><strong>@($"{Model.Price:0} Kč")</strong></td>
             <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/@($"{Model.Id}/{urlSuffix}")';"></td>
         </tr>
     </tbody>

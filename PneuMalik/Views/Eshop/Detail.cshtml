@@ -22,6 +22,27 @@
             seasonName = "Léto";
             break;
     }
+
+    var inStockInfo = "";
+    if (product.Prices != null)
+    {
+        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 0) != null)
+        {
+            inStockInfo = "SKLADEM";
+        }
+        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 24) != null)
+        {
+            inStockInfo = "SKLADEM DO 36 hod";
+        }
+        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 48) != null)
+        {
+            inStockInfo = "SKLADEM DO 60 hod";
+        }
+    }
+    else
+    {
+        inStockInfo = "NA DOTAZ";
+    }
 }
 
 <div id="stred">
@@ -52,8 +73,8 @@
         <tr style="display: @(string.IsNullOrEmpty(product.Tyre.RychlostniIndex) ? "none" : "table-row");">
             <td class="td1">Rychlostní index:</td><td>@product.Tyre.RychlostniIndex</td>
         </tr>
-        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.Hmotnost) ? "none" : "table-row");">
-            <td class="td1">Hmotnostní index:</td><td>@product.Tyre.Hmotnost</td>
+        <tr style="display: @(string.IsNullOrEmpty(product.Tyre.HmotnostniIndex) ? "none" : "table-row");">
+            <td class="td1">Hmotnostní index:</td><td>@product.Tyre.HmotnostniIndex</td>
         </tr>
         <tr style="display: @(string.IsNullOrEmpty(product.VehicleType.Name) ? "none" : "table-row");">
             <td class="td1">Typ vozidla:</td><td>@product.VehicleType.Name</td>
@@ -66,20 +87,23 @@
         <p class="detinfo">
             <ins><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
             <ins><img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@seasonName" /></ins>
-            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(product.Source == PneuMalik.Models.Dto.Product.DataSource.Gedip ? "SKLADEM" : "")</strong></span></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(inStockInfo)</strong></span></ins>
             <p class="detget">
                 <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
                 <ins>ks</ins>
                 <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
             </p>
             <table>
-                <tr>
-                    <td valign="top" width="80">Vaše cena:</td>
-                    <td><input type="radio" name="gr" value="cena1" checked>&nbsp;
-                        <span class="f20 blue"><strong>@($"{product.Price:F} Kč")</strong></span> 
-                        <span style="color:#008000;"><strong></strong></span><br />
-                    </td>
-                </tr>
+                @foreach (var priceInfo in product.Prices)
+                {
+                    <tr>
+                        <td valign="top" width="80">Vaše cena:</td>
+                        <td><input type="radio" name="gr" value="cena1" checked>&nbsp;
+                            <span class="f20 blue"><strong>@($"{priceInfo.Price:0} Kč")</strong> do @(priceInfo.DeliveryTime + 12) hodin</span> 
+                            <span style="color:#008000;"><strong>SKLADEM: @priceInfo.Stock ks</strong></span><br />
+                        </td>
+                    </tr>
+                }
             </table>
     </div>
     <ul id="menuzal">

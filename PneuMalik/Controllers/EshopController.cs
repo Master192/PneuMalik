@@ -66,6 +66,38 @@ namespace PneuMalik.Controllers
         }
 
         [LayoutInjecter("_EshopLayout")]
+        [ActionName("osobni-dodaci-udaje")]
+        public ActionResult ObjednavkaKrok1()
+        {
+
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
+            var customer = new Customer();
+
+            var model = new EshopViewModel(db)
+            {
+                Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList()
+            };
+
+            model.CartProducts = db.CartRows.Join(db.Products,
+                c => c.ProductId,
+                p => p.Id,
+                (cart, product) => new { Cart = cart, Product = product })
+                .Where(cp => cp.Cart.CustomerId == customer.Id)
+                .Select(cp => cp.Product).ToList();
+
+            return View("~/Views/Eshop/OrderStep1.cshtml", model);
+        }
+
+        [LayoutInjecter("_EshopLayout")]
         public ActionResult Konfigurator()
         {
 

@@ -50,6 +50,9 @@ namespace PneuMalik.Helpers
                 if (cathegoryType == 9)     // ocelové disky
                 {
 
+                    Filter.Rims = available.Where(r => r.PbDisc.Rafek.Name != "-")
+                        .GroupBy(g => g.PbDisc.Rafek.Id)
+                        .Select(s => s.FirstOrDefault().PbDisc.Rafek.Id).ToList();
                     Filter.Brands = available.Where(r => r.PbDisc.Znacka.Name != "-")
                         .GroupBy(g => g.PbDisc.Znacka.Id)
                         .Select(s => s.FirstOrDefault().PbDisc.Znacka.Id).ToList();

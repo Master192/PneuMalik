@@ -3,6 +3,7 @@ using PneuMalik.Models;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace PneuMalik.Controllers.Api
@@ -43,6 +44,20 @@ namespace PneuMalik.Controllers.Api
             db.SaveChanges();
 
             return Ok(db.CartRows.Where(c => c.CustomerId == customer.Id).ToList());
+        }
+
+        [HttpGet]
+        [Route("register")]
+        public IHttpActionResult Register(int id, double price, int count)
+        {
+            return Content(HttpStatusCode.BadRequest, "Není implementováno");
+        }
+
+        [HttpGet]
+        [Route("login")]
+        public IHttpActionResult Login(string user, string password)
+        {
+            return Content(HttpStatusCode.BadRequest, "Není implementováno");
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();
