@@ -91,7 +91,7 @@
             <p class="detget">
                 <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
                 <ins>ks</ins>
-                <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
+                <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), @($"{product.Dph:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
             </p>
             <table>
                 @foreach (var priceInfo in product.Prices)
@@ -99,7 +99,7 @@
                     <tr>
                         <td valign="top" width="80">Vaše cena:</td>
                         <td><input type="radio" name="gr" value="cena1" checked>&nbsp;
-                            <span class="f20 blue"><strong>@($"{priceInfo.Price:0} Kč")</strong> do @(priceInfo.DeliveryTime + 12) hodin</span> 
+                            <span class="f20 blue"><strong>@($"{(priceInfo.Price * (1 + (product.Dph / 100.0))):0} Kč")</strong> @(priceInfo.DeliveryTime > 0 ? $"do {priceInfo.DeliveryTime + 12} hodin" : "")</span> 
                             <span style="color:#008000;"><strong>SKLADEM: @priceInfo.Stock ks</strong></span><br />
                         </td>
                     </tr>

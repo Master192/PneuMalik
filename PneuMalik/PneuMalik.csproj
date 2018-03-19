@@ -221,11 +221,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Customer.cs" />
+    <Compile Include="Helpers\CustomerHelper.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\FilterHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\LayoutInjecterAttribute.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurator\ABELine.cs" />
@@ -243,8 +244,12 @@
     <Compile Include="Models\Dto\AluDiscParameters.cs" />
     <Compile Include="Models\Dto\CartRow.cs" />
     <Compile Include="Models\Dto\Cathegory.cs" />
+    <Compile Include="Models\Dto\Customer.cs" />
+    <Compile Include="Models\Dto\CustomerRegistration.cs" />
     <Compile Include="Models\Dto\Filter.cs" />
     <Compile Include="Models\Dto\Manufacturer.cs" />
+    <Compile Include="Models\Dto\Order.cs" />
+    <Compile Include="Models\Dto\OrderItem.cs" />
     <Compile Include="Models\Dto\PbDiscParameters.cs" />
     <Compile Include="Models\Dto\Price.cs" />
     <Compile Include="Models\Dto\Product.cs" />
@@ -474,6 +479,7 @@
     <Content Include="Scripts\request-helper.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\validation-shipping.js" />
     <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\vendor\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\vendor\ckeditor\build-config.js" />
@@ -935,6 +941,7 @@
     <Content Include="Views\Eshop\OrderStep1.cshtml" />
     <Content Include="Views\Eshop\OrderStep2.cshtml" />
     <Content Include="Views\Eshop\OrderStep3.cshtml" />
+    <Content Include="Views\Eshop\OrderStep4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

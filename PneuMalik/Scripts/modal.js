@@ -1,4 +1,4 @@
-﻿function toTheCart(id, price, sText) {
+﻿function toTheCart(id, price, dph, sText) {
 
     var countElement = document.getElementById("productCount");
     var count = 1;
@@ -9,7 +9,7 @@
 
     openAlertWindow('Položka přidána do košíku.<br >' + sText + '&nbsp;' + count + ' ks');
 
-    var getStatus = new pneuMalik.RequestHelper("GET", "/api/eshop/cartadd?id=" + id + "&count=" + count + "&price=" + price);
+    var getStatus = new pneuMalik.RequestHelper("GET", "/api/eshop/cartadd?id=" + id + "&count=" + count + "&price=" + price + "&dph=" + dph);
     getStatus.makeRequest("toTheCart").then(function (response) {
 
         var cartRows = JSON.parse(response);

@@ -2,7 +2,7 @@
 
     txtElement = document.getElementById(fieldName);
 
-    if (txtElement.value != "") {
+    if (txtElement.value !== "") {
         document.getElementById(imgName).src = '/img/yes.png';
         document.getElementById(imgName).alt = strOK;
         document.getElementById(imgName).title = strOK;
@@ -18,13 +18,14 @@ function validateRegexField(fieldName, imgName, strOK, strNOK, Pattern) {
 
     var regexes = {
         phone: /^(\+420)? ?[0-9]{3} ?[0-9]{3} ?[0-9]{3}$/,
-        email: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-    }
+        email: /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+        zip: /\d{3} ?\d{2}$/
+    };
 
     var reg = new RegExp(regexes[Pattern]);
     txtElement = document.getElementById(fieldName);
 
-    if (txtElement.value != "" && reg.test(txtElement.value) == true) {
+    if (txtElement.value !== "" && reg.test(txtElement.value) === true) {
         document.getElementById(imgName).src = '/img/yes.png';
         document.getElementById(imgName).alt = strOK;
         document.getElementById(imgName).title = strOK;
@@ -41,7 +42,7 @@ function validateCompareField(fieldName, fieldName2, imgName, strOK, strNOK) {
     txtElement = document.getElementById(fieldName);
     txtElement2 = document.getElementById(fieldName2);
 
-    if (txtElement.value != "" && txtElement.value == txtElement2.value) {
+    if (txtElement.value !== "" && txtElement.value === txtElement2.value) {
         document.getElementById(imgName).src = '/img/yes.png';
         document.getElementById(imgName).alt = strOK;
         document.getElementById(imgName).title = strOK;
@@ -64,10 +65,10 @@ function nakupNaFirmu(elm, elmrow) {
 function dodaciAdresaStejna(elm, suffix) {
 
     var checkbox = document.getElementById(elm);
-    var row1 = document.getElementById('mainContent_adresa2a' + suffix);
-    var row2 = document.getElementById('mainContent_adresa2b' + suffix);
-    var row3 = document.getElementById('mainContent_adresa2c' + suffix);
-    var row4 = document.getElementById('mainContent_adresa2d' + suffix);
+    var row1 = document.getElementById('adresa2a' + suffix);
+    var row2 = document.getElementById('adresa2b' + suffix);
+    var row3 = document.getElementById('adresa2c' + suffix);
+    var row4 = document.getElementById('adresa2d' + suffix);
 
     row1.style.display = !checkbox.checked ? "table-row" : "none";
     row2.style.display = !checkbox.checked ? "table-row" : "none";
@@ -77,19 +78,19 @@ function dodaciAdresaStejna(elm, suffix) {
 
 function directionChange(direction) {
 
-    var zal1 = document.getElementById('mainContent_zak1');
-    var zal2 = document.getElementById('mainContent_zaknew');
-    var zal3 = document.getElementById('mainContent_zakreg');
+    var zal1 = document.getElementById('zak1');
+    var zal2 = document.getElementById('zaknew');
+    var zal3 = document.getElementById('zakreg');
 
     zal1.style.display = direction === 1 ? "block" : "none";
     zal2.style.display = direction === 2 ? "block" : "none";
     zal3.style.display = direction === 3 ? "block" : "none";
 
-    var zalzal1 = document.getElementById('mainContent_td1');
-    var zalzal2 = document.getElementById('mainContent_td2');
-    var zalzal3 = document.getElementById('mainContent_td3');
+    var zalzal1 = document.getElementById('td1');
+    var zalzal2 = document.getElementById('td2');
+    var zalzal3 = document.getElementById('td3');
 
-    var hidden = document.getElementById('mainContent_hidSmer');
+    var hidden = document.getElementById('hidSmer');
     hidden.value = direction;
 
     switch (direction) {
@@ -114,14 +115,16 @@ function directionChange(direction) {
 
 function Step1Continue() {
 
-    var hidden = document.getElementById('mainContent_hidSmer');
+    var hidden = document.getElementById('hidSmer');
     var direction = hidden.value;
 
     switch (direction) {
 
         case "1":
+            document.getElementById("order-step-1").submit();
             break;
         case "2":
+            document.getElementById("order-step-1").submit();
             break;
         case "3":
             var orderLogin = new pneuMalik.RequestHelper("GET", "/api/eshop/login?user=abc&password=cde");

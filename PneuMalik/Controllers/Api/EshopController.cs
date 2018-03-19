@@ -13,9 +13,9 @@ namespace PneuMalik.Controllers.Api
 
         [HttpGet]
         [Route("cartadd")]
-        public IHttpActionResult CartAdd(int id, double price, int count)
+        public IHttpActionResult CartAdd(int id, double price, double dph, int count)
         {
-            var customer = new Customer();
+            var customer = new CustomerHelper();
 
             if (db.CartRows.Any(c => c.CustomerId == customer.Id && c.ProductId == id))
             {
@@ -34,7 +34,7 @@ namespace PneuMalik.Controllers.Api
                     Count = count,
                     CustomerId = customer.Id,
                     ProductId = id,
-                    PriceTmp = price,
+                    PriceTmp = price * (1 + (dph / 100.0)),
                     Payment = 0,
                     Shipping = 0,
                     PriceType = 0

@@ -1,1 +1,114 @@
-﻿
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+@{
+    var totalPrice = Model.Cart.Sum(s => s.PriceTmp * s.Count);
+    var shippingPrice = 200.0;
+}
+
+@Scripts.Render("~/Scripts/validation-confirm.js?v=1.0")
+
+<div id="preloader" style="display:none;"><img src="/img/preloader.gif" alt="" /></div>
+
+<div id="kosik">
+
+    <div class="boxkosik">
+
+        <p><strong>Objednávka</strong> - krok 3/3</p>
+
+        <p class="kzal">Osobní a dodací údaje</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzal">Doprava a platba</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzalthis">Souhrn a odeslání</p>
+        <div class="cleaner"><hr></div>
+
+        <h1>Souhrn a potvrzení objednávky:</h1>
+
+        <div id="mainContent_UDP1">
+            <form method="post" action="/eshop/confirm" id="order-step-3">
+
+                <div class="tabkosik">
+
+                    <div class="tkadr">
+
+                        <p><strong>Fakturační adresa</strong></p>
+                        <p>
+                            @Model.Customer.Name @Model.Customer.Surname<br />
+                            @Model.Customer.Street<br />
+                            @Model.Customer.Zip @Model.Customer.City<br />
+                            @Model.Customer.Country<br />
+                            @Model.Customer.Phone
+                        </p>
+                        <p><strong>Dodací adresa</strong></p>
+                        @if (Model.Customer.DeliveryAddress)
+                        {
+                            <p>
+                                @Model.Customer.DeliveryName<br />
+                                @Model.Customer.DeliveryStreet<br />
+                                @Model.Customer.DeliveryZip @Model.Customer.DeliveryCity<br />
+                                @Model.Customer.DeliveryCountry
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @Model.Customer.Name @Model.Customer.Surname<br />
+                                @Model.Customer.Street<br />
+                                @Model.Customer.Zip @Model.Customer.City<br />
+                                @Model.Customer.Country
+                            </p>
+                        }
+
+                    </div><div class="cleaner"><hr></div>
+
+                    <table cellspacing="0">
+                        <tbody>
+                            <tr class="tkhead">
+                                <td>Název</td>
+                                <td width="60">Jednotka</td>
+                                <td width="75">Cena s DPH</td>
+                                <td width="53">Množství</td>
+                                <td width="102">Mezisoučet s DPH</td>
+                            </tr>
+                            @foreach (var cartRow in Model.Cart)
+                            {
+
+                                var product = Model.CartProducts.FirstOrDefault(p => p.Id == cartRow.ProductId);
+
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td class="cent">ks</td>
+                                    <td>@($"{cartRow.PriceTmp:F}") Kč</td>
+                                    <td class="cent">@cartRow.Count</td>
+                                    <td>@($"{cartRow.PriceTmp * cartRow.Count:F}") Kč</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="5" align="right">
+                                    <p>Celková cena včetně DPH: <strong><span class="f14 bl">@($"{totalPrice:0}"),00 Kč</span></strong></p><p>Zvolený způsob platby: <strong>Při převzetí zboží</strong></p>
+                                    <p>Zvolený způsob dopravy: <strong>Dobírkou</strong></p>
+                                    <p>Cena za zvolenou dopravu: <strong>@($"{shippingPrice:0}"),00 Kč</strong></p>
+                                    <p>Celková cena včetně dopravy: <strong><span class="f14 bl">@($"{totalPrice + shippingPrice:0}"),00 Kč</span></strong></p>
+                                    <br>
+                                    Připomínka k objednávce:<br />
+                                    <textarea name="Pripominka" rows="5" cols="20" id="Pripominka" class="boks" style="width:420px;text-align: left;"></textarea>
+                                    <br />
+                                    <input id="Souhlas" type="checkbox" name="Souhlas"> souhlasím s <a href="/pneumatiky/obchodni-podminky.aspx" title="obchodní podmínky" target="_blank">obchodními podmínkami</a>
+                                    <br><br>&nbsp;<div class="cleaner"><hr></div>
+                                    <p class="tkpokr"><a href="javascript:openPreloader(); document.getElementById('order-step-3').submit();" id="mainContent_aPokracovat" title="Dokončit objednávku">Dokončit objednávku &gt;</a></p>
+                                    <p class="tkzpet"><a href="/eshop/doprava-a-platba" title="">&lt; Zpět</a></p>
+                                    <div class="cleaner"><hr></div>
+                                    <br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

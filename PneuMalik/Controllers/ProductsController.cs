@@ -1,6 +1,7 @@
 ﻿using PneuMalik.Helpers;
 using PneuMalik.Models;
 using PneuMalik.Models.Dto;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -19,25 +20,39 @@ namespace PneuMalik.Controllers
         public ActionResult Index(int? code, string text)
         {
 
+            var products = new List<Product>();
+
             if (!code.HasValue && string.IsNullOrEmpty(text))
             {
 
-                return View(db.Products.Take(50).ToList());
+                products = db.Products.Take(50).ToList();
             }
-
-            if (string.IsNullOrEmpty(text))
+            else if (string.IsNullOrEmpty(text))
             {
 
-                return View(db.Products.Where(p => p.Code == code.Value).ToList());
+                products = db.Products.Where(p => p.Code == code.Value).ToList();
             }
-
-            if (!code.HasValue)
+            else if (!code.HasValue)
             {
 
-                return View(db.Products.Where(p => p.Name.Contains(text)).ToList());
+                products = db.Products.Where(p => p.Name.Contains(text)).ToList();
+            }
+            else
+            {
+
+                products = db.Products.Where(p => p.Code == code.Value && p.Name.Contains(text)).ToList();
             }
 
-            return View(db.Products.Where(p => p.Code == code.Value && p.Name.Contains(text)).ToList());
+            foreach (var product in products)
+            {
+
+                product.Tyre = db.ProductsTyres.FirstOrDefault(t => t.Id == product.TyreId);
+                product.AluDisc = db.ProductsAluDisc.FirstOrDefault(d => d.Id == product.AluDiscId);
+                product.PbDisc = db.ProductsPbDisc.FirstOrDefault(d => d.Id == product.PbDiscId);
+                product.Prices = db.Prices.Where(p => p.ProductId == product.Id).ToList();
+            }
+
+            return View(products);
         }
 
         // GET: Products/Details/5
@@ -52,6 +67,12 @@ namespace PneuMalik.Controllers
             {
                 return HttpNotFound();
             }
+
+            product.Tyre = db.ProductsTyres.FirstOrDefault(t => t.Id == product.TyreId);
+            product.AluDisc = db.ProductsAluDisc.FirstOrDefault(d => d.Id == product.AluDiscId);
+            product.PbDisc = db.ProductsPbDisc.FirstOrDefault(d => d.Id == product.PbDiscId);
+            product.Prices = db.Prices.Where(p => p.ProductId == product.Id).ToList();
+
             return View(product);
         }
 

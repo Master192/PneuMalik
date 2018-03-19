@@ -16,14 +16,19 @@
 
         var availability = "SKLADEM";
 
-        if (product.Prices != null && product.Prices.Where(p => p.Stock > 0).Count() > 0)
+        if (product.Prices != null)
         {
-
-            var prices = product.Prices.Where(p => p.Stock > 0 && p.DeliveryTime > 0).OrderBy(o => o.DeliveryTime).ToList();
-
-            if (prices.Count > 0)
+            if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 0) != null)
             {
-                availability = $"SKLADEM DO {prices.FirstOrDefault().DeliveryTime} hod";
+                availability = "SKLADEM";
+            }
+            if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 24) != null)
+            {
+                availability = "SKLADEM DO 36 hod";
+            }
+            if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 48) != null)
+            {
+                availability = "SKLADEM DO 60 hod";
             }
         }
         else
@@ -48,7 +53,7 @@
             </p>
             <div class="rb">
                 <p><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Name" /> <img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@((Season)product.Tyre.Sezona)" /></p>
-                <p class="f17 blue"><strong>@($"{product.Price:F} Kč")</strong></p>
+                <p class="f17 blue"><strong>@($"{product.Price * (1 + (product.Dph / 100.0)):F} Kč")</strong></p>
                 <p class="grn"><strong>@availability</strong></p>
             </div>
         </div>

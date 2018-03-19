@@ -7,14 +7,19 @@
 
     var availability = "SKLADEM";
 
-    if (Model.Prices != null && Model.Prices.Where(p => p.Stock > 0).Count() > 0)
+    if (Model.Prices != null)
     {
-
-        var prices = Model.Prices.Where(p => p.Stock > 0 && p.DeliveryTime > 0).OrderBy(o => o.DeliveryTime).ToList();
-
-        if (prices.Count > 0)
+        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 0) != null)
         {
-            availability = $"SKLADEM DO {prices.FirstOrDefault().DeliveryTime} hod";
+            availability = "SKLADEM";
+        }
+        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 24) != null)
+        {
+            availability = "SKLADEM DO 36 hod";
+        }
+        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 48) != null)
+        {
+            availability = "SKLADEM DO 60 hod";
         }
     }
     else

@@ -100,7 +100,11 @@ namespace PneuMalik.Services
                 {
 
                     SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky) ({counter}/{_response.Tyres.Count()})");
+
                     db.SaveChanges();
+                    db.Dispose();
+                    db = new ApplicationDbContext();
+                    db.Configuration.AutoDetectChangesEnabled = false;
                 }
 
                 counter++;
@@ -146,11 +150,15 @@ namespace PneuMalik.Services
             {
                 db.SteelRims.Add(rim);
 
-                if (counter % 40 == 0)
+                if (counter % 200 == 0)
                 {
 
                     SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.SteelRims.Count()})");
+
                     db.SaveChanges();
+                    db.Dispose();
+                    db = new ApplicationDbContext();
+                    db.Configuration.AutoDetectChangesEnabled = false;
                 }
 
                 counter++;
@@ -169,11 +177,15 @@ namespace PneuMalik.Services
             {
                 db.Tyres.Add(tyre);
 
-                if (counter % 40 == 0)
+                if (counter % 200 == 0)
                 {
 
                     SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.Tyres.Count()})");
+
                     db.SaveChanges();
+                    db.Dispose();
+                    db = new ApplicationDbContext();
+                    db.Configuration.AutoDetectChangesEnabled = false;
                 }
 
                 counter++;

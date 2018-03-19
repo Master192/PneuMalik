@@ -21,10 +21,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:32</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/14/2018 23:26:24</publishTime>
+      <publishTime>03/20/2018 00:26:05</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/14/2018 23:26:23</publishTime>
+      <publishTime>03/20/2018 00:26:05</publishTime>
     </File>
     <File Include="bin/Content/Eshop.css">
       <publishTime>01/10/2018 22:13:32</publishTime>
@@ -108,10 +108,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/PneuMalik.dll">
-      <publishTime>03/14/2018 23:25:47</publishTime>
+      <publishTime>03/20/2018 00:25:40</publishTime>
     </File>
     <File Include="bin/PneuMalik.pdb">
-      <publishTime>03/14/2018 23:25:47</publishTime>
+      <publishTime>03/20/2018 00:25:40</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/27/2016 14:50:24</publishTime>
@@ -195,7 +195,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2018 23:08:55</publishTime>
     </File>
     <File Include="bin/Scripts/modal.js">
-      <publishTime>01/10/2018 22:13:32</publishTime>
+      <publishTime>03/18/2018 21:24:02</publishTime>
     </File>
     <File Include="bin/Scripts/vendor/jquery-1.12.0.min.js">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -237,10 +237,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/Views/Eshop/Cart.cshtml">
-      <publishTime>03/14/2018 20:43:29</publishTime>
+      <publishTime>03/18/2018 21:24:53</publishTime>
     </File>
     <File Include="bin/Views/Eshop/Detail.cshtml">
-      <publishTime>03/13/2018 20:47:27</publishTime>
+      <publishTime>03/18/2018 21:24:02</publishTime>
     </File>
     <File Include="bin/Views/Eshop/Index.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -249,7 +249,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="bin/Views/Eshop/_ProductRow.cshtml">
-      <publishTime>03/12/2018 22:45:34</publishTime>
+      <publishTime>03/15/2018 21:21:58</publishTime>
     </File>
     <File Include="bin/Views/Shared/Error.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -267,7 +267,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="bin/Views/Shared/_Header.cshtml">
-      <publishTime>01/10/2018 22:13:33</publishTime>
+      <publishTime>03/18/2018 21:22:15</publishTime>
     </File>
     <File Include="bin/Views/Shared/_Layout.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -279,7 +279,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="bin/Views/Shared/_Right.cshtml">
-      <publishTime>03/13/2018 21:08:14</publishTime>
+      <publishTime>03/18/2018 21:10:31</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>07/17/2013 17:03:52</publishTime>
@@ -834,7 +834,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/14/2018 23:25:56</publishTime>
+      <publishTime>03/20/2018 00:25:46</publishTime>
     </File>
     <File Include="Scripts/admin/importxml.js">
       <publishTime>01/10/2018 22:13:32</publishTime>
@@ -873,7 +873,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:32</publishTime>
     </File>
     <File Include="Scripts/modal.js">
-      <publishTime>01/10/2018 22:13:32</publishTime>
+      <publishTime>03/18/2018 21:24:02</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>01/10/2018 22:13:32</publishTime>
@@ -887,8 +887,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/respond.min.js">
       <publishTime>01/10/2018 22:13:32</publishTime>
     </File>
+    <File Include="Scripts/validation-shipping.js">
+      <publishTime>03/18/2018 21:06:49</publishTime>
+    </File>
     <File Include="Scripts/validation.js">
-      <publishTime>03/14/2018 23:06:59</publishTime>
+      <publishTime>03/16/2018 21:55:31</publishTime>
     </File>
     <File Include="Scripts/vendor/ckeditor/adapters/jquery.js">
       <publishTime>01/10/2018 22:13:32</publishTime>
@@ -1992,13 +1995,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/07/2018 22:21:51</publishTime>
     </File>
     <File Include="Views/Eshop/Cart.cshtml">
-      <publishTime>03/14/2018 20:43:29</publishTime>
+      <publishTime>03/18/2018 21:24:53</publishTime>
     </File>
     <File Include="Views/Eshop/Detail.cshtml">
-      <publishTime>03/13/2018 20:47:27</publishTime>
+      <publishTime>03/18/2018 21:24:02</publishTime>
     </File>
     <File Include="Views/Eshop/DetailDisk.cshtml">
-      <publishTime>03/11/2018 23:22:27</publishTime>
+      <publishTime>03/18/2018 21:24:02</publishTime>
     </File>
     <File Include="Views/Eshop/Disky.cshtml">
       <publishTime>01/25/2018 21:36:49</publishTime>
@@ -2010,13 +2013,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/24/2018 22:31:57</publishTime>
     </File>
     <File Include="Views/Eshop/OrderStep1.cshtml">
-      <publishTime>03/14/2018 22:47:57</publishTime>
+      <publishTime>03/16/2018 21:55:31</publishTime>
     </File>
     <File Include="Views/Eshop/OrderStep2.cshtml">
-      <publishTime>03/14/2018 20:52:08</publishTime>
+      <publishTime>03/18/2018 21:16:14</publishTime>
     </File>
     <File Include="Views/Eshop/OrderStep3.cshtml">
-      <publishTime>03/14/2018 20:52:29</publishTime>
+      <publishTime>03/19/2018 21:27:18</publishTime>
+    </File>
+    <File Include="Views/Eshop/OrderStep4.cshtml">
+      <publishTime>03/19/2018 23:33:04</publishTime>
     </File>
     <File Include="Views/Eshop/Pneumatiky.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -2040,7 +2046,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/12/2018 22:14:55</publishTime>
     </File>
     <File Include="Views/Eshop/_ProductRow.cshtml">
-      <publishTime>03/12/2018 22:45:34</publishTime>
+      <publishTime>03/15/2018 21:21:58</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -2085,10 +2091,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="Views/Products/Edit.cshtml">
-      <publishTime>01/10/2018 22:13:33</publishTime>
+      <publishTime>03/15/2018 22:25:38</publishTime>
     </File>
     <File Include="Views/Products/Index.cshtml">
-      <publishTime>01/10/2018 22:13:33</publishTime>
+      <publishTime>03/15/2018 22:08:21</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -2112,7 +2118,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="Views/Shared/_Header.cshtml">
-      <publishTime>01/10/2018 22:13:33</publishTime>
+      <publishTime>03/18/2018 21:22:15</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>
@@ -2124,7 +2130,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2018 22:13:33</publishTime>
     </File>
     <File Include="Views/Shared/_Right.cshtml">
-      <publishTime>03/13/2018 21:08:14</publishTime>
+      <publishTime>03/18/2018 21:10:31</publishTime>
     </File>
     <File Include="Views/Texts/Create.cshtml">
       <publishTime>01/10/2018 22:13:33</publishTime>

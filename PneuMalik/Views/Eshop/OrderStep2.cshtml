@@ -1,1 +1,58 @@
-﻿
+﻿@using PneuMalik.Models
+
+@model EshopViewModel
+
+@{
+    var totalPrice = Model.Cart.Sum(s => s.PriceTmp * s.Count);
+    var shippingCost = 200;
+}
+
+@Scripts.Render("~/Scripts/validation-shipping.js?v=1.0")
+
+<div id="kosik">
+
+    <div class="boxkosik">
+
+        <p><strong>Objednávka</strong> - krok 2/3</p>
+
+        <p class="kzal">Osobní a dodací údaje</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzalthis">Doprava a platba</p>
+        <p><img class="fl" src="/img/kzalsipka.png" alt=""></p>
+        <p class="kzal">Souhrn a odeslání</p>
+        <div class="cleaner"><hr></div>
+
+        <h1>Doprava a platba:</h1>
+
+        <form method="post" action="/eshop/shipping" id="order-step-1">
+            <div id="mainContent_UDP1">
+
+                <table cellspacing="0" class="tabdata">
+                    <tbody>
+                        <tr>
+                            <td class="f14 red"><strong>Způsob dopravy a platby:</strong></td>
+                        </tr>
+                        <tr><td><input type="radio" name="doprava" value="1" checked="checked" onclick="changeShipping(1)"> Doprava, platba při převzetí zboží</td></tr>
+                        <tr><td><input type="radio" name="doprava" value="2" onclick="changeShipping(2)"> Doprava, platba převodem předem</td></tr>
+                        <tr><td><input type="radio" name="doprava" value="3" onclick="changeShipping(3)"> Osobní odběr, platba hotově</td></tr>
+                        <tr><td><input type="radio" name="doprava" value="4" onclick="changeShipping(4)"> Osobní odběr, platba kartou</td></tr>
+                        <tr><td><input type="radio" name="doprava" value="5" onclick="changeShipping(5)"> Osobní odběr, platba převodem předem</td></tr>
+                    </tbody>
+                </table>
+
+                <br><span class="f14 red"><strong>Cena vybrané dopravy: @($"{shippingCost:F}") Kč</strong></span><br><br>
+                <br>
+                <span class="f14 red" id="saleInfoBox" style="display: none;">Z celkové ceny bude odečtena sleva 2%.</span>
+
+            </div>
+
+        </form>
+
+        <p class="tkpokr"><a id="mainContent_lbPokracovat" href="javascript:document.getElementById('order-step-1').submit();">Pokračovat &gt;</a></p>
+        <p class="tkzpet"><a href="/eshop/osobni-dodaci-udaje" title="">&lt; Zpět</a></p>
+
+        <div class="cleaner"><hr></div>
+
+    </div>
+
+</div>

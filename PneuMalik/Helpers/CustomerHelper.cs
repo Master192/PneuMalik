@@ -4,10 +4,10 @@ using System.Web;
 
 namespace PneuMalik.Helpers
 {
-    public class Customer
+    public class CustomerHelper
 	{
 
-        public Customer()
+        public CustomerHelper()
         {
 
             _context = HttpContext.Current;

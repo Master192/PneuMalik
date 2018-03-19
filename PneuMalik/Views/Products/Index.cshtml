@@ -39,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cathegories)
+            @Html.DisplayFor(modelItem => item.VehicleType.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Tip)
@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Action)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InStock)
+            @Html.DisplayFor(modelItem => item.Prices.FirstOrDefault().Stock)
         </td>
         <td>
             @Html.ActionLink("Editovat", "Edit", new { id=item.Id }) |

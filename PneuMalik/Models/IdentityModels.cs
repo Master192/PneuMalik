@@ -61,6 +61,12 @@ namespace PneuMalik.Models
 
         public DbSet<Dto.CartRow> CartRows { get; set; }
 
+        public DbSet<Dto.Customer> Customers { get; set; }
+
+        public DbSet<Dto.Order> Orders { get; set; }
+
+        public DbSet<Dto.OrderItem> OrderItems { get; set; }
+
         public DbSet<PneuB2b.Response.SteelRim> SteelRims { get; set; }
 
         public DbSet<PneuB2b.Response.Tyre> Tyres { get; set; }

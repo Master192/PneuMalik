@@ -11,7 +11,7 @@ namespace PneuMalik.Models
 
         public EshopViewModel(ApplicationDbContext db)
         {
-            var customer = new Customer();
+            var customer = new CustomerHelper();
 
             Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList();
         }
@@ -25,7 +25,7 @@ namespace PneuMalik.Models
 
             var co = products.ToList();
 
-            var customer = new Customer();
+            var customer = new CustomerHelper();
 
             if (cathegory == 13)        // speciální kategorie - akční nabídka
             {
@@ -180,5 +180,6 @@ namespace PneuMalik.Models
         public IList<Product> CartProducts { get; set; }
         public Product ProductDetail { get; set; }
         public Cathegory Cathegory { get; set; }
+        public Customer Customer { get; set; }
     }
 }
