@@ -22,7 +22,7 @@
                 _this._xhr = new XMLHttpRequest();
                 _this._xhr.timeout = _this._options.timeout || 30000;
                 _this._xhr.open(_this._method, _this._url);
-                _this._xhr.onload = (function () {
+                _this._xhr.onload = function () {
                     if (_this._xhr.status >= 200 && _this._xhr.status < 300) {
                         resolve(_this._xhr.response);
                     }
@@ -33,28 +33,28 @@
                             message: _this._xhr.response
                         });
                     }
-                });
-                _this._xhr.onerror = (function () {
+                };
+                _this._xhr.onerror = function () {
                     reject({
                         status: _this._xhr.status,
                         statusText: _this._xhr.statusText,
                         message: _this._xhr.response
                     });
-                });
-                _this._xhr.ontimeout = (function () {
+                };
+                _this._xhr.ontimeout = function () {
                     reject({
                         status: _this._xhr.status,
                         statusText: RequestHelperStatus.Timeout,
                         message: 'The request has timed out.'
                     });
-                });
-                _this._xhr.onabort = (function () {
+                };
+                _this._xhr.onabort = function () {
                     reject({
                         status: _this._xhr.status,
                         statusText: RequestHelperStatus.Abort,
                         message: 'The request was cancelled by user.'
                     });
-                });
+                };
                 if (_this._headers) {
                     Object.keys(_this._headers).forEach(function (key) {
                         _this._xhr.setRequestHeader(key, _this._headers[key]);

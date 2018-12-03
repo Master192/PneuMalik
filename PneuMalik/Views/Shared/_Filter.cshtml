@@ -1,5 +1,4 @@
 ﻿@using PneuMalik.Models
-@using ExtensionMethods
 @model EshopViewModel
 
 @{ 
@@ -27,6 +26,18 @@
     {
 
         Model.Filter.Rims = new List<int>();
+    }
+
+    if (Model.Filter.Sis == null)
+    {
+
+        Model.Filter.Sis = new List<int>();
+    }
+
+    if (Model.Filter.Lis == null)
+    {
+
+        Model.Filter.Lis = new List<int>();
     }
 }
 
@@ -119,6 +130,34 @@
                             <option value="@rim.Id">@rim.Name</option>
                         }
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Index rychlosti</td>
+                <td>
+                    <select name="filterSi" id="filter-si" onChange="filterChange('si')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                        @foreach (var si in Model.SiList.Where(m => Model.Filter.Sis.Contains(m.Id)).OrderBy(m => m.Name))
+                        {
+                            <option value="@si.Id">@si.Name</option>
+                        }
+                    </select>
+                </td>
+                <td>Index nosnosti</td>
+                <td>
+                    <select name="filterLi" id="filter-li" onChange="filterChange('li')">
+                        <option selected="selected" value="0">nerozhoduje</option>
+                        @foreach (var li in Model.LiList.Where(m => Model.Filter.Lis.Contains(m.Id)).OrderBy(m => m.Name))
+                        {
+                            <option value="@li.Id">@li.Name</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    @if (Model.CathegoryType == 1)
+                    {
+                        <input type="checkbox" id="filter-rof" onchange="filterChange('rof')" /><span>Run on flat</span>
+                    }
                 </td>
             </tr>
             <tr class="tfenter">

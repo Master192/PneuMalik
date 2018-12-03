@@ -14,7 +14,7 @@
         var odd = false;
     }
 
-    @foreach (var product in Model.Products)
+    @foreach (var product in Model.Products.OrderBy(p => p.Price))
     {
         odd = !odd;
 

@@ -40,10 +40,10 @@ namespace PneuMalik.Models.Dto
         public string Note { get; set; }
         public int Shipping { get; set; }
         public OrderStatus Status { get; set; }
-        public double Total { get; set; }
-        public double ShippingPrice { get; set; }
+        public decimal Total { get; set; }
+        public decimal ShippingPrice { get; set; }
         public DateTime Date { get; set; }
-        public double Sale { get; set; }
+        public decimal Sale { get; set; }
     }
 
     public enum OrderStatus

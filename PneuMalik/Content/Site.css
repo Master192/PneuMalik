@@ -1313,6 +1313,10 @@ sup {
     bottom: 0.33em;
 }
 
+.redNaDotaz {
+    color: red;
+}
+
 sub {
     bottom: -0.25em;
 }

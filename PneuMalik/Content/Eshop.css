@@ -1532,6 +1532,24 @@ div.help-content {
     text-align: right;
 }
 
+.redNaDotaz {
+    color: red;
+}
+
+#search {
+    height: 20px;
+    width: 93%;
+    margin-top: 2px;
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    color: white;
+    background-image: url(/img/glyphicons-28-search.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    padding: 0 5px 0 5px;
+}
+#search::placeholder { color: #d6d6d6; }
+
 /* *** alert *** */
 #cover {
     position: absolute;

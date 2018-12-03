@@ -155,11 +155,16 @@ namespace PneuMalik.Models.PneuB2b
             public string TagNoiseLevel { get; set; }
             [XmlElement("TagNoiseLevel_dB")]
             public string TagNoiseLevel_dB { get; set; }
+            [XmlElement("RetailPrice_CZ")]
+            public string RetailPrice_CZ { get; set; }
             [XmlElement("RetailPriceCurrency_CZ")]
             public string RetailPriceCurrency_CZ { get; set; }
             [NotMapped]
             [XmlElement("StockPriceInfo")]
             public StockPriceInfo StockPriceInfo { get; set; }
+            [NotMapped]
+            [XmlElement("StockPriceInfo_24")]
+            public StockPriceInfo StockPriceInfo_24 { get; set; }
             [NotMapped]
             [XmlElement("StockPriceInfo_48")]
             public StockPriceInfo StockPriceInfo_48 { get; set; }

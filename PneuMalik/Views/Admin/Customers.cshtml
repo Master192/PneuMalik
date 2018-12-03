@@ -1,1 +1,40 @@
-﻿<h1>Zákazníci</h1>
+﻿@model List<PneuMalik.Models.Dto.Customer>
+
+<h1>Zákazníci</h1>
+
+<table class="table">
+    <tr>
+        <th>Název</th>
+        <th>Ulice</th>
+        <th>Místo</th>
+        <th>PSČ</th>
+        <th>E-mail</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @($"{item.Name} {item.Surname}")
+            </td>
+            <td>
+                @item.Street
+            </td>
+            <td>
+                @item.City
+            </td>
+            <td>
+                @item.Zip
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @Html.ActionLink("Detail", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Odstranit", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

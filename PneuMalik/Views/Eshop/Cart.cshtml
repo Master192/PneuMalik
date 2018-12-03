@@ -14,7 +14,7 @@
             <h1>Nákupní košík</h1>
 
             <div class="tabkosik">
-
+                <form method="post" action="/eshop/cartamount" id="CarAmount">
                 <table cellspacing="0">
                     <tbody>
                         <tr class="tkhead">
@@ -30,25 +30,26 @@
                         {
                             var product = Model.CartProducts.FirstOrDefault(p => p.Id == cartRow.ProductId);
 
-                            <tr>
+                            <tr id="cartRow@(cartRow.Id)">
                                 <td>@product.Code</td>
                                 <td>@($"{product.Name}")</td>
                                 <td class="cent">ks</td>
                                 <td>@($"{cartRow.PriceTmp:F}") Kč</td>
-                                <td class="cent"><input type="text" id="mn11645" value="@cartRow.Count" size="1" class="boks"></td>
+                                <td class="cent"><input type="text" id="mn@(cartRow.Id)" name="mn@(cartRow.Id)" value="@cartRow.Count" size="1" class="boks"></td>
                                 <td>@($"{cartRow.PriceTmp * cartRow.Count:F}") Kč</td>
-                                <td><a title="odstranit"><img src="/img/delete.gif" alt="Mazání"></a></td>
+                                <td><a title="odstranit" href="javascript:removeCartRow(@cartRow.Id);"><img src="/img/delete.gif" alt="Mazání"></a></td>
                             </tr>
                         }
 
                         <tr class="tkbottom">
                             <td colspan="4">&nbsp;</td>
-                            <td class="cent"><p class="tkuloz"><a id="mainContent_u_Kosik1_hlUlozitPocet" title="Uložit" href="javascript:__doPostBack('ctl00$mainContent$u_Kosik1$MyPostBack','1_69_6_3');">Uložit</a></p></td>
+                            <td class="cent"><p class="tkuloz"><a id="hlUlozitPocet" title="Uložit" href="javascript:document.getElementById('CarAmount').submit();">Uložit</a></p></td>
                             <td colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
                             <td colspan="7">
-                                <p><strong>Celková cena včetně DPH: <span class="f14 red">@($"{totalPrice:0}"),00 Kč</span></strong></p><p><strong>Dopravné: <span class="f14 red">200,00 Kč</span></strong></p>
+                                <p><strong>Celková cena včetně DPH: <span class="f14 red">@($"{totalPrice:0}"),00 Kč</span></strong></p>
+                                <p><strong>Dopravné: <span class="f14 red">@($"{Model.Shipping:0}"),00 Kč</span></strong></p>
                                 <p>
                                     Doprava osobních pneu za <font color="#ff0000">1 ks 200,- kč</font>, <font color="#ff0000">2 ks a více 100,- kč za 1 ks</font>. Motocyklové pneu za 200,- kč do 2 ks. Cena za dopravu nákladních pneu po domluvě.<br>
                                     Všechny ceny jsou uvedeny s DPH.
@@ -61,6 +62,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>

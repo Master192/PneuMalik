@@ -23,11 +23,24 @@
             totalPrice += cartRows[index]["PriceTmp"] * cartRows[index]["Count"];
         }
 
-        itemCountElement.innerHTML = cartRows.length == 0 ? "bez položek" : cartRows.length + " položek";
+        itemCountElement.innerHTML = cartRows.length === 0 ? "bez položek" : cartRows.length + " položek";
         cartPriceElement.innerHTML = totalPrice + ",00 Kč";
 
     }, function (reject) {
         console.log("Cart insert error: " + reject.message);
+    });
+}
+
+function removeCartRow(id) {
+
+    document.getElementById('cartRow' + id).remove();
+
+    var removeCartRow = new pneuMalik.RequestHelper("GET", "/api/eshop/removecartrow?id=" + id);
+    removeCartRow.makeRequest("removeCartRow").then(function (response) {
+
+        // ok
+    }, function (reject) {
+        console.log("Cart remove row error: " + reject.message);
     });
 }
 
@@ -118,7 +131,7 @@ function ScrollTop() {
 }
 
 function ScrollLeft() {
-    return (document.body.scrollLeft || document.documentElement.scrollLeft)
+    return (document.body.scrollLeft || document.documentElement.scrollLeft);
 }
 
 function winH() {
@@ -156,3 +169,19 @@ function winW() {
     else
         return null;
 }
+
+document.addEventListener("DOMContentLoaded", function (event) {
+
+    var input = document.getElementById("search");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function (event) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+
+            window.location.replace("/vyhledavani?s=" + encodeURIComponent(input.value));
+        }
+    });
+});

@@ -37,7 +37,7 @@
 
 function filterChange(source) {
 
-    var sources = ['manufacturer', 'season', 'profile', 'width', 'rim'];
+    var sources = ['manufacturer', 'season', 'profile', 'width', 'rim', 'si', 'li'];
 
     var selectCathegory = document.getElementById('filter-cathegory');
     var cathegory = selectCathegory.options[selectCathegory.selectedIndex].value;
@@ -57,7 +57,13 @@ function filterChange(source) {
     var selectProfile = document.getElementById('filter-profile');
     var profile = selectProfile.options[selectProfile.selectedIndex].value;
 
-    var query = "?cathegory=" + cathegory + "&season=" + season + "&manufacturer=" + manufacturer + "&width=" + width + "&rim=" + rim + "&profile=" + profile;
+    var selectSi = document.getElementById('filter-si');
+    var si = selectSi.options[selectSi.selectedIndex].value;
+
+    var selectLi = document.getElementById('filter-li');
+    var li = selectLi.options[selectLi.selectedIndex].value;
+
+    var query = "?cathegory=" + cathegory + "&season=" + season + "&manufacturer=" + manufacturer + "&width=" + width + "&rim=" + rim + "&profile=" + profile + "&si=" + si + "&li=" + li;
 
     var getStatus = new pneuMalik.RequestHelper("GET", "/api/filter/reload" + query);
     getStatus.makeRequest("filterChange").then(function (response) {
@@ -115,6 +121,28 @@ function filterChange(source) {
             }
 
             if (filter.Profiles.indexOf(parseInt(elm.value)) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-si option'), function (elm) {
+
+            if (elm.value === "0") {
+                return;
+            }
+
+            if (filter.Sis.indexOf(parseInt(elm.value)) < 0) {
+                elm.remove();
+            }
+        });
+
+        [].forEach.call(document.querySelectorAll('#filter-li option'), function (elm) {
+
+            if (elm.value === "0") {
+                return;
+            }
+
+            if (filter.Lis.indexOf(parseInt(elm.value)) < 0) {
                 elm.remove();
             }
         });

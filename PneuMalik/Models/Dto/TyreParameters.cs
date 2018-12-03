@@ -19,6 +19,12 @@ namespace PneuMalik.Models.Dto
         [Column("Rafek_Id")]
         public int? RafekId { get; set; }
         public ProductParamRafek Rafek { get; set; }
+        [Column("Si_Id")]
+        public int? SiId { get; set; }
+        public ProductParamSi Si { get; set; }
+        [Column("Li_Id")]
+        public int? LiId { get; set; }
+        public ProductParamLi Li { get; set; }
 
         public string Dezen { get; set; }
         public string SerieVyska { get; set; }
@@ -48,6 +54,18 @@ namespace PneuMalik.Models.Dto
     }
 
     public class ProductParamRafek
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class ProductParamSi
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class ProductParamLi
     {
         public int Id { get; set; }
         public string Name { get; set; }

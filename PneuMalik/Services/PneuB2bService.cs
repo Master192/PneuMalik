@@ -20,6 +20,7 @@ namespace PneuMalik.Services
 
             _debug = debug;
             _statusFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "/pneub2b/status.txt");
+            _logFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "/pneub2b/fullLog.txt");
             _dataFilePath = Path.Combine(HostingEnvironment.ApplicationPhysicalPath, "/pneub2b/data.xml");
             _serviceUrlFull = new Uri("http://www.pneub2b.eu/PartnerCommunication.ashx?cmd=products_list");
             _serviceUrlStock = new Uri("http://www.pneub2b.eu/PartnerCommunication.ashx?cmd=stock_price_list");
@@ -126,162 +127,375 @@ namespace PneuMalik.Services
         public void ImportAll()
         {
 
-            SetStatus("Začal import produktů");
-
-            SetStatus("Začalo stahování datového souboru");
-
-            Download(_serviceUrlFull);
-
-            SetStatus("Začalo zpracování stažených dat");
-
-            if (!CheckDownloadedData())
+            try
             {
-                return;
-            }
+                SetStatus("Začal import produktů");
 
-            SetStatus($"Načtení zdrojových dat do databáze: Disky");
+                SetStatus("Začalo stahování datového souboru");
 
-            // rims
-            db.SteelRims.RemoveRange(db.SteelRims);
-            db.SaveChanges();
+                //Download(_serviceUrlFull);
 
-            var counter = 0;
-            foreach (var rim in _response.SteelRims)
-            {
-                db.SteelRims.Add(rim);
+                SetStatus("Začalo zpracování stažených dat");
 
-                if (counter % 200 == 0)
+                if (!CheckDownloadedData())
                 {
-
-                    SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.SteelRims.Count()})");
-
-                    db.SaveChanges();
-                    db.Dispose();
-                    db = new ApplicationDbContext();
-                    db.Configuration.AutoDetectChangesEnabled = false;
+                    return;
                 }
 
-                counter++;
-            }
+                SetStatus($"Načtení zdrojových dat do databáze: Disky");
 
-            db.SaveChanges();
+                // rims
+                db.SteelRims.RemoveRange(db.SteelRims);
+                db.SaveChanges();
 
-            SetStatus($"Načtení zdrojových dat do databáze: Pneumatiky");
-
-            // tyres
-            db.Tyres.RemoveRange(db.Tyres);
-            db.SaveChanges();
-
-            counter = 0;
-            foreach (var tyre in _response.Tyres)
-            {
-                db.Tyres.Add(tyre);
-
-                if (counter % 200 == 0)
+                var counter = 0;
+                foreach (var rim in _response.SteelRims)
                 {
+                    db.SteelRims.Add(rim);
 
-                    SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.Tyres.Count()})");
+                    if (counter % 200 == 0)
+                    {
 
-                    db.SaveChanges();
-                    db.Dispose();
-                    db = new ApplicationDbContext();
-                    db.Configuration.AutoDetectChangesEnabled = false;
+                        SetStatus($"Načtení zdrojových dat do databáze: Disky ({counter}/{_response.SteelRims.Count()})");
+
+                        db.SaveChanges();
+                        db.Dispose();
+                        db = new ApplicationDbContext();
+                        db.Configuration.AutoDetectChangesEnabled = false;
+                    }
+
+                    counter++;
                 }
 
-                counter++;
-            }
+                db.SaveChanges();
 
-            db.SaveChanges();
+                SetStatus($"Příprava dočasných tabulek pro přenos.");
 
-            SetStatus($"Načtení zdrojových dat do databáze: Ceny (disky)");
+                // tyres
+                // call stored procedure - delete already inserted tyres
+                db.Database.ExecuteSqlCommand("DELETE FROM Tyres");
+                db.Database.ExecuteSqlCommand("DELETE FROM PriceInfoes");
+                db.Dispose();
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
 
-            // prices
-            db.PriceInfos.RemoveRange(db.PriceInfos);
-            db.SaveChanges();
+                SetStatus($"Načtení zdrojových dat do databáze: Pneumatiky");
 
-            foreach (var rim in _response.SteelRims)
-            {
-                db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo) {
+                counter = 0;
+                foreach (var tyre in _response.Tyres)
+                {
+                    try
+                    {
+                        db.Tyres.Add(tyre);
+                    }
+                    catch (Exception e)
+                    {
+                        SetStatus($"Chyba načítání pneumatiky: ({e.Message})");
+                        return;
+                    }
+
+                    if (counter % 200 == 0)
+                    {
+
+                        SetStatus($"Načtení zdrojových dat do databáze: Pneumatiky ({counter}/{_response.Tyres.Count()})");
+
+                        db.SaveChanges();
+                        db.Dispose();
+                        db = new ApplicationDbContext();
+                        db.Configuration.AutoDetectChangesEnabled = false;
+                    }
+
+                    counter++;
+                }
+
+                db.SaveChanges();
+                db.Dispose();
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                counter = 0;
+                foreach (var tyre in _response.Tyres)
+                {
+
+                    if (tyre.StockPriceInfo != null)
+                    {
+                        db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo)
+                        {
+                            Period = 0,
+                            Type = PriceInfo.PriceInfoType.Tyre,
+                            ProductId = tyre.Id
+                        });
+                    }
+
+                    if (tyre.StockPriceInfo_24 != null)
+                    {
+                        db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo_24)
+                        {
+                            Period = 24,
+                            Type = PriceInfo.PriceInfoType.Tyre,
+                            ProductId = tyre.Id
+                        });
+                    }
+
+                    if (tyre.StockPriceInfo_48 != null)
+                    {
+                        db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo_48)
+                        {
+                            Period = 48,
+                            Type = PriceInfo.PriceInfoType.Tyre,
+                            ProductId = tyre.Id
+                        });
+                    }
+
+                    if (counter % 200 == 0)
+                    {
+
+                        SetStatus($"Načtení zdrojových dat do databáze: Pneumatiky - ceny ({counter}/{_response.Tyres.Count()})");
+
+                        db.SaveChanges();
+                        db.Dispose();
+                        db = new ApplicationDbContext();
+                        db.Configuration.AutoDetectChangesEnabled = false;
+                    }
+
+                    counter++;
+                }
+
+                db.SaveChanges();
+
+                SetStatus($"Načtení zdrojových dat do databáze: Ceny (disky)");
+
+                // prices
+                db.Dispose();
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                foreach (var rim in _response.SteelRims)
+                {
+                    db.PriceInfos.Add(new PriceInfo(rim.StockPriceInfo)
+                    {
                         Period = 24,
                         Type = PriceInfo.PriceInfoType.Rim,
                         ProductId = rim.Id
-                });
-            }
-
-            db.SaveChanges();
-
-            SetStatus($"Načtení zdrojových dat do databáze: Ceny (pneumatiky)");
-
-            foreach (var tyre in _response.Tyres)
-            {
-                if (tyre.StockPriceInfo != null)
-                {
-                    db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo)
-                    {
-                        Period = 24,
-                        Type = PriceInfo.PriceInfoType.Tyre,
-                        ProductId = tyre.Id
                     });
                 }
 
-                if (tyre.StockPriceInfo_48 != null)
+                db.SaveChanges();
+                db.Dispose();
+                db = new ApplicationDbContext();
+
+                // call stored procedure - delete already inserted tyres
+                SetStatus($"Příprava na vložení nových pneumatik.");
+                db.Database.ExecuteSqlCommand("EXEC [dbo].[ProcessPneuB2BTyres]");
+
+                db.Dispose();
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                SetStatus($"Zpracování doplňkových informací (výrobci)");
+
+                foreach (var dist in _response.Tyres.GroupBy(m => m.ManufacturerID))
                 {
-                    db.PriceInfos.Add(new PriceInfo(tyre.StockPriceInfo_48)
+                    var manufacturer = _response.Tyres.FirstOrDefault(m => m.ManufacturerID == dist.Key).Manufacturer;
+
+                    if (!db.Manufacturers.Any(m => m.Name == manufacturer))
                     {
-                        Period = 48,
-                        Type = PriceInfo.PriceInfoType.Tyre,
-                        ProductId = tyre.Id
-                    });
+
+                        db.Manufacturers.Add(new Manufacturer()
+                        {
+                            Name = manufacturer
+                        });
+                    }
                 }
-            }
 
-            db.SaveChanges();
+                SetStatus($"Zpracování doplňkových informací (hmotnostní index)");
 
-            SetStatus($"Zpracování doplňkových informací (výrobci)");
-
-            foreach (var dist in _response.Tyres.GroupBy(m => m.ManufacturerID))
-            {
-                var manufacturer = _response.Tyres.FirstOrDefault(m => m.ManufacturerID == dist.Key).Manufacturer;
-
-                if (!db.Manufacturers.Any(m => m.Name == manufacturer))
+                // li
+                foreach (var dist in _response.Tyres.GroupBy(m => m.LoadIndexFrom))
                 {
+                    var loadIndex = _response.Tyres.FirstOrDefault(m => m.LoadIndexFrom == dist.Key).LoadIndexFrom;
 
-                    db.Manufacturers.Add(new Manufacturer()
+                    if (!db.ParamLi.Any(m => m.Name == loadIndex))
                     {
-                        Name = manufacturer
-                    });
+
+                        db.ParamLi.Add(new ProductParamLi()
+                        {
+                            Name = loadIndex
+                        });
+                    }
                 }
-            }
 
-            db.SaveChanges();
+                SetStatus($"Zpracování doplňkových informací (model)");
 
-            SetStatus($"Zpracování obrázků");
-
-            var images = new ImageHelper();
-
-            var manufacturers = db.Manufacturers.ToList();
-            var vehicleTypes = db.VehicleTypes.ToList();
-            var seasons = Enum.GetValues(typeof(Season)).Cast<Season>().ToList();
-
-            foreach (var tyreToUpdate in _response.Tyres)
-            {
-                try
+                // model
+                foreach (var dist in _response.Tyres.GroupBy(m => m.ConstructionType))
                 {
-                    images.Save(tyreToUpdate.ImageUrl, tyreToUpdate.Id);
-                }
-                catch { }
-            }
+                    var model = _response.Tyres.FirstOrDefault(m => m.ConstructionType == dist.Key).ConstructionType;
 
-            foreach (var rimToUpdate in _response.SteelRims)
-            {
-                try
+                    if (!db.ParamModel.Any(m => m.Name == model))
+                    {
+
+                        db.ParamModel.Add(new ProductParamModel()
+                        {
+                            Name = model
+                        });
+                    }
+                }
+
+                SetStatus($"Zpracování doplňkových informací (profil)");
+
+                // profil
+                foreach (var dist in _response.Tyres.GroupBy(m => m.Profile))
                 {
-                    images.Save(rimToUpdate.ImageUrl, rimToUpdate.Id);
-                }
-                catch { }
-            }
+                    var profile = _response.Tyres.FirstOrDefault(m => m.Profile == dist.Key).Profile;
 
-            SetStatus("Import produktů byl ukončen");
+                    if (!db.ParamProfil.Any(m => m.Name == profile.ToString()))
+                    {
+
+                        db.ParamProfil.Add(new ProductParamProfil()
+                        {
+                            Name = profile.ToString()
+                        });
+                    }
+                }
+
+                SetStatus($"Zpracování doplňkových informací (ráfek)");
+
+                // ráfek
+                foreach (var dist in _response.Tyres.GroupBy(m => m.Diameter))
+                {
+                    var rafek = _response.Tyres.FirstOrDefault(m => m.Diameter == dist.Key).Diameter;
+
+                    if (!db.ParamRafek.Any(m => m.Name == rafek.ToString()))
+                    {
+
+                        db.ParamRafek.Add(new ProductParamRafek()
+                        {
+                            Name = rafek.ToString()
+                        });
+                    }
+                }
+
+                SetStatus($"Zpracování doplňkových informací (rychlostní index)");
+
+                // si
+                foreach (var dist in _response.Tyres.GroupBy(m => m.SpeedIndex))
+                {
+                    var si = _response.Tyres.FirstOrDefault(m => m.SpeedIndex == dist.Key).SpeedIndex;
+
+                    if (!db.ParamSi.Any(m => m.Name == si))
+                    {
+
+                        db.ParamSi.Add(new ProductParamSi()
+                        {
+                            Name = si
+                        });
+                    }
+                }
+
+                SetStatus($"Zpracování doplňkových informací (šířka)");
+
+                // sirka
+                foreach (var dist in _response.Tyres.GroupBy(m => m.Width))
+                {
+                    var width = _response.Tyres.FirstOrDefault(m => m.Width == dist.Key).Width;
+
+                    if (!db.ParamSirka.Any(m => m.Name == width.ToString()))
+                    {
+
+                        db.ParamSirka.Add(new ProductParamSirka()
+                        {
+                            Name = width.ToString()
+                        });
+                    }
+                }
+
+                SetStatus($"Zpracování doplňkových informací (značka)");
+
+                // znacka
+                foreach (var dist in _response.Tyres.GroupBy(m => m.PatternID))
+                {
+                    var pattern = _response.Tyres.FirstOrDefault(m => m.PatternID == dist.Key).Pattern;
+
+                    if (!db.ParamZnacka.Any(m => m.Name == pattern))
+                    {
+
+                        db.ParamZnacka.Add(new ProductParamZnacka()
+                        {
+                            Name = pattern
+                        });
+                    }
+                }
+
+                db.SaveChanges();
+                db.Dispose();
+
+                SetStatus($"Vkládání nových pneumatik.");
+
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                foreach (var newTyre in db.Tyres.ToList())
+                {
+
+                    try
+                    {
+                        var manufacturer = db.Manufacturers.FirstOrDefault(m => m.Name == newTyre.Manufacturer);
+                        var vehicleType = db.VehicleTypes.FirstOrDefault(v => v.Id == newTyre.VehicleTypeCode);
+                        var li = db.ParamLi.FirstOrDefault(v => v.Name == newTyre.LoadIndexFrom);
+                        var model = db.ParamModel.FirstOrDefault(v => v.Name == newTyre.ConstructionType);
+                        var profil = db.ParamProfil.FirstOrDefault(v => v.Name == newTyre.Profile.ToString());
+                        var rafek = db.ParamRafek.FirstOrDefault(v => v.Name == newTyre.Diameter.ToString());
+                        var si = db.ParamSi.FirstOrDefault(v => v.Name == newTyre.SpeedIndex);
+                        var sirka = db.ParamSirka.FirstOrDefault(v => v.Name == newTyre.Width.ToString());
+                        var znacka = db.ParamZnacka.FirstOrDefault(v => v.Name == newTyre.Pattern);
+
+                        db.Products.Add(new Product(newTyre, manufacturer, vehicleType, 
+                            SeasonHelper.Parse(newTyre.Usage), li, model, profil, rafek, si, sirka, znacka));
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        SetStatus($"Chyba vkládání. ({e.Message} - {e.InnerException.Message})");
+                    }
+                }
+
+                db.Dispose();
+                db = new ApplicationDbContext();
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                SetStatus($"Zpracování obrázků");
+
+                var images = new ImageHelper();
+
+                var manufacturers = db.Manufacturers.ToList();
+                var vehicleTypes = db.VehicleTypes.ToList();
+                var seasons = Enum.GetValues(typeof(Season)).Cast<Season>().ToList();
+
+                foreach (var tyreToUpdate in _response.Tyres)
+                {
+                    try
+                    {
+                        images.Save(tyreToUpdate.ImageUrl, tyreToUpdate.Id);
+                    }
+                    catch { }
+                }
+
+                foreach (var rimToUpdate in _response.SteelRims)
+                {
+                    try
+                    {
+                        images.Save(rimToUpdate.ImageUrl, rimToUpdate.Id);
+                    }
+                    catch { }
+                }
+
+                SetStatus("Import produktů byl ukončen");
+            }
+            catch (Exception e)
+            {
+                SetStatus($"Globální chyba importu: {e.Message}");
+            }
         }
 
         private string GetStatus()
@@ -294,6 +508,7 @@ namespace PneuMalik.Services
         {
 
             File.WriteAllText(_statusFilePath, message);
+            File.AppendAllText(_logFilePath, $"{DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff")} {message}\n");
         }
 
         private void Download(Uri serviceUrl)
@@ -349,6 +564,7 @@ namespace PneuMalik.Services
 
         private readonly bool _debug;
         private readonly string _statusFilePath;
+        private readonly string _logFilePath;
         private readonly string _dataFilePath;
         private readonly Uri _serviceUrlStock;
         private readonly Uri _serviceUrlFull;

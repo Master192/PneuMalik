@@ -182,7 +182,7 @@ namespace PneuMalik.Helpers
             // double KonecnaCena = double.Parse(ds.Tables["Obj"].Rows[0].ItemArray[32].ToString())
             //                     - double.Parse(ds.Tables["Obj"].Rows[0].ItemArray[34].ToString());
 
-            double KonecnaCena = order.Total;
+            double KonecnaCena = (double)order.Total;
 
             // poštovné - dopravné
             if (order.ShippingPrice >= 0)
@@ -190,7 +190,7 @@ namespace PneuMalik.Helpers
                 strBody2 += "<tr><td style=\"background-color:#f0f0f0;\"><b>Dopravné:</b></td style=\"background-color:#f0f0f0;\"><td colspan=5 style=\"background-color:#f0f0f0;\">&nbsp;</td>"
                     + $"<td style=\"background-color:#f0f0f0;\">{order.ShippingPrice:F} Kč</td></tr>";
 
-                KonecnaCena = KonecnaCena + order.ShippingPrice;
+                KonecnaCena = KonecnaCena + (double)order.ShippingPrice;
             }
             else
             {

@@ -22,7 +22,7 @@ namespace PneuMalik.Helpers
 
                 Filter = new Filter()
                 {
-                    Manufacturers = available.GroupBy(g => g.Manufacturer.Id)
+                    Manufacturers = available.Where(p => p.Manufacturer != null).GroupBy(g => g.Manufacturer.Id)
                         .Select(s => s.FirstOrDefault().Manufacturer.Id).ToList()
                 };
 
@@ -31,19 +31,24 @@ namespace PneuMalik.Helpers
 
                     var avail = available.ToList();
 
-                    Filter.Rims = available.Where(r => r.Tyre.Rafek.Name != "-")
+                    Filter.Rims = available.Where(r => r.Tyre.Rafek != null && r.Tyre.Rafek.Name != "-")
                         .GroupBy(g => g.Tyre.Rafek.Id)
                         .Select(s => s.FirstOrDefault().Tyre.Rafek.Id).ToList();
-                    Filter.Widths = available.Where(r => r.Tyre.Sirka.Name != "-")
+                    Filter.Widths = available.Where(r => r.Tyre.Sirka != null && r.Tyre.Sirka.Name != "-")
                         .GroupBy(g => g.Tyre.Sirka.Id)
                         .Select(s => s.FirstOrDefault().Tyre.Sirka.Id).ToList();
-                    Filter.Profiles = available.Where(r => r.Tyre.Profil.Name != "-")
+                    Filter.Profiles = available.Where(r => r.Tyre.Profil != null && r.Tyre.Profil.Name != "-")
                         .GroupBy(g => g.Tyre.Profil.Id)
                         .Select(s => s.FirstOrDefault().Tyre.Profil.Id).ToList();
                     Filter.Seasons = available.Where(r => (Season)r.Tyre.Sezona != Season.Unknown)
                         .GroupBy(g => g.Tyre.Sezona)
                         .Select(s => s.FirstOrDefault().Tyre.Sezona).ToList();
-                    
+                    Filter.Sis = available.Where(r => r.Tyre.Si.Name != "-")
+                        .GroupBy(g => g.Tyre.Si.Id)
+                        .Select(s => s.FirstOrDefault().Tyre.Si.Id).ToList();
+                    Filter.Lis = available.Where(r => r.Tyre.Li.Name != "-")
+                        .GroupBy(g => g.Tyre.Li.Id)
+                        .Select(s => s.FirstOrDefault().Tyre.Li.Id).ToList();
                 }
 
                 if (cathegoryType == 9)     // ocelové disky

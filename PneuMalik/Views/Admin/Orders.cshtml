@@ -1,1 +1,47 @@
-﻿<h1>Objednávky</h1>
+﻿@model PneuMalik.Models.OrdersViewModel
+
+<h1>Objednávky</h1>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Zákazník</th>
+        <th>Místo</th>
+        <th>Připomínka</th>
+        <th>Datum</th>
+        <th>Stav</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Orders.OrderByDescending(o => o.Id))
+    {
+
+        var customer = Model.Customers.FirstOrDefault(c => c.Id == item.CustomerId);
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @($"{customer.Name} {customer.Surname}") 
+            </td>
+            <td>
+                @item.City
+            </td>
+            <td>
+                @item.Note
+            </td>
+            <td>
+                @item.Date.ToString("dd. MM. yyyy HH:mm")
+            </td>
+            <td>
+                @Model.Statuses[item.Status]
+            </td>
+            <td>
+                @Html.ActionLink("Detail", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Odstranit", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

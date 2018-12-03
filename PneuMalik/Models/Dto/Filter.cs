@@ -11,5 +11,7 @@ namespace PneuMalik.Models.Dto
         public List<int> Profiles { get; set; }
         public List<int> Brands { get; set; }
         public List<int> Models { get; set; }
+        public List<int> Sis { get; set; }
+        public List<int> Lis { get; set; }
     }
 }

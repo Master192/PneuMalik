@@ -1,10 +1,13 @@
 ﻿@model PneuMalik.Models.Dto.Product
 
-<p>
-    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
-        <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
-    </a>
-</p>
+@if (!string.IsNullOrEmpty(Model.Image) && File.Exists(Path.Combine(Server.MapPath("~"), "images", "ikona", Model.Image)))
+{
+    <p>
+        <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
+            <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
+        </a>
+    </p>
+}
 <table>
     <tbody>
         <tr>

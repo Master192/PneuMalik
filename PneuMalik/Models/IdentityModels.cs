@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -22,7 +23,7 @@ namespace PneuMalik.Models
     {
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
-
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 600;
             Database.SetInitializer<ApplicationDbContext>(null);
         }
 
@@ -50,6 +51,10 @@ namespace PneuMalik.Models
         public DbSet<Dto.ProductParamSirka> ParamSirka { get; set; }
 
         public DbSet<Dto.ProductParamZnacka> ParamZnacka { get; set; }
+
+        public DbSet<Dto.ProductParamSi> ParamSi { get; set; }
+
+        public DbSet<Dto.ProductParamLi> ParamLi { get; set; }
 
         public DbSet<Dto.Text> Texts { get; set; }
 

@@ -3,32 +3,42 @@
 @{ 
 
     var suf = $"{Model.Manufacturer.Name} {Model.Tyre.Dezen}";
-    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-"));
+    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-").Replace("/", "-"));
 
     var availability = "SKLADEM";
 
     if (Model.Prices != null)
     {
-        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 0) != null)
+
+        var best = Model.Prices.Where(p => p.Stock > 0).OrderBy(p => p.DeliveryTime).FirstOrDefault();
+
+        if (best != null && best.Stock > 0)
         {
-            availability = "SKLADEM";
+            if (best.DeliveryTime == 0)
+            {
+                availability = "SKLADEM";
+            }
+            if (best.DeliveryTime == 24)
+            {
+                availability = "SKLADEM DO 36 hod";
+            }
+            if (best.DeliveryTime == 48)
+            {
+                availability = "SKLADEM DO 60 hod";
+            }
         }
-        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 24) != null)
+        else
         {
-            availability = "SKLADEM DO 36 hod";
-        }
-        if (Model.Prices.FirstOrDefault(p => p.DeliveryTime == 48) != null)
-        {
-            availability = "SKLADEM DO 60 hod";
+            availability = "<span class=\"redNaDotaz\">NA DOTAZ</span>";
         }
     }
     else
     {
-        availability = "NA DOTAZ";
+        availability = "<span class=\"redNaDotaz\">NA DOTAZ</span>";
     }
 }
 
-@if (!string.IsNullOrEmpty(Model.Image))
+@if (!string.IsNullOrEmpty(Model.Image) && File.Exists(Path.Combine(Server.MapPath("~"), "images", "ikona", Model.Image)))
 {
     <p>
         <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Tyre.Dezen">
@@ -50,8 +60,8 @@
             <td></td>
         </tr>
         <tr>
-            <td class="grn"><strong>DOSTUPNOST:<br>@availability</strong></td>
-            <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Tyre.Sezona).png" alt="@Model.Tyre.Sezona"></td>
+            <td class="grn"><strong>DOSTUPNOST:<br>@Html.Raw(availability)</strong></td>
+            <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png?v=2" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Tyre.Sezona).png" alt="@Model.Tyre.Sezona"></td>
             <td class="f15 blue"><strong>@($"{Model.Price:0} Kč")</strong></td>
             <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/@($"{Model.Id}/{urlSuffix}")';"></td>
         </tr>

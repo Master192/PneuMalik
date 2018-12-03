@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using System.Web.Mvc;
 
 namespace PneuMalik.Models.Dto
@@ -14,55 +15,65 @@ namespace PneuMalik.Models.Dto
             // empty constructor
         }
 
-        public Product(Response.Tyre tyre, Manufacturer manufacturer, VehicleType vehicleType, Season season)
+        public Product(Response.Tyre tyre, Manufacturer manufacturer, VehicleType vehicleType, Season season,
+            ProductParamLi li, ProductParamModel model, ProductParamProfil profil, ProductParamRafek rafek,
+            ProductParamSi si, ProductParamSirka sirka, ProductParamZnacka znacka)
         {
             Code = tyre.Id;
             Name = tyre.DisplayName;
             Active = true;
             Ean = tyre.Ean;
-            Price = tyre.StockPriceInfo.TotalPriceCZK;
+
+            Price = 0;
+            if (!string.IsNullOrEmpty(tyre.RetailPrice_CZ))
+            {
+                Price = Convert.ToDouble(tyre.RetailPrice_CZ, CultureInfo.InvariantCulture);
+            }
 
             Manufacturer = manufacturer;
             VehicleType = vehicleType;
 
-            //Width = Convert.ToInt32(tyre.Width);
-            //Diameter = Convert.ToInt32(tyre.Diameter);
-            //Type = ProductType.Pneu;
-            //Pattern = tyre.Pattern;
-            //Design = tyre.ConstructionType;
-            //IndexLi = Convert.ToInt32(tyre.LoadIndexFrom);
-            //IndexSi = tyre.SpeedIndex;
-            //HighPr = Convert.ToInt32(tyre.Profile);
-            //FuelConsumption = tyre.TagConsumption;
-            //Adhesion = tyre.TagAdhesion;
-            //NoiseLevelDb = Convert.ToInt32(tyre.TagNoiseLevel_dB);
-            //NoiseLevel = Convert.ToInt32(tyre.TagNoiseLevel);
-            //Season = season;
+            Tyre = new ProductsTyre()
+            {
+                Sirka = sirka,
+                Rafek = rafek,
+                Dezen = tyre.Pattern,
+                Li = li,
+                PrumerRafku = tyre.Diameter.ToString(),
+                Prilnavost = tyre.TagAdhesion,
+                Si = si,
+                Spotreba = tyre.TagConsumption,
+                UrovenHluku = tyre.TagNoiseLevel,
+                UrovenHlukudB = tyre.TagNoiseLevel_dB,
+                Konstrukce = tyre.ConstructionType,
+                Profil = profil,
+                Sezona = (int)season
+            };
 
-            //Prices = new List<PriceObject>();
-            //if (tyre.StockPriceInfo != null)
-            //{
-            //    Prices.Add(new PriceObject()
-            //    {
-            //        DeliveryTime = tyre.StockPriceInfo.DeliveryTime,
-            //        Id = tyre.Id,
-            //        Price = tyre.StockPriceInfo.TotalPriceCZK,
-            //        ProductId = tyre.Id,
-            //        Stock = Convert.ToInt32(tyre.StockPriceInfo.StockAmount)
-            //    });
-            //}
+            Prices = new List<PriceObject>();
+            if (tyre.StockPriceInfo != null)
+            {
+                Prices.Add(new PriceObject()
+                {
+                    DeliveryTime = tyre.StockPriceInfo.DeliveryTime,
+                    Id = tyre.Id,
+                    Price = tyre.StockPriceInfo.TotalPriceCZK,
+                    ProductId = tyre.Id,
+                    Stock = Convert.ToInt32(tyre.StockPriceInfo.StockAmount)
+                });
+            }
 
-            //if (tyre.StockPriceInfo_48 != null)
-            //{
-            //    Prices.Add(new PriceObject()
-            //    {
-            //        DeliveryTime = tyre.StockPriceInfo_48.DeliveryTime,
-            //        Id = tyre.Id,
-            //        Price = tyre.StockPriceInfo_48.TotalPriceCZK,
-            //        ProductId = tyre.Id,
-            //        Stock = Convert.ToInt32(tyre.StockPriceInfo_48.StockAmount)
-            //    });
-            //}
+            if (tyre.StockPriceInfo_48 != null)
+            {
+                Prices.Add(new PriceObject()
+                {
+                    DeliveryTime = tyre.StockPriceInfo_48.DeliveryTime,
+                    Id = tyre.Id,
+                    Price = tyre.StockPriceInfo_48.TotalPriceCZK,
+                    ProductId = tyre.Id,
+                    Stock = Convert.ToInt32(tyre.StockPriceInfo_48.StockAmount)
+                });
+            }
         }
 
         public int Id { get; set; }

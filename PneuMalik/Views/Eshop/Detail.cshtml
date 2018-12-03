@@ -23,25 +23,35 @@
             break;
     }
 
-    var inStockInfo = "";
+    var availability = "";
     if (product.Prices != null)
     {
-        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 0) != null)
+
+        var best = product.Prices.Where(p => p.Stock > 0).OrderBy(p => p.DeliveryTime).FirstOrDefault();
+
+        if (best != null && best.Stock > 0)
         {
-            inStockInfo = "SKLADEM";
+            if (best.DeliveryTime == 0)
+            {
+                availability = "SKLADEM";
+            }
+            if (best.DeliveryTime == 24)
+            {
+                availability = "SKLADEM DO 36 hod";
+            }
+            if (best.DeliveryTime == 48)
+            {
+                availability = "SKLADEM DO 60 hod";
+            }
         }
-        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 24) != null)
+        else
         {
-            inStockInfo = "SKLADEM DO 36 hod";
-        }
-        if (product.Prices.FirstOrDefault(p => p.DeliveryTime == 48) != null)
-        {
-            inStockInfo = "SKLADEM DO 60 hod";
+            availability = "<span class=\"redNaDotaz\">NA DOTAZ</span>";
         }
     }
     else
     {
-        inStockInfo = "NA DOTAZ";
+        availability = "<span class=\"redNaDotaz\">NA DOTAZ</span>";
     }
 }
 
@@ -87,20 +97,32 @@
         <p class="detinfo">
             <ins><img src="/img/vehicletypes/@(product.VehicleType.Id).png" alt="@product.VehicleType.Title" /></ins>
             <ins><img src="/img/seasons/@(product.Tyre.Sezona).png" alt="@seasonName" /></ins>
-            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@(inStockInfo)</strong></span></ins>
+            <ins><span style="color:#008000;"><strong>DOSTUPNOST:<br />@Html.Raw(availability)</strong></span></ins>
             <p class="detget">
                 <ins><input type="text" name="productCount" id="productCount" class="boks" value="1" /></ins>
                 <ins>ks</ins>
-                <ins><input type="button" onClick="toTheCart(@(product.Id), @($"{product.Price:0}"), @($"{product.Dph:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
+                <ins><input type="button" onClick="toTheCart(@(product.Id), document.querySelector('.selectedPriceCheck:checked').value, @($"{product.Dph:0}"), '@(productName)');" value="Do košíku" class="enter" /></ins>
             </p>
             <table>
                 @foreach (var priceInfo in product.Prices)
                 {
+
+                    if (priceInfo.DeliveryTime == 0 && priceInfo.Stock == 0 && product.Prices.Where(p => p.Stock > 0).Count() > 0)
+                    {
+                        continue;
+                    }
+
                     <tr>
                         <td valign="top" width="80">Vaše cena:</td>
-                        <td><input type="radio" name="gr" value="cena1" checked>&nbsp;
+                        <td><input type="radio" class="selectedPriceCheck" name="gr" value="@($"{(priceInfo.Price * (1 + (product.Dph / 100.0))):0}")" checked>&nbsp;
                             <span class="f20 blue"><strong>@($"{(priceInfo.Price * (1 + (product.Dph / 100.0))):0} Kč")</strong> @(priceInfo.DeliveryTime > 0 ? $"do {priceInfo.DeliveryTime + 12} hodin" : "")</span> 
-                            <span style="color:#008000;"><strong>SKLADEM: @priceInfo.Stock ks</strong></span><br />
+                            @if (priceInfo.Stock > 0)
+                            {
+                                <span style="color:#008000;">
+                                    <strong>SKLADEM: @priceInfo.Stock ks</strong>
+                                </span>
+                            }
+                            <br />
                         </td>
                     </tr>
                 }

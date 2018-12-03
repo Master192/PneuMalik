@@ -1,7 +1,5 @@
 ﻿using PneuMalik.Models;
 using PneuMalik.Models.Dto;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
@@ -13,7 +11,8 @@ namespace PneuMalik.Controllers.Api
 
         [HttpGet]
         [Route("reload")]
-        public IHttpActionResult Reload(int cathegory, int season, int manufacturer, int width, int rim, int profile)
+        public IHttpActionResult Reload(int cathegory, int season, int manufacturer, int width, int rim,
+            int profile, int si, int li)
         {
 
             var availableProducts = db.Products.Where(p => p.Active && p.VehicleType.Id == cathegory 
@@ -21,7 +20,9 @@ namespace PneuMalik.Controllers.Api
                         && (manufacturer == 0 || p.Manufacturer.Id == manufacturer)
                         && (width == 0 || p.Tyre.Sirka.Id == width)
                         && (profile == 0 || p.Tyre.Profil.Id == profile)
-                        && (rim == 0 || p.Tyre.Rafek.Id == rim));
+                        && (rim == 0 || p.Tyre.Rafek.Id == rim)
+                        && (si == 0 || p.Tyre.Si.Id == si)
+                        && (li == 0 || p.Tyre.Li.Id == li));
 
             var filter = new Filter()
             {
@@ -29,7 +30,9 @@ namespace PneuMalik.Controllers.Api
                 Seasons = availableProducts.GroupBy(s => s.Tyre.Sezona).Select(s => s.FirstOrDefault().Tyre.Sezona).ToList(),
                 Profiles = availableProducts.GroupBy(p => p.Tyre.Profil.Id).Select(s => s.FirstOrDefault().Tyre.Profil.Id).ToList(),
                 Rims = availableProducts.GroupBy(r => r.Tyre.Rafek.Id).Select(s => s.FirstOrDefault().Tyre.Rafek.Id).ToList(),
-                Widths = availableProducts.GroupBy(w => w.Tyre.Sirka.Id).Select(s => s.FirstOrDefault().Tyre.Sirka.Id).ToList()
+                Widths = availableProducts.GroupBy(w => w.Tyre.Sirka.Id).Select(s => s.FirstOrDefault().Tyre.Sirka.Id).ToList(),
+                Sis = availableProducts.GroupBy(w => w.Tyre.Si.Id).Select(s => s.FirstOrDefault().Tyre.Si.Id).ToList(),
+                Lis = availableProducts.GroupBy(w => w.Tyre.Li.Id).Select(s => s.FirstOrDefault().Tyre.Li.Id).ToList()
             };
 
             return Json(filter);

@@ -3,44 +3,51 @@
 @{
 
     var suf = $"{Model.Manufacturer.Name} {Model.Name}";
-    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-").Replace("/", "-"));
 }
 
-<p>
-    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
-        <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
-    </a>
-</p>
-<table><tbody>
-    <tr>
-        <td width="295" colspan="2">
-            <strong>
-                <a href="/disk/@($"{Model.Id}/{urlSuffix}")" title="@Model.Name">@Model.Name</a>
-            </strong>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="grn"><strong>DOSTUPNOST:</strong><br>
-            <div class="prodinfo">
-                <span onmouseover="document.getElementById('info(@Model.Id)').style.display='block'" onmouseout="document.getElementById('info(@Model.Id)').style.display='none'" class="dostupnostInfo">INFO</span>
-                <div id="info(@Model.Id)" class="pi">
-                    <p><strong>Objednejte vložením do košíku.</strong><br>
-                        Zboží není na skladě.<br>
-                        Prověříme Vám jeho dostupnost.<br>
-                        Info Vám dodáme dnes do 17:00 nebo zítra do 12:00 hod.
-                    </p>
+@if (!string.IsNullOrEmpty(Model.Image) && File.Exists(Path.Combine(Server.MapPath("~"), "images", "ikona", Model.Image)))
+{
+    <p>
+        <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
+            <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
+        </a>
+    </p>
+}
+<table>
+    <tbody>
+        <tr>
+            <td width="295" colspan="2">
+                <strong>
+                    <a href="/disk/@($"{Model.Id}/{urlSuffix}")" title="@Model.Name">@Model.Name</a>
+                </strong>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="grn">
+                <strong>DOSTUPNOST:</strong><br>
+                <div class="prodinfo">
+                    <span onmouseover="document.getElementById('info(@Model.Id)').style.display='block'" onmouseout="document.getElementById('info(@Model.Id)').style.display='none'" class="dostupnostInfo">INFO</span>
+                    <div id="info(@Model.Id)" class="pi">
+                        <p>
+                            <strong>Objednejte vložením do košíku.</strong><br>
+                            Zboží není na skladě.<br>
+                            Prověříme Vám jeho dostupnost.<br>
+                            Info Vám dodáme dnes do 17:00 nebo zítra do 12:00 hod.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td>
-            <div class="prod180">Rozměr: @Model.AluDisc.Sirka, ET: @Model.AluDisc.Et</div>
-        </td>
-        <td class="f15 blue"><strong>@($"{Model.Price:0} Kč")</strong></td>
-        <td><input type="text" class="boks1" style="width: 20px;" name="mn(@Model.Id)" value="1"> ks</td>
-        <td><input type="button" value="Do košíku" class="enter3" onclick="alert('Do košíku');"></td>
-    </tr>
-</tbody></table>
+            </td>
+            <td>
+                <div class="prod180">Rozměr: @Model.AluDisc.Sirka, ET: @Model.AluDisc.Et</div>
+            </td>
+            <td class="f15 blue"><strong>@($"{Model.Price:0} Kč")</strong></td>
+            <td><input type="text" class="boks1" style="width: 20px;" name="mn(@Model.Id)" value="1"> ks</td>
+            <td><input type="button" value="Do košíku" class="enter3" onclick="alert('Do košíku');"></td>
+        </tr>
+    </tbody>
+</table>
 <div class="cleaner"><hr></div>

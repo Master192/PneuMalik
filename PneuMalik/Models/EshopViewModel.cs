@@ -17,7 +17,7 @@ namespace PneuMalik.Models
         }
 
         public EshopViewModel(ApplicationDbContext db, int cathegory) 
-            : this(db, cathegory, db.Products.Where(p => p.Action && p.Active && p.VehicleType.Id == cathegory).ToList()) {
+            : this(db, cathegory, db.Products.Where(p => p.Action && p.Active && p.VehicleType.Id == cathegory).OrderBy(p => p.Price).ToList()) {
         }
 
         public EshopViewModel(ApplicationDbContext db, int cathegory, List<Product> products)
@@ -30,7 +30,7 @@ namespace PneuMalik.Models
             if (cathegory == 13)        // speciální kategorie - akční nabídka
             {
 
-                products = db.Products.Where(p => p.Action && p.Active).ToList();
+                products = db.Products.Where(p => p.Action && p.Active).OrderBy(p => p.Price).ToList();
             }
 
             foreach (var product in products)
@@ -56,6 +56,14 @@ namespace PneuMalik.Models
                     if (product.Tyre.RafekId.HasValue)
                     {
                         product.Tyre.Rafek = db.ParamRafek.FirstOrDefault(s => s.Id == product.Tyre.RafekId);
+                    }
+                    if (product.Tyre.SiId.HasValue)
+                    {
+                        product.Tyre.Si = db.ParamSi.FirstOrDefault(s => s.Id == product.Tyre.SiId);
+                    }
+                    if (product.Tyre.LiId.HasValue)
+                    {
+                        product.Tyre.Li = db.ParamLi.FirstOrDefault(s => s.Id == product.Tyre.LiId);
                     }
                 }
                 if (product.AluDiscId.HasValue)
@@ -90,6 +98,8 @@ namespace PneuMalik.Models
                 SirkaList = db.ParamSirka.ToList();
                 ProfilList = db.ParamProfil.ToList();
                 RafekList = db.ParamRafek.ToList();
+                LiList = db.ParamLi.ToList();
+                SiList = db.ParamSi.ToList();
             }
 
             if (cathegory == 9)
@@ -127,6 +137,14 @@ namespace PneuMalik.Models
                     if (tip.Tyre.RafekId.HasValue)
                     {
                         tip.Tyre.Rafek = db.ParamRafek.FirstOrDefault(s => s.Id == tip.Tyre.RafekId);
+                    }
+                    if (tip.Tyre.SiId.HasValue)
+                    {
+                        tip.Tyre.Si = db.ParamSi.FirstOrDefault(s => s.Id == tip.Tyre.SiId);
+                    }
+                    if (tip.Tyre.LiId.HasValue)
+                    {
+                        tip.Tyre.Li = db.ParamLi.FirstOrDefault(s => s.Id == tip.Tyre.LiId);
                     }
                 }
                 if (tip.AluDiscId.HasValue)
@@ -173,11 +191,14 @@ namespace PneuMalik.Models
         public IList<ProductParamRafek> RafekList { get; set; }
         public IList<ProductParamSirka> SirkaList { get; set; }
         public IList<ProductParamZnacka> ZnackaList { get; set; }
+        public IList<ProductParamSi> SiList { get; set; }
+        public IList<ProductParamLi> LiList { get; set; }
         public IList<VehicleType> VehicleTypes { get; set; }
         public IList<int> Seasons { get; set; }
         public Filter Filter { get; set; }
         public IList<CartRow> Cart { get; set; }
         public IList<Product> CartProducts { get; set; }
+        public double Shipping { get; set; }
         public Product ProductDetail { get; set; }
         public Cathegory Cathegory { get; set; }
         public Customer Customer { get; set; }

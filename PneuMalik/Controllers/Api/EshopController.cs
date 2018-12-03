@@ -47,6 +47,19 @@ namespace PneuMalik.Controllers.Api
         }
 
         [HttpGet]
+        [Route("removecartrow")]
+        public IHttpActionResult RemoveCartRow(int id)
+        {
+
+            var row = db.CartRows.FirstOrDefault(c => c.Id == id);
+
+            db.CartRows.Remove(row);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet]
         [Route("register")]
         public IHttpActionResult Register(int id, double price, int count)
         {

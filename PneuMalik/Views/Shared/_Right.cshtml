@@ -4,6 +4,10 @@
 
 <div id="right">
 
+    <ul class="menuvlevo">
+        <li class="none"><input type="text" id="search" placeholder="Hledej" /></li>
+    </ul>
+
     <div id="right2">
         @Html.Raw(ViewBag.ProvozniDoba)
     </div>
@@ -12,7 +16,7 @@
     {
 
         var suf = $"{product.Manufacturer.Name} {product.Tyre.Dezen}";
-        var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+        var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-").Replace("/", "-"));
 
         var availability = "SKLADEM";
 

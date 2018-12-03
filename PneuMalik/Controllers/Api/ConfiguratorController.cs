@@ -121,12 +121,12 @@ namespace PneuMalik.Controllers.Api
 
                 try
                 {
-                    if (!db.Products.Any(p => p.Ean == disk.Article))
+                    if (!db.Products.Any(p => p.Code2 == disk.Article))
                         continue;
                 }
                 catch { continue; }
 
-                var product = db.Products.FirstOrDefault(p => p.Ean == disk.Article);
+                var product = db.Products.FirstOrDefault(p => p.Code2 == disk.Article);
                 product.Description = disk.ImageOnCar;
                 result.Add(product);
             }

@@ -2,6 +2,7 @@
 using PneuMalik.Models;
 using PneuMalik.Models.Dto;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -65,12 +66,16 @@ namespace PneuMalik.Controllers
                 Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList()
             };
 
+            var vehicleTypes = db.VehicleTypes.ToList();
+
             model.CartProducts = db.CartRows.Join(db.Products, 
                 c => c.ProductId, 
                 p => p.Id, 
                 (cart, product) => new { Cart = cart, Product = product })
                 .Where(cp => cp.Cart.CustomerId == customer.Id)
                 .Select(cp => cp.Product).ToList();
+
+            model.Shipping = GetShipping(model.Cart, model.CartProducts);
 
             return View("~/Views/Eshop/Cart.cshtml", model);
         }
@@ -97,12 +102,16 @@ namespace PneuMalik.Controllers
                 Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList()
             };
 
+            var vehicleTypes = db.VehicleTypes.ToList();
+
             model.CartProducts = db.CartRows.Join(db.Products,
                 c => c.ProductId,
                 p => p.Id,
                 (cart, product) => new { Cart = cart, Product = product })
                 .Where(cp => cp.Cart.CustomerId == customer.Id)
                 .Select(cp => cp.Product).ToList();
+
+            model.Shipping = GetShipping(model.Cart, model.CartProducts);
 
             return View("~/Views/Eshop/OrderStep1.cshtml", model);
         }
@@ -154,12 +163,16 @@ namespace PneuMalik.Controllers
                 Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList()
             };
 
+            var vehicleTypes = db.VehicleTypes.ToList();
+
             model.CartProducts = db.CartRows.Join(db.Products,
                 c => c.ProductId,
                 p => p.Id,
                 (cart, product) => new { Cart = cart, Product = product })
                 .Where(cp => cp.Cart.CustomerId == customer.Id)
                 .Select(cp => cp.Product).ToList();
+
+            model.Shipping = GetShipping(model.Cart, model.CartProducts);
 
             var customerId = Int32.Parse(customer.Id);
             model.Customer = db.Customers.FirstOrDefault(c => c.Id == customerId);
@@ -268,6 +281,27 @@ namespace PneuMalik.Controllers
             return RedirectToAction("souhrn-objednavky");
         }
 
+        [LayoutInjecter("_EshopLayout")]
+        [HttpPost]
+        public ActionResult CartAmount(FormCollection collection)
+        {
+
+            foreach (var key in collection.AllKeys)
+            {
+
+                var cartRowId = Int32.Parse(key.Replace("mn", ""));
+                var value = collection[key];
+
+                var row = db.CartRows.FirstOrDefault(c => c.Id == cartRowId);
+                row.Count = Int32.Parse(collection[key]);
+                db.Entry(row).State = EntityState.Modified;
+            }
+
+            db.SaveChanges();
+
+            return Kosik();
+        }
+
         [HttpPost]
         public ActionResult Confirm(string Souhlas, string Pripominka)
         {
@@ -283,8 +317,8 @@ namespace PneuMalik.Controllers
                 Note = Pripominka,
                 Shipping = shipping,
                 Status = OrderStatus.New,
-                Total = cart.Sum(c => c.PriceTmp * c.Count),
-                ShippingPrice = 200.0,
+                Total = (decimal)cart.Sum(c => c.PriceTmp * c.Count),
+                ShippingPrice = (decimal)200.0,
                 Date = DateTime.Now,
                 Sale = ((shipping == 2 || shipping == 3 || shipping == 5) ? 2 : 0)
             };
@@ -319,6 +353,44 @@ namespace PneuMalik.Controllers
         {
 
             return View();
+        }
+
+        private double GetShipping(IList<CartRow> cart, IList<Product> products)
+        {
+            var personalCount = 0;
+            var motoCount = 0;
+            foreach (var vehicle in products)
+            {
+
+                var vehicleType = vehicle.VehicleType.Id;
+
+                if (vehicleType == 1 || vehicleType == 2)
+                {
+                    personalCount += cart.FirstOrDefault(c => c.ProductId == vehicle.Id).Count;
+                }
+                else if (vehicleType == 5)
+                {
+                    motoCount += cart.FirstOrDefault(c => c.ProductId == vehicle.Id).Count;
+                }
+            }
+
+            var shipping = 0.0;
+
+            if (personalCount == 1)
+            {
+                shipping += 200.0;
+            }
+            else
+            {
+                shipping += personalCount * 100.0;
+            }
+
+            if (motoCount > 0)
+            {
+                shipping += (motoCount % 2) * 200.0; 
+            }
+
+            return shipping;
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

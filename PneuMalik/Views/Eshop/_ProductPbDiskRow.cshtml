@@ -3,14 +3,17 @@
 @{
 
     var suf = $"{Model.Manufacturer.Name} {Model.Code} {Model.PbDisc.Sirka}";
-    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-"));
+    var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-").Replace("/", "-"));
 }
 
-<p>
-    <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
-        <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
-    </a>
-</p>
+@if (!string.IsNullOrEmpty(Model.Image) && File.Exists(Path.Combine(Server.MapPath("~"), "images", "ikona", Model.Image)))
+{
+    <p>
+        <a class="preview" href="/images/detail/@(Model.Image)" alt="@Model.Name">
+            <img src="/images/ikona/@(Model.Image)" alt="@Model.Name">
+        </a>
+    </p>
+}
 <table>
     <tbody>
         <tr>
