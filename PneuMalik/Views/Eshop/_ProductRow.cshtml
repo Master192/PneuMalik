@@ -1,36 +1,63 @@
 ﻿@model PneuMalik.Models.Dto.Product
+@using PneuMalik.Helpers
 
 @{ 
+
+    if (Model.Tyre == null)
+    {
+        Model.Tyre = new PneuMalik.Models.Dto.ProductsTyre()
+        {
+            Li = new PneuMalik.Models.Dto.ProductParamLi(),
+            Profil = new PneuMalik.Models.Dto.ProductParamProfil() {  },
+            Rafek = new PneuMalik.Models.Dto.ProductParamRafek(),
+            Si = new PneuMalik.Models.Dto.ProductParamSi(),
+            Sirka = new PneuMalik.Models.Dto.ProductParamSirka()
+        };
+    }
+    if (Model.Tyre.Li == null)
+    {
+        Model.Tyre.Li = new PneuMalik.Models.Dto.ProductParamLi();
+    }
+    if (Model.Tyre.Profil == null)
+    {
+        Model.Tyre.Profil = new PneuMalik.Models.Dto.ProductParamProfil();
+    }
+    if (Model.Tyre.Rafek == null)
+    {
+        Model.Tyre.Rafek = new PneuMalik.Models.Dto.ProductParamRafek();
+    }
+    if (Model.Tyre.Si == null)
+    {
+        Model.Tyre.Si = new PneuMalik.Models.Dto.ProductParamSi();
+    }
+    if (Model.Tyre.Sirka == null)
+    {
+        Model.Tyre.Sirka = new PneuMalik.Models.Dto.ProductParamSirka();
+    }
+    if (Model.VehicleType == null)
+    {
+        Model.VehicleType = new PneuMalik.Models.Dto.VehicleType();
+    }
+    if (Model.Manufacturer == null)
+    {
+        Model.Manufacturer = new PneuMalik.Models.Dto.Manufacturer();
+    }
 
     var suf = $"{Model.Manufacturer.Name} {Model.Tyre.Dezen}";
     var urlSuffix = HttpUtility.UrlEncode(suf.ToLower().Replace(" ", "-").Replace(".", "-").Replace("/", "-"));
 
     var availability = "SKLADEM";
+    double price = 0;
 
     if (Model.Prices != null)
     {
 
-        var best = Model.Prices.Where(p => p.Stock > 0).OrderBy(p => p.DeliveryTime).FirstOrDefault();
+        if (Model.Prices.Count > 0)
+        {
+            price = Model.Prices.Min(p => p.Price);
+        }
 
-        if (best != null && best.Stock > 0)
-        {
-            if (best.DeliveryTime == 0)
-            {
-                availability = "SKLADEM";
-            }
-            if (best.DeliveryTime == 24)
-            {
-                availability = "SKLADEM DO 36 hod";
-            }
-            if (best.DeliveryTime == 48)
-            {
-                availability = "SKLADEM DO 60 hod";
-            }
-        }
-        else
-        {
-            availability = "<span class=\"redNaDotaz\">NA DOTAZ</span>";
-        }
+        availability = ProductHelper.GetAvailabilityString(0, Model.Prices);
     }
     else
     {
@@ -49,7 +76,7 @@
 <table>
     <tbody>
         <tr>
-            <td width="145">@($"{Model.Tyre.Sirka.Name}/{Model.Tyre.Profil.Name} {Model.Tyre.Konstrukce}{Model.Tyre.PrumerRafku} {Model.Tyre.HmotnostniIndex}{Model.Tyre.RychlostniIndex}")</td>
+            <td width="145">@($"{Model.Tyre.Sirka.Name}/{Model.Tyre.Profil.Name} {Model.Tyre.Konstrukce}{Model.Tyre.PrumerRafku} {Model.Tyre.Li.Name}{Model.Tyre.Si.Name}")</td>
             <td width="155">
                 <a href="/pneumatika/@($"{Model.Id}/{urlSuffix}")" title="@Model.Tyre.Dezen">
                     <strong>@(Model.Manufacturer != null ? Model.Manufacturer.Name : "")</strong> @Model.Tyre.Dezen
@@ -62,7 +89,7 @@
         <tr>
             <td class="grn"><strong>DOSTUPNOST:<br>@Html.Raw(availability)</strong></td>
             <td><img src="/img/vehicletypes/@(Model.VehicleType.Id).png?v=2" alt="@Model.VehicleType.Name"> <img src="/img/seasons/@(Model.Tyre.Sezona).png" alt="@Model.Tyre.Sezona"></td>
-            <td class="f15 blue"><strong>@($"{Model.Price:0} Kč")</strong></td>
+            <td class="f15 blue"><strong>@($"{price:0} Kč")</strong></td>
             <td><input type="button" value="Koupit" class="enter3" onclick="window.location.href='/pneumatika/@($"{Model.Id}/{urlSuffix}")';"></td>
         </tr>
     </tbody>

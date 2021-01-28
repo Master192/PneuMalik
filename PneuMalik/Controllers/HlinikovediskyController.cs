@@ -40,20 +40,17 @@ namespace PneuMalik.Controllers
                 return View("~/Views/Eshop/AluRims.cshtml");
             }
 
-            var diameter = 0;
-            if (!Int32.TryParse(filterRim, out diameter))
+            if (!Int32.TryParse(filterRim, out int diameter))
             {
                 diameter = 0;
             }
 
-            var manufacturer = 0;
-            if (!Int32.TryParse(filterManufacturer, out manufacturer))
+            if (!Int32.TryParse(filterManufacturer, out var manufacturer))
             {
                 manufacturer = 0;
             }
 
-            var width = 0;
-            if (!Int32.TryParse(filterWidth, out width))
+            if (!Int32.TryParse(filterWidth, out int width))
             {
                 width = 0;
             }

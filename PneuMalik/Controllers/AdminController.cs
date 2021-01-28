@@ -2,11 +2,15 @@
 using PneuMalik.Models;
 using PneuMalik.Models.Dto;
 using System;
+using System.Configuration;
 using System.Data.Entity;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace PneuMalik.Controllers
 {
@@ -103,6 +107,96 @@ namespace PneuMalik.Controllers
         [HttpPost]
         public ActionResult DoImportFromFile(HttpPostedFileBase file)
         {
+
+            if (file != null)
+            {
+
+                string strSaveURL = ConfigurationManager.AppSettings["FileAppUrl"] + "xml\\" + file.FileName;
+                file.SaveAs(strSaveURL);
+
+                var errors = new StringBuilder();
+
+                using (var lReader = new XmlTextReader(strSaveURL))
+                {
+                    string strCode = "";
+                    bool blnGetItemCode = false;
+
+                    string strName = "";
+                    bool blnGetItemName = false;
+
+                    string strKusu = "";
+                    bool blnGetItemKusu = false;
+
+                    string strPrice = "";
+                    bool blnGetItemPrice = false;
+
+                    string strSklad = "";
+                    bool blnGetItemSklad = false;
+
+                    while (lReader.Read())
+                    {
+                        //rozhodneme se podle typu uzlu jak zareagujeme
+                        if (lReader.NodeType == XmlNodeType.Element && lReader.Name == "item_code") blnGetItemCode = true;
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item_code") blnGetItemCode = false;
+
+                        if (lReader.NodeType == XmlNodeType.Element && lReader.Name == "item_name") blnGetItemName = true;
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item_name") blnGetItemName = false;
+
+                        if (lReader.NodeType == XmlNodeType.Element && lReader.Name == "item_kusu") blnGetItemKusu = true;
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item_kusu") blnGetItemKusu = false;
+
+                        if (lReader.NodeType == XmlNodeType.Element && lReader.Name == "item_price") blnGetItemPrice = true;
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item_price") blnGetItemPrice = false;
+
+                        if (lReader.NodeType == XmlNodeType.Element && lReader.Name == "item_sklad") blnGetItemSklad = true;
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item_sklad") blnGetItemSklad = false;
+
+                        if (blnGetItemCode && lReader.NodeType == XmlNodeType.Text && lReader.HasValue) strCode = lReader.Value;
+                        if (blnGetItemName && lReader.NodeType == XmlNodeType.Text && lReader.HasValue) strName = lReader.Value;
+                        if (blnGetItemKusu && lReader.NodeType == XmlNodeType.Text && lReader.HasValue) strKusu = lReader.Value;
+                        if (blnGetItemPrice && lReader.NodeType == XmlNodeType.Text && lReader.HasValue) strPrice = lReader.Value;
+                        if (blnGetItemSklad && lReader.NodeType == XmlNodeType.Text && lReader.HasValue) strSklad = lReader.Value;
+
+                        if (lReader.NodeType == XmlNodeType.EndElement && lReader.Name == "item")
+                        {
+                            if (strCode != "")
+                            {
+                                try
+                                {
+
+                                    var code = strCode.Substring(1);
+                                    var tyre = db.Tyres.FirstOrDefault(p => p.PartNo == code);
+
+                                    if (tyre != null)
+                                    {
+
+                                        var price = db.Prices.FirstOrDefault(p => p.ProductId == tyre.Id);
+                                        price.Stock = int.Parse(strKusu);
+                                        price.Price = double.Parse(strPrice, CultureInfo.InvariantCulture) / 100.0;
+                                        price.DeliveryTime = 0;
+                                        db.SaveChanges();
+                                    }
+                                }
+                                catch
+                                {
+                                    errors.Append("<br />Chyba u položky s kódem: " + strCode.Substring(1));
+                                }
+
+                                strCode = "";
+                                strName = "";
+                                strKusu = "";
+                                strPrice = "";
+                                strSklad = "";
+                            }
+                        }
+
+                    }
+
+                }
+
+                ViewBag.Info = "Soubor byl úspěšně načten a údaje aktualizovány." + errors;
+            }
+
             return View("ImportXml");
         }
 

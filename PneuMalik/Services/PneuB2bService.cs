@@ -133,7 +133,7 @@ namespace PneuMalik.Services
 
                 SetStatus("Začalo stahování datového souboru");
 
-                //Download(_serviceUrlFull);
+                Download(_serviceUrlFull);
 
                 SetStatus("Začalo zpracování stažených dat");
 
@@ -517,8 +517,15 @@ namespace PneuMalik.Services
             using (var client = new WebClient())
             {
 
+                var tempFile = _dataFilePath + ".gzip";
+
                 client.Credentials = _debug ? _debugCredentials : _credentials;
-                client.DownloadFile(serviceUrl, _dataFilePath);
+                client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+                client.DownloadFile(serviceUrl, tempFile);
+
+                // rozbalit gzip
+                var fileToUnzip = new FileInfo(tempFile);
+                ZipHelper.Decompress(fileToUnzip);
             }
         }
 

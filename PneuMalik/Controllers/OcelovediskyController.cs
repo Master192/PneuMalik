@@ -38,20 +38,17 @@ namespace PneuMalik.Controllers
                 return View("~/Views/Eshop/SteelRims.cshtml");
             }
 
-            var diameter = 0;
-            if (!Int32.TryParse(filterRim, out diameter))
+            if (!Int32.TryParse(filterRim, out int diameter))
             {
                 diameter = 0;
             }
 
-            var brand = 0;
-            if (!Int32.TryParse(filterBrand, out brand))
+            if (!Int32.TryParse(filterBrand, out int brand))
             {
                 brand = 0;
             }
 
-            var model = 0;
-            if (!Int32.TryParse(filterModel, out model))
+            if (!Int32.TryParse(filterModel, out int model))
             {
                 model = 0;
             }

@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Api\ConfiguratorController.cs" />
     <Compile Include="Controllers\Api\EshopController.cs" />
+    <Compile Include="Controllers\Api\ExportController.cs" />
     <Compile Include="Controllers\Api\FilterController.cs" />
     <Compile Include="Controllers\Api\ImportController.cs" />
     <Compile Include="Controllers\CathegoriesController.cs" />
@@ -227,6 +228,8 @@
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\LayoutInjecterAttribute.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\ProductHelper.cs" />
+    <Compile Include="Helpers\ZipHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Configurator\ABELine.cs" />
@@ -950,6 +953,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Customers\" />
     <Folder Include="Views\Disky\" />
+    <Folder Include="Views\Export\" />
     <Folder Include="Views\Hlinikovedisky\" />
     <Folder Include="Views\Ocelovedisky\" />
     <Folder Include="Views\Orders\" />
