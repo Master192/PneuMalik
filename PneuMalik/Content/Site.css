@@ -1601,3 +1601,7 @@ span.help {
 }
 div.help-content { display: none; }
 .rred { color: #DA0000; text-align: right; }
+
+.imageList { display: flex; flex-direction: row; }
+.imageList div { max-width: 120px; max-height: 120px; }
+.imageList div img { height: 100%; }

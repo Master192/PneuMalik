@@ -85,9 +85,9 @@ namespace PneuMalik.Services
         }
 
         private const string _documentId = "a2-test";
-        private const string _buyerPartyId = "3215729";
+        private const string _buyerPartyId = "32TEST";      //"3215729";
         private const string _buyerAgencyCode = "91";
-        private const string _userCredentials = "petrmalik:petrmalik";
+        private const string _userCredentials = "Divi 320 Testkunde:12345alcar_cz";
         private const string _targetUrl = "https://adhocedi.alcar-wheels.com";
 
         private NameValueCollection _xmlTags;

@@ -2,6 +2,7 @@
 using PneuMalik.Models;
 using PneuMalik.Models.Dto;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
@@ -286,7 +287,7 @@ namespace PneuMalik.Controllers
 
             ViewBag.Title = "Vložení obrázků";
 
-            return View();
+            return View(LoadImages());
         }
 
         [HttpPost]
@@ -303,7 +304,19 @@ namespace PneuMalik.Controllers
             ViewBag.Title = "Vložení obrázků";
             ViewBag.Uploaded = $"/images/image/{file.FileName}";
 
-            return View();
+            return View(LoadImages());
+        }
+
+        private List<string> LoadImages()
+        {
+            var directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images/image/");
+
+            if (Directory.Exists(directory))
+            {
+                return Directory.GetFiles(directory).Select(f => $"/images/image/{new FileInfo(f).Name}").ToList();
+            }
+
+            return new List<string>();
         }
 
         protected override void Dispose(bool disposing)

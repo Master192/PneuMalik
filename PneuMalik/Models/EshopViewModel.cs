@@ -14,6 +14,8 @@ namespace PneuMalik.Models
             var customer = new CustomerHelper();
 
             Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList();
+
+            Cathegories = db.Cathegories.ToList();
         }
 
         public EshopViewModel(ApplicationDbContext db, int cathegory) 
@@ -22,6 +24,7 @@ namespace PneuMalik.Models
 
         public EshopViewModel(ApplicationDbContext db, int cathegory, List<Product> products)
         {
+            Cathegories = db.Cathegories.ToList();
 
             var co = products.ToList();
 
@@ -202,5 +205,6 @@ namespace PneuMalik.Models
         public Product ProductDetail { get; set; }
         public Cathegory Cathegory { get; set; }
         public Customer Customer { get; set; }
+        public IList<Cathegory> Cathegories { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿<h1>Vložení nového obrázku</h1>
+﻿@model List<string>
+
+<h1>Vložení nového obrázku</h1>
 
 @using (Html.BeginForm("Images", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
@@ -21,3 +23,10 @@
 
     </div>
 }
+
+<div class="imagelist">
+    @foreach (var image in Model)
+    {
+        <div><img src="@image" alt="image" /></div>
+    }
+</div>
