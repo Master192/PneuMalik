@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using PneuMalik.Models;
 using PneuMalik.Models.Dto;
+using System.IO;
 
 namespace PneuMalik.Controllers.Api
 {
@@ -109,29 +110,116 @@ namespace PneuMalik.Controllers.Api
             configurator.XmlTagAdd("ModelCode", model);
             var disks = configurator.GetItemsFromXml<ACMWheelData_A2>("ACMWheel_A2").DataLines;
 
-            var result = new List<Product>();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            var result = new List<DiskCar>();
+
+            // download images if necessary
+            foreach (var disk in disks)
+            {
+                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "alcar", model, $"{disk.Article}.jpg");
+
+                var dbDisk = db.Disks.FirstOrDefault(d => d.Article == disk.Article);
+
+                if (dbDisk == null)
+                {
+                    continue;
+                }
+
+                result.Add(new DiskCar() { DataLine = disk, Disk = dbDisk });
+
+                if (!System.IO.File.Exists(path))
+                {
+                    var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "alcar", model);
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+
+                    using (var client = new WebClient())
+                    {
+                        try
+                        {
+                            client.DownloadFile(new Uri(disk.ImageOnCar.Replace("viewerhtml.php", "viewerimagev2.php")), path);
+                        }
+                        catch (Exception e)
+                        {
+                            throw new Exception($"Error download image {disk.ImageOnCarBinary} to location {path} because: {e.Message}.");
+                        }
+                    }
+                }
+            }
+
+            return Ok(result);
+
+            /*var result = new List<Product>();
 
             foreach (var disk in disks)
             {
                 if (!disk.TyreLines.Any(t => t.Tyre.IndexOf($"R{size}") > -1))
+                {
                     continue;
+                }
 
                 if (result.Any(p => p.Ean == disk.Article))
-                    continue;
-
-                try
                 {
-                    if (!db.Products.Any(p => p.Code2 == disk.Article))
-                        continue;
+                    continue;
                 }
-                catch { continue; }
+
+                if (!db.Products.Any(p => p.Code2 == disk.Article))
+                {
+                    int code = 1;
+                    if (db.Products.Any())
+                    {
+                        code += db.Products.Max(p => p.Code);
+                    }
+
+                    db.Products.Add(new Product()
+                    {
+                        Dph = 21,
+                        Code = code,
+                        Code2 = disk.Article,
+                        Active = true,
+                        Name = disk.Article,
+                        Price = 1,
+                        Tip = false,
+                        Action = false,
+                        PriceCommon = 1,
+                        Sale = 0,
+                        Source = Product.DataSource.Alcar
+                    });
+                }
 
                 var product = db.Products.FirstOrDefault(p => p.Code2 == disk.Article);
                 product.Description = disk.ImageOnCar;
                 result.Add(product);
             }
 
-            return Ok(result);
+            return Ok(result);*/
+        }
+
+        [HttpGet]
+        [Route("updatedata")]
+        public IHttpActionResult UpdateData(string category)
+        {
+            var configurator = new ConfiguratorService();
+            configurator.XmlTagAdd("Category", category);
+            var details = configurator.GetItemsFromXml<ArticleData_A2>("Article_A2").DataLines;
+
+            var counter = 0;
+
+            foreach (var detail in details)
+            {
+                if (!db.Disks.Any(d => d.Article == detail.Article))
+                {
+                    db.Disks.Add(new Disk(category, detail));
+                    counter++;
+                }
+            }
+
+            db.SaveChanges();
+
+            return Ok(counter);
         }
 
         private ApplicationDbContext db = new ApplicationDbContext();

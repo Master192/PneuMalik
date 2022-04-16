@@ -503,6 +503,46 @@ ul#menutop {
         background: url(/img/hr.gif) 0 0 no-repeat;
     }
 
+.disk-list .disk-item {
+    width: 100%;
+}
+
+.disk-list .disk-item a {
+    text-decoration: none;
+    padding-bottom: 20px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+    .disk-list .disk-item img {
+        width: 100%;
+    }
+
+.stred-rel .disk-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    padding: 0 0 3px;
+}
+
+.stred-rel .disk-item label {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.stred-rel {
+    position: relative;
+}
+
+    .stred-rel img {
+        outline: none;
+        position: absolute;
+        top: 100px;
+        right: 0;
+    }
+
 #left {
     float: left;
     width: 200px;

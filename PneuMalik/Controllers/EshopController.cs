@@ -221,6 +221,46 @@ namespace PneuMalik.Controllers
             return View("~/Views/Eshop/Konfigurator.cshtml", new EshopViewModel(db, 1));
         }
 
+        [LayoutInjecter("_EshopLayout")]
+        public ActionResult Detail(string id)
+        {
+
+            var provozniDoba = db.Texts.FirstOrDefault(t => t.Id == 4);
+            var kontakty = db.Texts.FirstOrDefault(t => t.Id == 7);
+            var firstStop = db.Texts.FirstOrDefault(t => t.Id == 8);
+            var footer = db.Texts.FirstOrDefault(t => t.Id == 13);
+
+            ViewBag.ProvozniDoba = provozniDoba != null ? provozniDoba.Content : string.Empty;
+            ViewBag.Kontakty = kontakty != null ? kontakty.Content : string.Empty;
+            ViewBag.FirstStop = firstStop != null ? firstStop.Content : string.Empty;
+            ViewBag.Footer = footer != null ? footer.Content : string.Empty;
+
+            var model = new EshopViewModel(db, 1);
+
+            model.DiskDetail = db.Disks.FirstOrDefault(d => d.Article == id);
+            model.DiskStock = db.DiskStocks.FirstOrDefault(d => d.Article == id);
+
+            var sales = db.DiskSales.ToList();
+
+            var defaultSale = sales.FirstOrDefault(s => s.Manufacturer.ToLower() == "alcar");
+            var diskSale = sales.FirstOrDefault(s => s.Manufacturer.ToLower() == model.DiskDetail.Brand.ToLower());
+
+            double finalSale = 0;
+
+            if (diskSale != null)
+            {
+                finalSale = diskSale.Sale / 100.0;
+            }
+            else if (defaultSale != null)
+            {
+                finalSale = defaultSale.Sale / 100.0;
+            }
+
+            model.DiskDetail.SalesPrice = model.DiskDetail.SalesPrice * 1.21 * (1 + finalSale);
+
+            return View("~/Views/Eshop/DetailAlcar.cshtml", model);
+        }
+
         [HttpPost]
         public ActionResult Register(CustomerRegistration customer)
         {

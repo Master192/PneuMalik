@@ -16,19 +16,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Produkty", "Index", "Products")</li>
                     <li>@Html.ActionLink("Kategorie", "Index", "Cathegories")</li>
                     <li>@Html.ActionLink("Sys. texty", "Index", "Texts")</li>
                     <li>@Html.ActionLink("Obrázky", "Images", "Admin")</li>
-                    <li>@Html.ActionLink("Aktualizace", "Actualization", "Admin")</li>
-                    <li>@Html.ActionLink("Import XML", "ImportXml", "Admin")</li>
                     <li><span class="rozbalovac">Hromadné úpravy</span>
                         <ul>
-                            <li>@Html.ActionLink("Změna cen", "PriceChange", "Admin")</li>
+                            <li>@Html.ActionLink("Marže Alcar", "AlcarDisk", "Admin")</li>
+                            <li>@Html.ActionLink("Sklady Alcar", "AlcarUpdate", "Admin")</li>
+                            @*<li>@Html.ActionLink("Změna cen", "PriceChange", "Admin")</li>
                             <li>@Html.ActionLink("Změna slev", "SaleChange", "Admin")</li>
                             <li>@Html.ActionLink("Změna obrázků", "ImageChange", "Admin")</li>
                             <li>@Html.ActionLink("Změna textů", "TextChange", "Admin")</li>
-                            <li>@Html.ActionLink("Hromadné mazání", "MultiDelete", "Admin")</li>
+                            <li>@Html.ActionLink("Hromadné mazání", "MultiDelete", "Admin")</li>*@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Objednávky", "Index", "Orders")</li>

@@ -185,6 +185,9 @@ namespace PneuMalik.Models
             Cart = db.CartRows.Where(c => c.CustomerId == customer.Id).ToList();
         }
 
+        public Disk DiskDetail { get; set; }
+        public DiskStock DiskStock { get; set; }
+
         public int CathegoryType { get; set; }
         public IList<Product> Products { get; set; }
         public IList<Product> Tips { get; set; }

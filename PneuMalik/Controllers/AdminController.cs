@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -199,6 +200,140 @@ namespace PneuMalik.Controllers
             }
 
             return View("ImportXml");
+        }
+
+        public ActionResult AlcarDisk()
+        {
+            ViewBag.Title = "Marže disků Alcar";
+
+            return View(db.DiskSales.ToList());
+        }
+        [HttpPost]
+        public ActionResult NewDiskSale(string newdiskname, double newdisksale)
+        {
+            if (!db.DiskSales.Any(d => d.Manufacturer == newdiskname))
+            {
+                db.DiskSales.Add(new DiskItemSale()
+                {
+                    Manufacturer = newdiskname,
+                    Sale = newdisksale
+                });
+                db.SaveChanges();
+            }
+
+            ViewBag.Title = "Marže disků Alcar";
+
+            return View("AlcarDisk", db.DiskSales.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult UpdateDiskSales()
+        {
+
+            ViewBag.Title = "Marže disků Alcar";
+
+            return View("AlcarDisk", db.DiskSales.ToList());
+        }
+
+        public ActionResult AlcarUpdate()
+        {
+            ViewBag.Title = "Sklady Alcar";
+
+            return View(string.Empty);
+        }
+
+        [HttpPost]
+        public ActionResult AlcarDoUpdate()
+        {
+            ViewBag.Title = "Sklady Alcar";
+
+            var result = new StringBuilder();
+
+            // download from FTP
+            var files = new string[] { "CZ_A_00", "CZ_D3_00", "CZ_R_00", "CZ_S_00", "CZ_T1_00" };
+            var targetDir = $"{ConfigurationManager.AppSettings["FileAppUrl"]}alcar\\";
+            var client = new WebClient
+            {
+                Credentials = new NetworkCredential(ConfigurationManager.AppSettings["AlcarFtpName"], ConfigurationManager.AppSettings["AlcarFtpPass"])
+            };
+            foreach (var file in files)
+            {
+                try
+                {
+                    client.DownloadFile($"ftp://ftp.alcar-wheels.com/{file}.csv", $"{targetDir}{file}.csv");
+
+                    result.AppendLine($"Source file {file}.csv successfuly downloaded.<br>");
+                }
+                catch (Exception ed)
+                {
+                    result.AppendLine($"Error downloading file {file}.csv: {ed.Message}<br>");
+                }
+            }
+
+            // load to sql
+            foreach (var file in files)
+            {
+                var content = System.IO.File.ReadAllLines($"{targetDir}{file}.csv");
+                var counter = 0;
+
+                foreach (var line in content)
+                {
+                    try
+                    {
+                        var lineItems = line.Split(';');
+
+                        // header rows
+                        if (lineItems.Length < 5)
+                        {
+                            continue;
+                        }
+
+                        var price = double.Parse(lineItems[4]);
+                        var article = lineItems[0];
+                        var qtyLocal = int.Parse(string.IsNullOrEmpty(lineItems[1]) ? "0" : lineItems[1]);
+                        var qtyExternal = int.Parse(string.IsNullOrEmpty(lineItems[2]) ? "0" : lineItems[2]);
+                        var ean = lineItems[3];
+
+                        counter++;
+
+                        if (db.DiskStocks.Any(s => s.Article == article))
+                        {
+                            var dbItem = db.DiskStocks.FirstOrDefault(s => s.Article == article);
+
+                            if (dbItem.QtyLocal == qtyLocal && dbItem.QtyExternal == qtyExternal)
+                            {
+                                continue;
+                            }
+
+                            dbItem.Price = price;
+                            dbItem.QtyLocal = qtyLocal;
+                            dbItem.QtyExternal = qtyExternal;
+                            db.Entry(dbItem).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            db.DiskStocks.Add(new DiskStock()
+                            {
+                                Article = article,
+                                Ean = ean,
+                                Price = price,
+                                QtyExternal = qtyExternal,
+                                QtyLocal = qtyLocal
+                            });
+                        }
+
+                        db.SaveChanges();
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+
+                result.AppendLine($"Source file {file}.csv successfully processed. Updtated articles: {counter}<br>");
+            }
+
+            return View(result.ToString());
         }
 
         public ActionResult PriceChange()

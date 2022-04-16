@@ -32,6 +32,8 @@ namespace PneuMalik.Models
             return new ApplicationDbContext();
         }
 
+        public DbSet<Dto.Disk> Disks { get; set; }
+
         public DbSet<Dto.Cathegory> Cathegories { get; set; }
 
         public DbSet<Dto.Product> Products { get; set; }
@@ -77,5 +79,8 @@ namespace PneuMalik.Models
         public DbSet<PneuB2b.Response.Tyre> Tyres { get; set; }
 
         public DbSet<PneuB2b.PriceInfo> PriceInfos { get; set; }
+
+        public DbSet<Dto.DiskItemSale> DiskSales { get; set; }
+        public DbSet<Dto.DiskStock> DiskStocks { get; set; }
     }
 }

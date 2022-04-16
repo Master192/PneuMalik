@@ -115,7 +115,8 @@ namespace PneuMalik.Models.Dto
         public enum DataSource
         {
             PneuB2B = 1,
-            Gedip
+            Gedip,
+            Alcar
         }
     }
 }
